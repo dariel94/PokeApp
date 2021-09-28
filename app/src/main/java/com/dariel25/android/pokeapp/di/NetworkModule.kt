@@ -19,7 +19,7 @@ import javax.inject.Singleton
 @InstallIn(SingletonComponent::class)
 object NetworkModule {
 
-    private const val LIST_BASE_URL = "https://raw.githubusercontent.com/dariel94/PokeApp/main/"
+    private const val LIST_BASE_URL = "https://raw.githubusercontent.com/dariel94/PokeApp/master/"
     private const val POKE_API_BASE_URL = "https://pokeapi.co/api/v2/"
 
     @Provides
