@@ -15,20 +15,25 @@ import com.dariel25.android.pokeapp.R
 import com.dariel25.android.pokeapp.domain.model.PokemonSimple
 import com.dariel25.android.pokeapp.presentation.utils.StringUtils
 
+
 class PokeListAdapter(
-    private val context: Context,
-    val dataset: List<PokemonSimple>
+    private val context: Context
 ) : RecyclerView.Adapter<PokeListAdapter.PokemonViewHolder>(), Filterable {
 
     private val filter = PokemonListFilter(this)
+    var dataset: List<PokemonSimple> = ArrayList()
+        set(value) {
+            field = value
+            filteredDataset = field
+        }
     var filteredDataset = dataset
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, type: Int): PokemonViewHolder =
         PokemonViewHolder(LayoutInflater.from(viewGroup.context)
             .inflate(R.layout.row_pokemon, viewGroup, false))
 
-    override fun onBindViewHolder(viewHolder: PokemonViewHolder, i: Int) {
-        val p = filteredDataset[i]
+    override fun onBindViewHolder(viewHolder: PokemonViewHolder, pos: Int) {
+        val p = filteredDataset[pos]
 
         viewHolder.id.text = StringUtils.getIdTitle(p.id)
         viewHolder.name.text = p.name
@@ -54,7 +59,6 @@ class PokeListAdapter(
             .placeholder(circularProgressDrawable)
             .diskCacheStrategy(DiskCacheStrategy.ALL)
             .into(viewHolder.icon)
-
     }
 
     private fun getColor(color: String): Int {
@@ -74,6 +78,8 @@ class PokeListAdapter(
 
     override fun getItemCount(): Int = filteredDataset.size
 
+    override fun getFilter(): Filter = filter
+
     class PokemonViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val card: CardView = itemView.findViewById<View>(R.id.card) as CardView
         val icon: ImageView = itemView.findViewById<View>(R.id.iv_icon) as ImageView
@@ -88,6 +94,4 @@ class PokeListAdapter(
         private const val IMAGE_URL = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/"
         private const val PNG = ".png"
     }
-
-    override fun getFilter(): Filter = filter
 }
