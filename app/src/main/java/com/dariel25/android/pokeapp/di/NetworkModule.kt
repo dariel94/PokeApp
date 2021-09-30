@@ -2,7 +2,6 @@ package com.dariel25.android.pokeapp.di
 
 import com.dariel25.android.pokeapp.BuildConfig
 import com.dariel25.android.pokeapp.data.network.PokeApi
-import com.dariel25.android.pokeapp.data.network.PokeListApi
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -73,12 +72,6 @@ object NetworkModule {
             .client(okHttpClient)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
-
-    @Provides
-    internal fun providesPokeListApi(
-        @PokeListRetrofit retrofit: Retrofit
-    ): PokeListApi =
-        retrofit.create(PokeListApi::class.java)
 
     @Provides
     internal fun providesPokeApi(

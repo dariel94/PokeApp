@@ -2,7 +2,7 @@ package com.dariel25.android.pokeapp.domain.repository
 
 import com.dariel25.android.pokeapp.domain.model.SimplePokemon
 
-interface PokemonListRepository {
+interface SimplePokemonRepository {
 
-    suspend fun getPokemonList(): List<SimplePokemon>
+    suspend fun getSimplePokemon(id: String): SimplePokemon
 }

@@ -12,7 +12,7 @@ import androidx.swiperefreshlayout.widget.CircularProgressDrawable
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.dariel25.android.pokeapp.R
-import com.dariel25.android.pokeapp.domain.model.PokemonSimple
+import com.dariel25.android.pokeapp.domain.model.SimplePokemon
 import com.dariel25.android.pokeapp.presentation.utils.StringUtils
 
 
@@ -21,7 +21,7 @@ class PokeListAdapter(
 ) : RecyclerView.Adapter<PokeListAdapter.PokemonViewHolder>(), Filterable {
 
     private val filter = PokemonListFilter(this)
-    var dataset: List<PokemonSimple> = ArrayList()
+    var dataset: List<SimplePokemon> = ArrayList()
         set(value) {
             field = value
             filteredDataset = field
@@ -39,9 +39,8 @@ class PokeListAdapter(
         viewHolder.name.text = p.name
         viewHolder.type1.text = p.type1
         viewHolder.type2.text = p.type2
-        viewHolder.card.setCardBackgroundColor(getColor(p.color))
 
-        if (p.type2.isEmpty()) {
+        if (p.type2 == null) {
             viewHolder.type2Container.visibility = View.GONE
         } else {
             viewHolder.type2Container.visibility = View.VISIBLE
