@@ -1,13 +1,13 @@
 package com.dariel25.android.pokeapp.data.mapper
 
-import com.dariel25.android.pokeapp.data.network.model.PokemonSimpleDto
+import com.dariel25.android.pokeapp.data.network.model.SimplePokemonDto
 import com.dariel25.android.pokeapp.data.room.model.PokemonSimpleEntity
 import com.dariel25.android.pokeapp.domain.model.PokemonSimple
 import javax.inject.Inject
 
 class PokemonSimpleMapper @Inject constructor() {
 
-    fun mapDtoToUI(type: List<PokemonSimpleDto>): List<PokemonSimple> {
+    fun mapDtoToUI(type: List<SimplePokemonDto>): List<PokemonSimple> {
         return type.map {
             PokemonSimple(
                 id = it.id,
@@ -33,7 +33,7 @@ class PokemonSimpleMapper @Inject constructor() {
         }
     }
 
-    fun mapDtoToEntity(type: List<PokemonSimpleDto>): List<PokemonSimpleEntity> {
+    fun mapDtoToEntity(type: List<SimplePokemonDto>): List<PokemonSimpleEntity> {
         return type.map {
             PokemonSimpleEntity(
                 id = it.id,

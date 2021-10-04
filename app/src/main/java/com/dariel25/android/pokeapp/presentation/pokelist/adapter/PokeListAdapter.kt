@@ -14,6 +14,8 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.dariel25.android.pokeapp.R
 import com.dariel25.android.pokeapp.domain.model.PokemonSimple
 import com.dariel25.android.pokeapp.presentation.utils.StringUtils
+import java.util.*
+import kotlin.collections.ArrayList
 
 
 class PokeListAdapter(
@@ -39,7 +41,7 @@ class PokeListAdapter(
         viewHolder.name.text = p.name
         viewHolder.type1.text = p.type1
         viewHolder.type2.text = p.type2
-        viewHolder.card.setCardBackgroundColor(getColor(p.color))
+        viewHolder.card.setCardBackgroundColor(getColor(p.type1))
 
         if (p.type2.isEmpty()) {
             viewHolder.type2Container.visibility = View.GONE
@@ -61,17 +63,25 @@ class PokeListAdapter(
             .into(viewHolder.icon)
     }
 
-    private fun getColor(color: String): Int {
-        val c = when (color) {
-            "Green" -> R.color.green
-            "Red" -> R.color.red
-            "Blue" -> R.color.blue
-            "Yellow" -> R.color.yellow
-            "Purple" -> R.color.purple
-            "Brown" -> R.color.brown
-            "Pink" -> R.color.pink
-            "Grey" -> R.color.grey
-            else -> R.color.black
+    private fun getColor(type: String): Int {
+        val c = when (type.lowercase(Locale.getDefault())) {
+            "grass" -> R.color.grass
+            "fire" -> R.color.fire
+            "water" -> R.color.water
+            "bug" -> R.color.bug
+            "poison" -> R.color.poison
+            "electric" -> R.color.electric
+            "ground" -> R.color.ground
+            "fairy" -> R.color.fairy
+            "fighting" -> R.color.fighting
+            "psychic" -> R.color.psychic
+            "rock" -> R.color.rock
+            "ghost" -> R.color.ghost
+            "flying" -> R.color.flying
+            "ice" -> R.color.ice
+            "dragon" -> R.color.dragon
+            "dark" -> R.color.dark
+            else -> R.color.other
         }
         return context.resources.getColor(c)
     }

@@ -2,7 +2,7 @@ package com.dariel25.android.pokeapp.data.network.model
 
 import com.google.gson.annotations.SerializedName
 
-data class PokemonSimpleDto(
+data class SimplePokemonDto(
     val id: String = "",
     val name: String = "",
     val type1: String = "",
