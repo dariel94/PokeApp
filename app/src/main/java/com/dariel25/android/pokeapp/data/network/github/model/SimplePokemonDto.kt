@@ -1,7 +1,9 @@
 package com.dariel25.android.pokeapp.data.network.github.model
 
 import com.google.gson.annotations.SerializedName
+import kotlinx.android.parcel.Parcelize
 
+@Parcelize
 data class SimplePokemonDto(
     val id: String = "",
     val name: String = "",

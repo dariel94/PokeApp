@@ -4,10 +4,11 @@ import kotlinx.android.parcel.Parcelize
 
 @Parcelize
 data class EvolutionChainDto(
-    val chain: Chain
+    val chain: ChainDto
 )
 
-data class Chain(
+@Parcelize
+data class ChainDto(
     val species: Resource,
-    val evolvesTo: List<Chain>
+    val evolvesTo: List<ChainDto>
 )

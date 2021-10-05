@@ -9,6 +9,7 @@ data class Pokemon(
     val generation: String,
     val legendary: Boolean = false,
     val types: List<String>,
+    val stats: List<Stat>,
     val abilities: List<String>,
-    val evolutionChain: List<String>
+    val evolutionChain: EvolutionChain
 )
