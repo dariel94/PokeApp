@@ -1,6 +1,6 @@
-package com.dariel25.android.pokeapp.data.network
+package com.dariel25.android.pokeapp.data.network.github
 
-import com.dariel25.android.pokeapp.data.network.model.SimplePokemonDto
+import com.dariel25.android.pokeapp.data.network.github.model.SimplePokemonDto
 import retrofit2.http.GET
 
 interface PokeListApi {

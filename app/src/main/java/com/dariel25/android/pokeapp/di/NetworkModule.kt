@@ -1,8 +1,8 @@
 package com.dariel25.android.pokeapp.di
 
 import com.dariel25.android.pokeapp.BuildConfig
-import com.dariel25.android.pokeapp.data.network.PokeApi
-import com.dariel25.android.pokeapp.data.network.PokeListApi
+import com.dariel25.android.pokeapp.data.network.pokeapi.PokeApi
+import com.dariel25.android.pokeapp.data.network.github.PokeListApi
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -11,7 +11,6 @@ import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import javax.inject.Inject
 import javax.inject.Qualifier
 import javax.inject.Singleton
 

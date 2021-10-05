@@ -3,20 +3,17 @@ package com.dariel25.android.pokeapp.presentation.pokelist
 import android.os.Bundle
 import android.view.Menu
 import android.view.View
-import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import androidx.activity.viewModels
 import androidx.appcompat.widget.SearchView
-import androidx.core.view.children
 import androidx.recyclerview.widget.GridLayoutManager
 import com.dariel25.android.pokeapp.R
 import com.dariel25.android.pokeapp.databinding.ActivityPokelistBinding
-import com.dariel25.android.pokeapp.domain.model.PokemonSimple
+import com.dariel25.android.pokeapp.domain.model.SimplePokemon
 import com.dariel25.android.pokeapp.presentation.core.ui.BaseActivity
 import com.dariel25.android.pokeapp.presentation.model.ViewState
 import com.dariel25.android.pokeapp.presentation.pokelist.adapter.PokeListAdapter
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.android.synthetic.main.activity_pokelist.*
 
 @AndroidEntryPoint
 class PokeListActivity : BaseActivity() {
@@ -67,7 +64,7 @@ class PokeListActivity : BaseActivity() {
         return true
     }
 
-    private fun updateViewStatus(networkState: ViewState<List<PokemonSimple>?>) {
+    private fun updateViewStatus(networkState: ViewState<List<SimplePokemon>?>) {
         when (networkState) {
             is ViewState.Loading -> showLoadingView()
             is ViewState.Success -> loadList(networkState.data)
@@ -75,7 +72,7 @@ class PokeListActivity : BaseActivity() {
         }
     }
 
-    private fun loadList(list: List<PokemonSimple>?) {
+    private fun loadList(list: List<SimplePokemon>?) {
         list?.let {
             pokeListAdapter.dataset = it
             pokeListAdapter.notifyDataSetChanged()

@@ -1,4 +1,4 @@
-package com.dariel25.android.pokeapp.data.network.model
+package com.dariel25.android.pokeapp.data.network.github.model
 
 import com.google.gson.annotations.SerializedName
 

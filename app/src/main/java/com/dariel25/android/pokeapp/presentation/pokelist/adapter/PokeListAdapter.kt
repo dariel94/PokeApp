@@ -12,7 +12,7 @@ import androidx.swiperefreshlayout.widget.CircularProgressDrawable
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.dariel25.android.pokeapp.R
-import com.dariel25.android.pokeapp.domain.model.PokemonSimple
+import com.dariel25.android.pokeapp.domain.model.SimplePokemon
 import com.dariel25.android.pokeapp.presentation.utils.StringUtils
 import java.util.*
 import kotlin.collections.ArrayList
@@ -23,7 +23,7 @@ class PokeListAdapter(
 ) : RecyclerView.Adapter<PokeListAdapter.PokemonViewHolder>(), Filterable {
 
     private val filter = PokemonListFilter(this)
-    var dataset: List<PokemonSimple> = ArrayList()
+    var dataset: List<SimplePokemon> = ArrayList()
         set(value) {
             field = value
             filteredDataset = field

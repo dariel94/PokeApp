@@ -1,9 +1,9 @@
 package com.dariel25.android.pokeapp.data.repository
 
 import com.dariel25.android.pokeapp.data.mapper.PokemonSimpleMapper
-import com.dariel25.android.pokeapp.data.network.PokeListApi
+import com.dariel25.android.pokeapp.data.network.github.PokeListApi
 import com.dariel25.android.pokeapp.data.room.PokemonSimpleDao
-import com.dariel25.android.pokeapp.domain.model.PokemonSimple
+import com.dariel25.android.pokeapp.domain.model.SimplePokemon
 import com.dariel25.android.pokeapp.domain.repository.PokemonListRepository
 import javax.inject.Inject
 
@@ -13,7 +13,7 @@ class PokemonListRepositoryImpl @Inject constructor(
     private val mapper: PokemonSimpleMapper
 ) : PokemonListRepository {
 
-    override suspend fun getPokemonList(): List<PokemonSimple> {
+    override suspend fun getPokemonList(): List<SimplePokemon> {
         val cachedList = dao?.getAll()
 
         return if (cachedList.isNullOrEmpty()) {

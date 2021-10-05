@@ -1,23 +1,27 @@
 package com.dariel25.android.pokeapp.data.mapper
 
 import com.dariel25.android.pokeapp.data.network.github.model.SimplePokemonDto
+import com.dariel25.android.pokeapp.data.network.pokeapi.model.PokemonDto
+import com.dariel25.android.pokeapp.data.network.pokeapi.model.PokemonSpeciesDto
 import com.dariel25.android.pokeapp.data.room.model.PokemonSimpleEntity
+import com.dariel25.android.pokeapp.domain.model.Pokemon
 import com.dariel25.android.pokeapp.domain.model.SimplePokemon
 import javax.inject.Inject
 
-class PokemonSimpleMapper @Inject constructor() {
+class PokemonMapper @Inject constructor() {
 
-    fun mapDtoToUI(type: List<SimplePokemonDto>): List<SimplePokemon> {
-        return type.map {
-            SimplePokemon(
-                id = it.id,
-                name = it.name,
-                type1 = it.type1,
-                type2 = it.type2,
-                color = it.color,
-                legendary = it.legendary
-            )
+    fun mapDtoToUI(p: PokemonDto, s: PokemonSpeciesDto): Pokemon {
+        val types = p.types.map {
+            it.type.name
         }
+        val abilities = p.abilities.map {
+            it.ability.name
+        }
+
+        s.evolutionChain.
+
+
+        return Pokemon(p.id, p.name, s.color, p.height, p.weight, s.generation.name, s.isLegendary, types, abilities, types)
     }
 
     fun mapEntityToUI(type: List<PokemonSimpleEntity>): List<SimplePokemon> {
