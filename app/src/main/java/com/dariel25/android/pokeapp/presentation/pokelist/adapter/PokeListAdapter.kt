@@ -16,9 +16,9 @@ import com.dariel25.android.pokeapp.R
 import com.dariel25.android.pokeapp.domain.model.SimplePokemon
 import com.dariel25.android.pokeapp.presentation.detail.PokemonDetailActivity
 import com.dariel25.android.pokeapp.presentation.utils.StringUtils
+import com.dariel25.android.pokeapp.presentation.utils.StringUtils.SPRITE_URL
 import java.util.*
 import kotlin.collections.ArrayList
-
 
 class PokeListAdapter(
     private val context: Context
@@ -58,7 +58,7 @@ class PokeListAdapter(
         circularProgressDrawable.start()
 
         Glide.with(context)
-            .load(IMAGE_URL + p.id + PNG)
+            .load(SPRITE_URL.replace("{id}", p.id))
             .centerCrop()
             .placeholder(circularProgressDrawable)
             .diskCacheStrategy(DiskCacheStrategy.ALL)
@@ -106,10 +106,5 @@ class PokeListAdapter(
         val type1: TextView = itemView.findViewById<View>(R.id.tv_type1) as TextView
         val type2: TextView = itemView.findViewById<View>(R.id.tv_type2) as TextView
         val type2Container: LinearLayout = itemView.findViewById<View>(R.id.type2_container) as LinearLayout
-    }
-
-    companion object {
-        private const val IMAGE_URL = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/"
-        private const val PNG = ".png"
     }
 }
