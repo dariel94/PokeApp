@@ -1,6 +1,8 @@
 package com.dariel25.android.pokeapp.di
 
+import com.dariel25.android.pokeapp.data.repository.PokeApiRepositoryImpl
 import com.dariel25.android.pokeapp.data.repository.PokemonListRepositoryImpl
+import com.dariel25.android.pokeapp.domain.repository.PokeApiRepository
 import com.dariel25.android.pokeapp.domain.repository.PokemonListRepository
 import dagger.Binds
 import dagger.Module
@@ -16,4 +18,8 @@ abstract class DomainModule {
         pokemonListRepositoryImpl: PokemonListRepositoryImpl
     ): PokemonListRepository
 
+    @Binds
+    internal abstract fun providesPokeApiRepository(
+        pokeApiRepositoryImpl: PokeApiRepositoryImpl
+    ): PokeApiRepository
 }

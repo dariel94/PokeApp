@@ -16,7 +16,8 @@ class PokemonDetailUseCase @Inject constructor(
         val pokemon = withContext(Dispatchers.IO) {
             val pokemonDto = repository.getPokemon(id)
             val pokemonSpeciesDto = repository.getPokemonSpecies(id)
-            val evolutionChainDto = repository.getEvolutionChain(id)
+            val chainId = mapper.getIdFromUrl(pokemonSpeciesDto.evolutionChain.url)
+            val evolutionChainDto = repository.getEvolutionChain(chainId)
 
             mapper.mapDtoToUI(pokemonDto, pokemonSpeciesDto, evolutionChainDto)
         }

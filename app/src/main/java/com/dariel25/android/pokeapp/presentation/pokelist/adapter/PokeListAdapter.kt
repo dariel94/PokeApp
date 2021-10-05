@@ -1,6 +1,7 @@
 package com.dariel25.android.pokeapp.presentation.pokelist.adapter
 
 import android.content.Context
+import android.content.Intent
 import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
@@ -13,6 +14,7 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.dariel25.android.pokeapp.R
 import com.dariel25.android.pokeapp.domain.model.SimplePokemon
+import com.dariel25.android.pokeapp.presentation.detail.PokemonDetailActivity
 import com.dariel25.android.pokeapp.presentation.utils.StringUtils
 import java.util.*
 import kotlin.collections.ArrayList
@@ -61,6 +63,12 @@ class PokeListAdapter(
             .placeholder(circularProgressDrawable)
             .diskCacheStrategy(DiskCacheStrategy.ALL)
             .into(viewHolder.icon)
+
+        viewHolder.itemView.setOnClickListener {
+            val intent = Intent(context, PokemonDetailActivity::class.java)
+            intent.putExtra("id", p.id)
+            context.startActivity(intent)
+        }
     }
 
     private fun getColor(type: String): Int {

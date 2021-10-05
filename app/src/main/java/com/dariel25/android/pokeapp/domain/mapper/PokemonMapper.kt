@@ -38,7 +38,7 @@ class PokemonMapper @Inject constructor() {
         return Pokemon(
             pokemonDto.id,
             pokemonDto.name,
-            speciesDto.color,
+            speciesDto.color.name,
             pokemonDto.height,
             pokemonDto.weight,
             speciesDto.generation.name,
@@ -58,7 +58,7 @@ class PokemonMapper @Inject constructor() {
             )
         }
 
-    private fun getIdFromUrl(url: String): String {
+    fun getIdFromUrl(url: String): String {
         val splitUrl = url.split('/')
         return splitUrl[splitUrl.size - 2]
     }

@@ -1,5 +1,6 @@
 package com.dariel25.android.pokeapp.data.network.github.model
 
+import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
 import kotlinx.android.parcel.Parcelize
 
@@ -20,4 +21,4 @@ data class SimplePokemonDto(
     @SerializedName("sp_def") val spDef: Float = 0F,
     val spd: Float = 0F,
     val total: Float = 0F
-)
+) : Parcelable
