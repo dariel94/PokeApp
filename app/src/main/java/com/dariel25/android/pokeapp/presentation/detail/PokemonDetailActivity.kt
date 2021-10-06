@@ -1,7 +1,10 @@
 package com.dariel25.android.pokeapp.presentation.detail
 
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.view.View
+import android.view.Window
 import android.widget.TextView
 import androidx.activity.viewModels
 import com.bumptech.glide.Glide
@@ -10,7 +13,9 @@ import com.dariel25.android.pokeapp.databinding.ActivityPokemonDetailBinding
 import com.dariel25.android.pokeapp.domain.model.Pokemon
 import com.dariel25.android.pokeapp.presentation.core.ui.BaseActivity
 import com.dariel25.android.pokeapp.presentation.model.ViewState
+import com.dariel25.android.pokeapp.presentation.utils.ColorUtils
 import com.dariel25.android.pokeapp.presentation.utils.StringUtils
+import com.dariel25.android.pokeapp.presentation.widgets.PokemonTypeWidget
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -24,6 +29,13 @@ class PokemonDetailActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        //supportRequestWindowFeature(Window.FEATURE_ACTION_BAR_OVERLAY)
+
+        supportActionBar?.apply {
+            setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+            setHomeButtonEnabled(true)
+            setDisplayHomeAsUpEnabled(true)
+        }
 
         pokemonDetailViewModel.getViewStateLiveData()
             .observe(this, { updateViewStatus(it) })
@@ -49,22 +61,25 @@ class PokemonDetailActivity : BaseActivity() {
     private fun showPokemonData(pokemon: Pokemon?) {
         pokemon?.let {
             Glide.with(this)
-                .load(StringUtils.SPRITE_URL.replace("{id}", pokemon.id))
+                .load(StringUtils.getImageUrl(id))
                 .centerCrop()
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .into(binding.image)
 
             binding.name.text = it.name.replaceFirstChar { c -> c.uppercase() }
-            binding.height.text = it.height.toString()
-            binding.weight.text = it.weight.toString()
+            binding.id.text = StringUtils.getIdTitle(it.id)
 
-            var types = ""
-            for (type in pokemon.types) {
-                types += "$type "
+            if (pokemon.types.isNotEmpty()) {
+                val type = pokemon.types.first()
+                binding.detailContainer.background =
+                    ColorDrawable(ColorUtils.getPokemonTypeColor(this, type))
             }
-            val textViewTypes = TextView(this)
-            textViewTypes.text = types
-            binding.typesContainer.addView(textViewTypes)
+
+            for (type in pokemon.types) {
+                val pokemonTypeWidget = PokemonTypeWidget(this)
+                pokemonTypeWidget.setType(type)
+                binding.typesContainer.addView(pokemonTypeWidget)
+            }
 
             for (stat in pokemon.stats) {
                 val textViewStat = TextView(this)
