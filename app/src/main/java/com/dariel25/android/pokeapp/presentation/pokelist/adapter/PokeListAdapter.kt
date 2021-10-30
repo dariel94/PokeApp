@@ -14,10 +14,8 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.dariel25.android.pokeapp.R
 import com.dariel25.android.pokeapp.domain.model.SimplePokemon
+import com.dariel25.android.pokeapp.domain.utils.PokemonUtils
 import com.dariel25.android.pokeapp.presentation.detail.PokemonDetailActivity
-import com.dariel25.android.pokeapp.presentation.utils.ColorUtils
-import com.dariel25.android.pokeapp.presentation.utils.StringUtils
-import kotlin.collections.ArrayList
 
 class PokeListAdapter(
     private val context: Context
@@ -36,15 +34,15 @@ class PokeListAdapter(
             .inflate(R.layout.row_pokemon, viewGroup, false))
 
     override fun onBindViewHolder(viewHolder: PokemonViewHolder, pos: Int) {
-        val p = filteredDataset[pos]
+        val pokemon = filteredDataset[pos]
 
-        viewHolder.id.text = StringUtils.getIdTitle(p.id)
-        viewHolder.name.text = p.name
-        viewHolder.type1.text = p.type1
-        viewHolder.type2.text = p.type2
-        viewHolder.card.setCardBackgroundColor(ColorUtils.getPokemonTypeColor(context, p.type1))
+        viewHolder.id.text = PokemonUtils.getIdTitle(pokemon.id)
+        viewHolder.name.text = pokemon.name
+        viewHolder.type1.text = pokemon.type1
+        viewHolder.type2.text = pokemon.type2
+        viewHolder.card.setCardBackgroundColor(context.resources.getColor(pokemon.color))
 
-        if (p.type2.isEmpty()) {
+        if (pokemon.type2.isEmpty()) {
             viewHolder.type2Container.visibility = View.GONE
         } else {
             viewHolder.type2Container.visibility = View.VISIBLE
@@ -57,7 +55,7 @@ class PokeListAdapter(
         circularProgressDrawable.start()
 
         Glide.with(context)
-            .load(StringUtils.getImageUrl(p.id))
+            .load(pokemon.imageUrl)
             .centerCrop()
             .placeholder(circularProgressDrawable)
             .diskCacheStrategy(DiskCacheStrategy.ALL)
@@ -65,7 +63,7 @@ class PokeListAdapter(
 
         viewHolder.itemView.setOnClickListener {
             val intent = Intent(context, PokemonDetailActivity::class.java)
-            intent.putExtra("id", p.id)
+            intent.putExtra("id", pokemon.id)
             context.startActivity(intent)
         }
     }

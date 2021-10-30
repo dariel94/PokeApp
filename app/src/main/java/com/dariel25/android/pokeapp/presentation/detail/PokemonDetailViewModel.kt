@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.dariel25.android.pokeapp.data.network.model.NetworkState
+import com.dariel25.android.pokeapp.data.network.NetworkState
 import com.dariel25.android.pokeapp.domain.model.Pokemon
 import com.dariel25.android.pokeapp.domain.usecase.PokemonDetailUseCase
 import com.dariel25.android.pokeapp.presentation.model.ViewState

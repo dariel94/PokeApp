@@ -1,7 +1,7 @@
 package com.dariel25.android.pokeapp.domain.usecase
 
+import com.dariel25.android.pokeapp.data.network.NetworkState
 import com.dariel25.android.pokeapp.domain.mapper.PokemonMapper
-import com.dariel25.android.pokeapp.data.network.model.NetworkState
 import com.dariel25.android.pokeapp.domain.model.Pokemon
 import com.dariel25.android.pokeapp.domain.repository.PokeApiRepository
 import kotlinx.coroutines.Dispatchers
@@ -13,15 +13,10 @@ class PokemonDetailUseCase @Inject constructor(
     private val mapper: PokemonMapper
 ) {
     suspend fun getPokemon(id: String) : NetworkState<Pokemon> = try {
-        val pokemon = withContext(Dispatchers.IO) {
-            val pokemonDto = repository.getPokemon(id)
-            val pokemonSpeciesDto = repository.getPokemonSpecies(id)
-            val chainId = mapper.getIdFromUrl(pokemonSpeciesDto.evolutionChain.url)
-            val evolutionChainDto = repository.getEvolutionChain(chainId)
-
-            mapper.mapDtoToUI(pokemonDto, pokemonSpeciesDto, evolutionChainDto)
+        val pokemonDto = withContext(Dispatchers.IO) {
+            repository.getPokemon(id)
         }
-        NetworkState.Success(pokemon)
+        NetworkState.Success(mapper.mapDtoToUI(pokemonDto))
     } catch (e: Throwable) {
         NetworkState.Error(e)
     }

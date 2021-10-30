@@ -1,20 +1,22 @@
 package com.dariel25.android.pokeapp.data.mapper
 
-import com.dariel25.android.pokeapp.data.network.github.model.SimplePokemonDto
+import com.dariel25.android.pokeapp.data.network.pokelist.model.PokemonSimpleDto
 import com.dariel25.android.pokeapp.data.room.model.PokemonSimpleEntity
 import com.dariel25.android.pokeapp.domain.model.SimplePokemon
+import com.dariel25.android.pokeapp.domain.utils.PokemonUtils
 import javax.inject.Inject
 
 class PokemonSimpleMapper @Inject constructor() {
 
-    fun mapDtoToUI(type: List<SimplePokemonDto>): List<SimplePokemon> {
+    fun mapDtoToUI(type: List<PokemonSimpleDto>): List<SimplePokemon> {
         return type.map {
             SimplePokemon(
                 id = it.id,
                 name = it.name,
+                imageUrl = PokemonUtils.getImageUrl(it.id),
+                PokemonUtils.getPokemonTypeColor(it.type1),
                 type1 = it.type1,
                 type2 = it.type2,
-                color = it.color,
                 legendary = it.legendary
             )
         }
@@ -25,32 +27,25 @@ class PokemonSimpleMapper @Inject constructor() {
             SimplePokemon(
                 id = it.id,
                 name = it.name,
+                imageUrl = it.imageUrl,
+                PokemonUtils.getPokemonTypeColor(it.type1),
                 type1 = it.type1,
                 type2 = it.type2,
-                color = it.color,
                 legendary = it.legendary
             )
         }
     }
 
-    fun mapDtoToEntity(type: List<SimplePokemonDto>): List<PokemonSimpleEntity> {
+    fun mapDtoToEntity(type: List<PokemonSimpleDto>): List<PokemonSimpleEntity> {
         return type.map {
             PokemonSimpleEntity(
                 id = it.id,
                 name = it.name,
+                imageUrl = PokemonUtils.getImageUrl(it.id),
+                PokemonUtils.getPokemonTypeColor(it.type1),
                 type1 = it.type1,
                 type2 = it.type2,
-                color = it.color,
-                legendary = it.legendary,
-                height = it.height,
-                weight = it.weight,
-                hp = it.hp,
-                atk = it.atk,
-                def = it.def,
-                spAtk = it.spAtk,
-                spDef = it.spDef,
-                spd = it.spd,
-                total = it.total
+                legendary = it.legendary
             )
         }
     }

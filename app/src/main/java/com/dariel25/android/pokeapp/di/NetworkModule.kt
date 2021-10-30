@@ -1,8 +1,8 @@
 package com.dariel25.android.pokeapp.di
 
 import com.dariel25.android.pokeapp.BuildConfig
+import com.dariel25.android.pokeapp.data.network.pokelist.PokeList
 import com.dariel25.android.pokeapp.data.network.pokeapi.PokeApi
-import com.dariel25.android.pokeapp.data.network.github.PokeListApi
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -76,8 +76,8 @@ object NetworkModule {
     @Provides
     internal fun providesPokeListApi(
         @PokeListRetrofit retrofit: Retrofit
-    ): PokeListApi =
-        retrofit.create(PokeListApi::class.java)
+    ): PokeList =
+        retrofit.create(PokeList::class.java)
 
     @Provides
     internal fun providesPokeApi(

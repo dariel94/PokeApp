@@ -1,4 +1,4 @@
-package com.dariel25.android.pokeapp.data.network.model
+package com.dariel25.android.pokeapp.data.network
 
 sealed class NetworkState<out T> {
 
