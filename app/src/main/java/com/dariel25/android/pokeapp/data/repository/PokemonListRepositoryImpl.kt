@@ -1,8 +1,8 @@
 package com.dariel25.android.pokeapp.data.repository
 
 import com.dariel25.android.pokeapp.data.network.pokelist.PokeList
-import com.dariel25.android.pokeapp.data.network.pokelist.model.mapToPokemonSimple
-import com.dariel25.android.pokeapp.data.network.pokelist.model.mapToPokemonSimpleEntity
+import com.dariel25.android.pokeapp.data.network.pokelist.model.mapToDomain
+import com.dariel25.android.pokeapp.data.network.pokelist.model.mapToEntity
 import com.dariel25.android.pokeapp.data.room.PokemonSimpleDao
 import com.dariel25.android.pokeapp.data.room.model.mapToPokemonSimple
 import com.dariel25.android.pokeapp.domain.model.PokemonSimple
@@ -19,9 +19,9 @@ class PokemonListRepositoryImpl @Inject constructor(
 
         return if (cachedList.isNullOrEmpty()) {
             val remoteList = api.getPokemonList()
-            dao.insert(remoteList.map { it.mapToPokemonSimpleEntity() })
+            dao.insert(remoteList.map { it.mapToEntity() })
 
-            api.getPokemonList().map { it.mapToPokemonSimple() }
+            api.getPokemonList().map { it.mapToDomain() }
         } else {
             cachedList.map { it.mapToPokemonSimple() }
         }

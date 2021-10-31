@@ -14,7 +14,7 @@ data class PokemonSimpleDto(
     val legendary: Boolean = false
 ) : Parcelable
 
-fun PokemonSimpleDto.mapToPokemonSimple(): PokemonSimple {
+fun PokemonSimpleDto.mapToDomain(): PokemonSimple {
     return PokemonSimple(
         id,
         name,
@@ -23,7 +23,7 @@ fun PokemonSimpleDto.mapToPokemonSimple(): PokemonSimple {
     )
 }
 
-fun PokemonSimpleDto.mapToPokemonSimpleEntity(): PokemonSimpleEntity {
+fun PokemonSimpleDto.mapToEntity(): PokemonSimpleEntity {
     return PokemonSimpleEntity(
         id,
         name,

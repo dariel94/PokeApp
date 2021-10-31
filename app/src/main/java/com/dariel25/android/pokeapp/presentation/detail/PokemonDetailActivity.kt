@@ -9,9 +9,9 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.dariel25.android.pokeapp.R
 import com.dariel25.android.pokeapp.databinding.ActivityPokemonDetailBinding
-import com.dariel25.android.pokeapp.domain.model.Pokemon
 import com.dariel25.android.pokeapp.presentation.utils.PokemonUtils
 import com.dariel25.android.pokeapp.presentation.core.ui.BaseActivity
+import com.dariel25.android.pokeapp.presentation.model.PokemonUI
 import com.dariel25.android.pokeapp.presentation.model.UIState
 import com.dariel25.android.pokeapp.presentation.widgets.PokemonTypeWidget
 import com.dariel25.android.pokeapp.presentation.widgets.StatWidget
@@ -59,7 +59,7 @@ class PokemonDetailActivity : BaseActivity() {
         pokemonDetailViewModel.fetchPokemon(id)
     }
 
-    private fun updateViewStatus(networkState: UIState<Pokemon?>) {
+    private fun updateViewStatus(networkState: UIState<PokemonUI?>) {
         when (networkState) {
             is UIState.Loading -> showLoadingView()
             is UIState.Success -> showPokemonData(networkState.data)
@@ -67,7 +67,7 @@ class PokemonDetailActivity : BaseActivity() {
         }
     }
 
-    private fun showPokemonData(pokemon: Pokemon?) {
+    private fun showPokemonData(pokemon: PokemonUI?) {
         pokemon?.let {
             Glide.with(this)
                 .load(pokemon.imageUrl)
