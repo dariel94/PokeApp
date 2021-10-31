@@ -23,29 +23,30 @@ android {
     buildFeatures {
         viewBinding = true
     }
+    resourcePrefix 'pokeapp_'
 }
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
     // Kotlin
-    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.3.3'
-    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.3.3'
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutinesKtxVersion"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutinesKtxVersion"
 
     // UI
-    implementation 'androidx.appcompat:appcompat:1.0.0'
-    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
-    implementation 'androidx.recyclerview:recyclerview:1.1.0'
-    implementation 'androidx.cardview:cardview:1.0.0'
+    implementation "androidx.appcompat:appcompat:$appCompatVersion"
+    implementation "androidx.constraintlayout:constraintlayout:$constraintLayoutVersion"
+    implementation "androidx.recyclerview:recyclerview:$reciclerViewVersion"
+    implementation "androidx.cardview:cardview:$cardViewVersion"
 
     // Glide
-    implementation 'com.github.bumptech.glide:glide:4.11.0'
+    implementation "com.github.bumptech.glide:glide:$glideVersion"
 
     //Retrofit
-    implementation 'com.squareup.retrofit2:retrofit:2.6.0'
-    implementation 'com.google.code.gson:gson:2.8.5'
-    implementation 'com.squareup.retrofit2:converter-gson:2.5.0'
-    implementation 'com.squareup.okhttp3:logging-interceptor:3.12.0'
+    implementation "com.squareup.retrofit2:retrofit:$retrofitVersion"
+    implementation "com.google.code.gson:gson:$gsonVersion"
+    implementation "com.squareup.retrofit2:converter-gson:$gsonConverterVersion"
+    implementation "com.squareup.okhttp3:logging-interceptor:$okhttp3InterceptorVersion"
 
     // LifeCycle
     implementation "androidx.lifecycle:lifecycle-common:$lifecycleVersion"
@@ -65,11 +66,11 @@ dependencies {
     kapt "com.google.dagger:hilt-android-compiler:$hilt_version"
 
     // Test
-    testImplementation 'junit:junit:4.13'
-    testImplementation 'org.mockito:mockito-core:2.23.0'
+    testImplementation "junit:junit:$junitVersion"
+    testImplementation "org.mockito:mockito-core:$mockitoVersion"
 
     // Android Test
-    androidTestImplementation 'androidx.test.ext:junit:1.1.1'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+    androidTestImplementation "androidx.test.ext:junit:$junitxVersion"
+    androidTestImplementation "androidx.test.espresso:espresso-core:$expressoVersion"
 
 }

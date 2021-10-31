@@ -13,6 +13,9 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
+/**
+ * Created by dariel94 on 31/10/2021.
+ */
 @HiltViewModel
 class PokemonDetailViewModel @Inject constructor(
     private val pokemonDetailUseCase: PokemonDetailUseCase

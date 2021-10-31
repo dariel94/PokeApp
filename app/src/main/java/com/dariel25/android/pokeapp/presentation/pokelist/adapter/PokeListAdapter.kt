@@ -17,6 +17,9 @@ import com.dariel25.android.pokeapp.presentation.detail.PokemonDetailActivity
 import com.dariel25.android.pokeapp.presentation.model.PokemonSimpleUI
 import com.dariel25.android.pokeapp.presentation.utils.UIUtils
 
+/**
+ * Created by dariel94 on 31/10/2021.
+ */
 class PokeListAdapter(
     private val context: Context
 ) : RecyclerView.Adapter<PokeListAdapter.PokemonViewHolder>(), Filterable {
@@ -31,7 +34,7 @@ class PokeListAdapter(
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, type: Int): PokemonViewHolder =
         PokemonViewHolder(LayoutInflater.from(viewGroup.context)
-            .inflate(R.layout.row_pokemon, viewGroup, false))
+            .inflate(R.layout.pokeapp_pokemon_row, viewGroup, false))
 
     override fun onBindViewHolder(viewHolder: PokemonViewHolder, pos: Int) {
         val pokemon = filteredDataset[pos]

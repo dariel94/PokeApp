@@ -6,6 +6,9 @@ import com.dariel25.android.pokeapp.domain.model.Pokemon
 import com.dariel25.android.pokeapp.domain.model.Stat
 import kotlinx.android.parcel.Parcelize
 
+/**
+ * Created by dariel94 on 31/10/2021.
+ */
 @Parcelize
 data class PokemonDto(
     val id: String = "",

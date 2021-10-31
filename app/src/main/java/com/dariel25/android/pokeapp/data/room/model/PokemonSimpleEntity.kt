@@ -5,6 +5,9 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.dariel25.android.pokeapp.domain.model.PokemonSimple
 
+/**
+ * Created by dariel94 on 31/10/2021.
+ */
 @Entity
 data class PokemonSimpleEntity(
     @PrimaryKey val id: String = "",

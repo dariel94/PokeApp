@@ -1,11 +1,11 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Base.Theme.AppCompat.Light">
+    <style name="pokeapp_AppTheme" parent="Base.Theme.AppCompat.Light">
         <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
+        <item name="colorPrimary">@color/pokeapp_colorPrimary</item>
+        <item name="colorPrimaryDark">@color/pokeapp_colorPrimaryDark</item>
+        <item name="colorAccent">@color/pokeapp_colorAccent</item>
         <item name="fontFamily">@font/poppins_bold</item>
         <item name="android:fontFamily">@font/poppins_bold</item>
     </style>

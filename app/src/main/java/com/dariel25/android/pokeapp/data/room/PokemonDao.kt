@@ -3,6 +3,9 @@ package com.dariel25.android.pokeapp.data.room
 import androidx.room.*
 import com.dariel25.android.pokeapp.data.room.model.PokemonEntity
 
+/**
+ * Created by dariel94 on 31/10/2021.
+ */
 @Dao
 interface PokemonDao {
 

@@ -6,6 +6,9 @@ import androidx.room.PrimaryKey
 import com.dariel25.android.pokeapp.domain.model.Pokemon
 import com.dariel25.android.pokeapp.domain.model.Stat
 
+/**
+ * Created by dariel94 on 31/10/2021.
+ */
 @Entity
 data class PokemonEntity(
     @PrimaryKey val id: String = "",

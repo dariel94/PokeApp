@@ -8,7 +8,7 @@
     android:layout_marginTop="6dp"
     android:layout_marginStart="6dp"
     card_view:cardCornerRadius="5dp"
-    tools:ignore="UseCompoundDrawables">
+    tools:backgroundTint="@color/pokeapp_black">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -28,18 +28,18 @@
             android:id="@+id/tv_id"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="#001"
-            android:textSize="10sp"
-            android:textColor="@color/white"
+            tools:text="#001"
+            android:textSize="12sp"
+            android:textColor="@color/pokeapp_white"
             android:textAllCaps="true" />
 
         <TextView
             android:id="@+id/tv_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/white"
+            android:textColor="@color/pokeapp_white"
             android:textSize="16sp"
-            android:text="Bulvasaur" />
+            tools:text="Bulvasaur" />
 
     </LinearLayout>
 
@@ -59,15 +59,15 @@
                 android:paddingEnd="6dp"
                 android:layout_marginEnd="6dp"
                 android:paddingBottom="1dp"
-                android:background="@drawable/rounded_corner">
+                android:background="@drawable/pokeapp_rounded_corner">
 
                 <TextView
                     android:id="@+id/tv_type1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/white"
-                    android:textSize="10sp"
-                    android:text="Grass" />
+                    android:textColor="@color/pokeapp_white"
+                    android:textSize="12sp"
+                    tools:text="Grass" />
 
             </LinearLayout>
 
@@ -78,15 +78,15 @@
                 android:paddingStart="6dp"
                 android:paddingEnd="6dp"
                 android:paddingBottom="1dp"
-                android:background="@drawable/rounded_corner">
+                android:background="@drawable/pokeapp_rounded_corner">
 
                 <TextView
                     android:id="@+id/tv_type2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/white"
-                    android:textSize="10sp"
-                    android:text="Poison" />
+                    android:textColor="@color/pokeapp_white"
+                    android:textSize="12sp"
+                    tools:text="Poison" />
 
             </LinearLayout>
 
@@ -97,7 +97,7 @@
             android:layout_marginTop="6dp"
             android:layout_width="76dp"
             android:layout_height="76dp"
-            android:layout_gravity="right"
+            android:layout_gravity="end"
             android:layout_marginEnd="4dp"
             card_view:layout_constraintEnd_toEndOf="parent"
             card_view:layout_constraintTop_toTopOf="parent"

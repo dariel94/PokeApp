@@ -5,6 +5,9 @@ import com.dariel25.android.pokeapp.data.room.model.PokemonSimpleEntity
 import com.dariel25.android.pokeapp.domain.model.PokemonSimple
 import kotlinx.android.parcel.Parcelize
 
+/**
+ * Created by dariel94 on 31/10/2021.
+ */
 @Parcelize
 data class PokemonSimpleDto(
     val id: String = "",

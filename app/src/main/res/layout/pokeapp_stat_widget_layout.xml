@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    android:id="@+id/type_widget_container"
+<LinearLayout android:id="@+id/type_widget_container"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:paddingStart="8dp"
     android:paddingEnd="8dp"
     android:layout_marginEnd="4dp"
     android:orientation="horizontal"
-    android:background="@drawable/rounded_corner"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+    android:background="@drawable/pokeapp_rounded_corner"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <TextView
         android:id="@+id/stat_name"
@@ -16,7 +16,7 @@
         android:textSize="12sp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
-        android:text="Stat" />
+        tools:text="Stat" />
 
     <ProgressBar
         android:id="@+id/stat_bar"
@@ -25,7 +25,7 @@
         android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:max="200"
-        android:progressTint="@color/black"
+        android:progressTint="@color/pokeapp_black"
         android:progress="0" />
 
     <TextView
@@ -34,6 +34,6 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:textSize="12sp"
-        android:text="50" />
+        tools:text="50" />
 
 </LinearLayout>

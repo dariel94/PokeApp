@@ -3,6 +3,9 @@ package com.dariel25.android.pokeapp.presentation.utils
 import com.dariel25.android.pokeapp.R
 import java.util.*
 
+/**
+ * Created by dariel94 on 31/10/2021.
+ */
 object PokemonUtils {
 
     fun getImageUrl(id: String?): String {
@@ -42,23 +45,23 @@ object PokemonUtils {
 
     fun getPokemonTypeColor(type: String?): Int {
         return when (type?.lowercase(Locale.getDefault())) {
-            "grass" -> R.color.grass
-            "fire" -> R.color.fire
-            "water" -> R.color.water
-            "bug" -> R.color.bug
-            "poison" -> R.color.poison
-            "electric" -> R.color.electric
-            "ground" -> R.color.ground
-            "fairy" -> R.color.fairy
-            "fighting" -> R.color.fighting
-            "psychic" -> R.color.psychic
-            "rock" -> R.color.rock
-            "ghost" -> R.color.ghost
-            "flying" -> R.color.flying
-            "ice" -> R.color.ice
-            "dragon" -> R.color.dragon
-            "dark" -> R.color.dark
-            else -> R.color.other
+            "grass" -> R.color.pokeapp_grass
+            "fire" -> R.color.pokeapp_fire
+            "water" -> R.color.pokeapp_water
+            "bug" -> R.color.pokeapp_bug
+            "poison" -> R.color.pokeapp_poison
+            "electric" -> R.color.pokeapp_electric
+            "ground" -> R.color.pokeapp_ground
+            "fairy" -> R.color.pokeapp_fairy
+            "fighting" -> R.color.pokeapp_fighting
+            "psychic" -> R.color.pokeapp_psychic
+            "rock" -> R.color.pokeapp_rock
+            "ghost" -> R.color.pokeapp_ghost
+            "flying" -> R.color.pokeapp_flying
+            "ice" -> R.color.pokeapp_ice
+            "dragon" -> R.color.pokeapp_dragon
+            "dark" -> R.color.pokeapp_dark
+            else -> R.color.pokeapp_other
         }
     }
 }

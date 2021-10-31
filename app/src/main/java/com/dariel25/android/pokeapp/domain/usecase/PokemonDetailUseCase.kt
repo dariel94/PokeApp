@@ -7,6 +7,9 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
+/**
+ * Created by dariel94 on 31/10/2021.
+ */
 class PokemonDetailUseCase @Inject constructor(
     private val repository: PokeApiRepository
 ) {

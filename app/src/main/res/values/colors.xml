@@ -1,29 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#FFFFFF</color>
-    <color name="transparent">#00FFFFFF</color>
-    <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#FF4081</color>
-    <color name="black">#000000</color>
-    <color name="white">#FFFFFF</color>
-    <color name="grey">#808080</color>
+    <color name="pokeapp_colorPrimary">#FFFFFF</color>
+    <color name="pokeapp_transparent">#00FFFFFF</color>
+    <color name="pokeapp_colorPrimaryDark">#303F9F</color>
+    <color name="pokeapp_colorAccent">#FF4081</color>
+    <color name="pokeapp_black">#000000</color>
+    <color name="pokeapp_white">#FFFFFF</color>
+    <color name="pokeapp_grey">#808080</color>
 
-    <color name="grass">#48d0b0</color>
-    <color name="fire">#fb6c6c</color>
-    <color name="water">#76bdfe</color>
-    <color name="bug">#6bad4a</color>
-    <color name="poison">#b561b5</color>
-    <color name="electric">#ffce4b</color>
-    <color name="ground">#e6bd5a</color>
-    <color name="fairy">#efa3b1</color>
-    <color name="fighting">#a47b73</color>
-    <color name="psychic">#c5a410</color>
-    <color name="rock">#8b8b94</color>
-    <color name="ghost">#62317b</color>
-    <color name="flying">#c9b96c</color>
-    <color name="ice">#4395e8</color>
-    <color name="dragon">#f7b251</color>
-    <color name="dark">#253960</color>
-    <color name="other">#8eadcc</color>
+    <color name="pokeapp_grass">#48d0b0</color>
+    <color name="pokeapp_fire">#fb6c6c</color>
+    <color name="pokeapp_water">#76bdfe</color>
+    <color name="pokeapp_bug">#6bad4a</color>
+    <color name="pokeapp_poison">#b561b5</color>
+    <color name="pokeapp_electric">#ffce4b</color>
+    <color name="pokeapp_ground">#e6bd5a</color>
+    <color name="pokeapp_fairy">#efa3b1</color>
+    <color name="pokeapp_fighting">#a47b73</color>
+    <color name="pokeapp_psychic">#c5a410</color>
+    <color name="pokeapp_rock">#8b8b94</color>
+    <color name="pokeapp_ghost">#62317b</color>
+    <color name="pokeapp_flying">#c9b96c</color>
+    <color name="pokeapp_ice">#4395e8</color>
+    <color name="pokeapp_dragon">#f7b251</color>
+    <color name="pokeapp_dark">#253960</color>
+    <color name="pokeapp_other">#8eadcc</color>
 
 </resources>

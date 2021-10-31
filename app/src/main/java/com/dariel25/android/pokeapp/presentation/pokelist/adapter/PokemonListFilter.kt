@@ -3,6 +3,9 @@ package com.dariel25.android.pokeapp.presentation.pokelist.adapter
 import android.widget.Filter
 import com.dariel25.android.pokeapp.presentation.model.PokemonSimpleUI
 
+/**
+ * Created by dariel94 on 31/10/2021.
+ */
 class PokemonListFilter(
     private val adapter: PokeListAdapter
 ): Filter() {

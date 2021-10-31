@@ -27,7 +27,7 @@ class StatWidget @JvmOverloads constructor(
 
     init {
         val inflater = LayoutInflater.from(context)
-        inflater.inflate(R.layout.stat_widget, this)
+        inflater.inflate(R.layout.pokeapp_stat_widget_layout, this)
         statName = findViewById(R.id.stat_name)
         statValue = findViewById(R.id.stat_value)
         statBar = findViewById(R.id.stat_bar)

@@ -1,3 +1,8 @@
 <resources>
-    <string name="app_name">PokeApp</string>
+    <string name="pokeapp_app_name">PokeApp</string>
+    <string name="pokeapp_height">Height</string>
+    <string name="pokeapp_weight">Weight</string>
+    <string name="pokeapp_stats_title">Base Stats</string>
+    <string name="pokeapp_error">Error</string>
+    <string name="pokeapp_retry">Retry</string>
 </resources>

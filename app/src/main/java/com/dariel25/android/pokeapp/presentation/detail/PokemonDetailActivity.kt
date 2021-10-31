@@ -8,7 +8,7 @@ import androidx.core.content.ContextCompat
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.dariel25.android.pokeapp.R
-import com.dariel25.android.pokeapp.databinding.ActivityPokemonDetailBinding
+import com.dariel25.android.pokeapp.databinding.PokeappActivityPokemonDetailBinding
 import com.dariel25.android.pokeapp.presentation.utils.PokemonUtils
 import com.dariel25.android.pokeapp.presentation.core.ui.BaseActivity
 import com.dariel25.android.pokeapp.presentation.model.PokemonUI
@@ -18,12 +18,15 @@ import com.dariel25.android.pokeapp.presentation.widgets.PokemonTypeWidget
 import com.dariel25.android.pokeapp.presentation.widgets.StatWidget
 import dagger.hilt.android.AndroidEntryPoint
 
+/**
+ * Created by dariel94 on 31/10/2021.
+ */
 @AndroidEntryPoint
 class PokemonDetailActivity : BaseActivity() {
 
     private val pokemonDetailViewModel by viewModels<PokemonDetailViewModel>()
-    private val binding: ActivityPokemonDetailBinding by lazy {
-        ActivityPokemonDetailBinding.inflate(layoutInflater)
+    private val binding: PokeappActivityPokemonDetailBinding by lazy {
+        PokeappActivityPokemonDetailBinding.inflate(layoutInflater)
     }
     private var id: String = ""
 
@@ -31,7 +34,7 @@ class PokemonDetailActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
 
         supportActionBar?.apply {
-            setHomeAsUpIndicator(R.drawable.ic_baseline_arrow_back_24)
+            setHomeAsUpIndicator(R.drawable.pokeapp_ic_arrow_white)
             setDisplayHomeAsUpEnabled(true)
             elevation = 0f
             title = ""

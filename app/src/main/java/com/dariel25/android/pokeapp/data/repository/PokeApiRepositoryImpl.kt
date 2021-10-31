@@ -9,6 +9,9 @@ import com.dariel25.android.pokeapp.domain.model.Pokemon
 import com.dariel25.android.pokeapp.domain.repository.PokeApiRepository
 import javax.inject.Inject
 
+/**
+ * Created by dariel94 on 31/10/2021.
+ */
 class PokeApiRepositoryImpl @Inject constructor(
     private val api: PokeApi,
     private val dao: PokemonDao

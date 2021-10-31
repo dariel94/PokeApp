@@ -12,6 +12,9 @@ import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import javax.inject.Singleton
 
+/**
+ * Created by dariel94 on 31/10/2021.
+ */
 @Module
 @InstallIn(SingletonComponent::class)
 object CacheModule {

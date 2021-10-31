@@ -21,7 +21,7 @@ class PokemonTypeWidget @JvmOverloads constructor(
 
     init {
         val inflater = LayoutInflater.from(context)
-        inflater.inflate(R.layout.pokemon_type_widget, this)
+        inflater.inflate(R.layout.pokeapp_type_widget_layout, this)
         typeTextView = findViewById(R.id.type_widget_name)
         typeContainer = findViewById(R.id.type_widget_container)
     }

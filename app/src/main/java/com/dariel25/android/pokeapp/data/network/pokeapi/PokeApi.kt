@@ -6,6 +6,9 @@ import com.dariel25.android.pokeapp.data.network.pokeapi.model.PokemonSpeciesDto
 import retrofit2.http.GET
 import retrofit2.http.Path
 
+/**
+ * Created by dariel94 on 31/10/2021.
+ */
 interface PokeApi {
 
     @GET("pokemon/{id}")

@@ -3,16 +3,19 @@ package com.dariel25.android.pokeapp.presentation.core.ui
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
-import com.dariel25.android.pokeapp.databinding.ActivityBaseBinding
+import com.dariel25.android.pokeapp.databinding.PokeappActivityBaseBinding
 
+/**
+ * Created by dariel94 on 31/10/2021.
+ */
 abstract class BaseActivity : AppCompatActivity() {
 
-    private lateinit var binding: ActivityBaseBinding
+    private lateinit var binding: PokeappActivityBaseBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        binding = ActivityBaseBinding.inflate(layoutInflater)
+        binding = PokeappActivityBaseBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         binding.baseLayoutView.addView(getLayoutView())

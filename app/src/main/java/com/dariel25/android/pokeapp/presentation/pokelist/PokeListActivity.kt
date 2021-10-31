@@ -8,20 +8,23 @@ import androidx.activity.viewModels
 import androidx.appcompat.widget.SearchView
 import androidx.recyclerview.widget.GridLayoutManager
 import com.dariel25.android.pokeapp.R
-import com.dariel25.android.pokeapp.databinding.ActivityPokelistBinding
+import com.dariel25.android.pokeapp.databinding.PokeappActivityPokelistBinding
 import com.dariel25.android.pokeapp.presentation.core.ui.BaseActivity
 import com.dariel25.android.pokeapp.presentation.model.PokemonSimpleUI
 import com.dariel25.android.pokeapp.presentation.model.UIState
 import com.dariel25.android.pokeapp.presentation.pokelist.adapter.PokeListAdapter
 import dagger.hilt.android.AndroidEntryPoint
 
+/**
+ * Created by dariel94 on 31/10/2021.
+ */
 @AndroidEntryPoint
 class PokeListActivity : BaseActivity() {
 
     private val pokeListViewModel by viewModels<PokeListViewModel>()
     private var pokeListAdapter: PokeListAdapter = PokeListAdapter(this)
-    private val binding: ActivityPokelistBinding by lazy {
-        ActivityPokelistBinding.inflate(layoutInflater)
+    private val binding: PokeappActivityPokelistBinding by lazy {
+        PokeappActivityPokelistBinding.inflate(layoutInflater)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -48,7 +51,7 @@ class PokeListActivity : BaseActivity() {
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        menuInflater.inflate(R.menu.options_menu, menu)
+        menuInflater.inflate(R.menu.pokeapp_options_menu, menu)
         val item = menu.findItem(R.id.search)
         val searchView = item.actionView as SearchView
         searchView.queryHint = "Search by name or id"

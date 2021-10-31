@@ -9,6 +9,9 @@ import dagger.Module
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 
+/**
+ * Created by dariel94 on 31/10/2021.
+ */
 @Module
 @InstallIn(SingletonComponent::class)
 abstract class DomainModule {

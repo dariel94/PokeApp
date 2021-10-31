@@ -6,14 +6,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:background="@color/grass"
+    tools:background="@color/pokeapp_grass"
     tools:context=".presentation.detail.PokemonDetailActivity">
 
     <ImageView
         android:layout_width="300dp"
         android:layout_height="300dp"
-        android:src="@drawable/pokeball"
-        android:tint="@color/white"
+        android:src="@drawable/pokeapp_pokeball"
+        android:tint="@color/pokeapp_white"
         android:layout_marginStart="200dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -26,7 +26,7 @@
         android:layout_height="wrap_content"
         android:textSize="24sp"
         tools:text="Name"
-        android:textColor="@color/white"
+        android:textColor="@color/pokeapp_white"
         android:layout_marginStart="20dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -36,7 +36,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="18sp"
-        android:textColor="@color/white"
+        android:textColor="@color/pokeapp_white"
         android:layout_marginEnd="20dp"
         tools:text="#001"
         app:layout_constraintEnd_toEndOf="parent"
@@ -60,7 +60,7 @@
         android:layout_height="30dp"
         android:orientation="vertical"
         android:gravity="center"
-        android:background="@drawable/top_rounded_corner"
+        android:background="@drawable/pokeapp_top_rounded_corner"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toTopOf="@id/stats_container"/>
@@ -71,7 +71,7 @@
         android:layout_height="180dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:src="@mipmap/ic_launcher"
+        android:src="@mipmap/pokeapp_ic_launcher"
         app:layout_constraintTop_toBottomOf="@id/types_container"
         tools:ignore="ContentDescription" />
 
@@ -82,7 +82,7 @@
         android:orientation="vertical"
         android:paddingEnd="20dp"
         android:paddingStart="20dp"
-        android:background="@color/white"
+        android:background="@color/pokeapp_white"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/image"
@@ -92,7 +92,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:layout_marginBottom="20dp">
+            android:layout_marginBottom="20dp"
+            android:baselineAligned="false">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -111,7 +112,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="12sp"
-                    android:text="Height"/>
+                    android:text="@string/pokeapp_height"/>
 
             </LinearLayout>
 
@@ -132,7 +133,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="12sp"
-                    android:text="Weight"/>
+                    android:text="@string/pokeapp_weight"/>
 
             </LinearLayout>
 
@@ -144,7 +145,7 @@
             android:gravity="center"
             android:textSize="14sp"
             android:layout_marginBottom="8dp"
-            android:text="Base Stats"/>
+            android:text="@string/pokeapp_stats_title"/>
 
     </LinearLayout>
 
