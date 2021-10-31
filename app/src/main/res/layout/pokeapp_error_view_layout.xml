@@ -14,7 +14,7 @@
             android:layout_height="wrap_content"
             android:text="@string/pokeapp_error"
             android:layout_gravity="center"
-            android:textSize="60sp" />
+            android:textSize="40sp" />
 
         <TextView
             android:id="@+id/error_text"

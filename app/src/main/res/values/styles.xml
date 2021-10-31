@@ -8,6 +8,7 @@
         <item name="colorAccent">@color/pokeapp_colorAccent</item>
         <item name="fontFamily">@font/poppins_bold</item>
         <item name="android:fontFamily">@font/poppins_bold</item>
+        <item name="android:windowLightStatusBar">true</item>
     </style>
 
 </resources>

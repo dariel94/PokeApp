@@ -9,10 +9,10 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.dariel25.android.pokeapp.R
 import com.dariel25.android.pokeapp.databinding.PokeappActivityPokemonDetailBinding
-import com.dariel25.android.pokeapp.presentation.utils.PokemonUtils
 import com.dariel25.android.pokeapp.presentation.core.ui.BaseActivity
 import com.dariel25.android.pokeapp.presentation.model.PokemonUI
 import com.dariel25.android.pokeapp.presentation.model.UIState
+import com.dariel25.android.pokeapp.presentation.utils.PokemonUtils
 import com.dariel25.android.pokeapp.presentation.utils.UIUtils
 import com.dariel25.android.pokeapp.presentation.widgets.PokemonTypeWidget
 import com.dariel25.android.pokeapp.presentation.widgets.StatWidget
@@ -87,6 +87,7 @@ class PokemonDetailActivity : BaseActivity() {
 
             binding.detailContainer.background = ContextCompat.getDrawable(this, pokemon.color)
             supportActionBar?.setBackgroundDrawable(ContextCompat.getDrawable(this, pokemon.color))
+            UIUtils.changeStatusBarColor(this, pokemon.color)
 
             for (type in pokemon.types) {
                 val pokemonTypeWidget = PokemonTypeWidget(this)

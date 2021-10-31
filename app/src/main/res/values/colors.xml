@@ -2,7 +2,7 @@
 <resources>
     <color name="pokeapp_colorPrimary">#FFFFFF</color>
     <color name="pokeapp_transparent">#00FFFFFF</color>
-    <color name="pokeapp_colorPrimaryDark">#303F9F</color>
+    <color name="pokeapp_colorPrimaryDark">#FFFFFF</color>
     <color name="pokeapp_colorAccent">#FF4081</color>
     <color name="pokeapp_black">#000000</color>
     <color name="pokeapp_white">#FFFFFF</color>
