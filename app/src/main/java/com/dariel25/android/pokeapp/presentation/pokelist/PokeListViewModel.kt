@@ -5,9 +5,10 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.dariel25.android.pokeapp.data.network.NetworkState
-import com.dariel25.android.pokeapp.domain.model.SimplePokemon
 import com.dariel25.android.pokeapp.domain.usecase.PokemonListUseCase
-import com.dariel25.android.pokeapp.presentation.model.ViewState
+import com.dariel25.android.pokeapp.presentation.mapper.PokemonSimpleToUIMapper
+import com.dariel25.android.pokeapp.presentation.model.PokemonSimpleUI
+import com.dariel25.android.pokeapp.presentation.model.UIState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -17,27 +18,29 @@ class PokeListViewModel @Inject constructor(
     private val pokemonListUseCase: PokemonListUseCase
 ) : ViewModel() {
 
-    private val mutableViewState = MutableLiveData<ViewState<List<SimplePokemon>?>>()
+    private val mutableViewState = MutableLiveData<UIState<List<PokemonSimpleUI>?>>()
 
     init {
         fetchPokemons()
     }
 
-    fun getViewStateLiveData(): LiveData<ViewState<List<SimplePokemon>?>> {
+    fun getViewStateLiveData(): LiveData<UIState<List<PokemonSimpleUI>?>> {
         return mutableViewState
     }
 
     fun fetchPokemons() {
-        mutableViewState.value = ViewState.Loading
+        mutableViewState.value = UIState.Loading
 
         viewModelScope.launch {
-            when (val networkStatus = pokemonListUseCase.getPokemonList()) {
+            when (val networkStatus = pokemonListUseCase.invoke()) {
                 is NetworkState.Success -> {
-                    mutableViewState.value = ViewState.Success(networkStatus.data)
+                    mutableViewState.value = UIState.Success(networkStatus.data.map {
+                        PokemonSimpleToUIMapper.map(it)
+                    })
                 }
                 is NetworkState.Error -> {
                     val msg = networkStatus.error.message ?: "Error"
-                    mutableViewState.value = ViewState.Error(msg)
+                    mutableViewState.value = UIState.Error(msg)
                 }
             }
         }

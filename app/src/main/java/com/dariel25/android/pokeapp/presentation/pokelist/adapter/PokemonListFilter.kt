@@ -1,7 +1,7 @@
 package com.dariel25.android.pokeapp.presentation.pokelist.adapter
 
 import android.widget.Filter
-import com.dariel25.android.pokeapp.domain.model.SimplePokemon
+import com.dariel25.android.pokeapp.presentation.model.PokemonSimpleUI
 
 class PokemonListFilter(
     private val adapter: PokeListAdapter
@@ -12,7 +12,7 @@ class PokemonListFilter(
         val results = FilterResults()
         val list = adapter.dataset
 
-        val filteredList: List<SimplePokemon> = if (filterString.isEmpty()) {
+        val filteredList: List<PokemonSimpleUI> = if (filterString.isEmpty()) {
             list
         } else {
             list.filter {
@@ -28,7 +28,7 @@ class PokemonListFilter(
 
     @Suppress("UNCHECKED_CAST")
     override fun publishResults(constraint: CharSequence?, results: FilterResults?) {
-        adapter.filteredDataset = results?.values as List<SimplePokemon>
+        adapter.filteredDataset = results?.values as List<PokemonSimpleUI>
         adapter.notifyDataSetChanged()
     }
 

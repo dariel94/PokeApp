@@ -9,9 +9,9 @@ import androidx.appcompat.widget.SearchView
 import androidx.recyclerview.widget.GridLayoutManager
 import com.dariel25.android.pokeapp.R
 import com.dariel25.android.pokeapp.databinding.ActivityPokelistBinding
-import com.dariel25.android.pokeapp.domain.model.SimplePokemon
 import com.dariel25.android.pokeapp.presentation.core.ui.BaseActivity
-import com.dariel25.android.pokeapp.presentation.model.ViewState
+import com.dariel25.android.pokeapp.presentation.model.PokemonSimpleUI
+import com.dariel25.android.pokeapp.presentation.model.UIState
 import com.dariel25.android.pokeapp.presentation.pokelist.adapter.PokeListAdapter
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -64,15 +64,15 @@ class PokeListActivity : BaseActivity() {
         return true
     }
 
-    private fun updateViewStatus(networkState: ViewState<List<SimplePokemon>?>) {
+    private fun updateViewStatus(networkState: UIState<List<PokemonSimpleUI>?>) {
         when (networkState) {
-            is ViewState.Loading -> showLoadingView()
-            is ViewState.Success -> loadList(networkState.data)
-            is ViewState.Error -> showErrorView(networkState.message)
+            is UIState.Loading -> showLoadingView()
+            is UIState.Success -> loadList(networkState.data)
+            is UIState.Error -> showErrorView(networkState.message)
         }
     }
 
-    private fun loadList(list: List<SimplePokemon>?) {
+    private fun loadList(list: List<PokemonSimpleUI>?) {
         list?.let {
             pokeListAdapter.dataset = it
             pokeListAdapter.notifyDataSetChanged()

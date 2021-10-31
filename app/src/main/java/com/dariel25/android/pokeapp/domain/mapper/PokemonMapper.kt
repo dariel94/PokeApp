@@ -3,7 +3,7 @@ package com.dariel25.android.pokeapp.domain.mapper
 import com.dariel25.android.pokeapp.data.network.pokeapi.model.PokemonDto
 import com.dariel25.android.pokeapp.domain.model.Pokemon
 import com.dariel25.android.pokeapp.domain.model.Stat
-import com.dariel25.android.pokeapp.domain.utils.PokemonUtils
+import com.dariel25.android.pokeapp.presentation.utils.PokemonUtils
 import javax.inject.Inject
 
 class PokemonMapper @Inject constructor() {

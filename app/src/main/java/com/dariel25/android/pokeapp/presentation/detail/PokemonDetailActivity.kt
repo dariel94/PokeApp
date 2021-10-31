@@ -10,9 +10,9 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.dariel25.android.pokeapp.R
 import com.dariel25.android.pokeapp.databinding.ActivityPokemonDetailBinding
 import com.dariel25.android.pokeapp.domain.model.Pokemon
-import com.dariel25.android.pokeapp.domain.utils.PokemonUtils
+import com.dariel25.android.pokeapp.presentation.utils.PokemonUtils
 import com.dariel25.android.pokeapp.presentation.core.ui.BaseActivity
-import com.dariel25.android.pokeapp.presentation.model.ViewState
+import com.dariel25.android.pokeapp.presentation.model.UIState
 import com.dariel25.android.pokeapp.presentation.widgets.PokemonTypeWidget
 import com.dariel25.android.pokeapp.presentation.widgets.StatWidget
 import dagger.hilt.android.AndroidEntryPoint
@@ -59,11 +59,11 @@ class PokemonDetailActivity : BaseActivity() {
         pokemonDetailViewModel.fetchPokemon(id)
     }
 
-    private fun updateViewStatus(networkState: ViewState<Pokemon?>) {
+    private fun updateViewStatus(networkState: UIState<Pokemon?>) {
         when (networkState) {
-            is ViewState.Loading -> showLoadingView()
-            is ViewState.Success -> showPokemonData(networkState.data)
-            is ViewState.Error -> showErrorView(networkState.message)
+            is UIState.Loading -> showLoadingView()
+            is UIState.Success -> showPokemonData(networkState.data)
+            is UIState.Error -> showErrorView(networkState.message)
         }
     }
 

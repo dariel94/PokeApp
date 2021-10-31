@@ -8,21 +8,22 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import androidx.cardview.widget.CardView
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.CircularProgressDrawable
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.dariel25.android.pokeapp.R
-import com.dariel25.android.pokeapp.domain.model.SimplePokemon
-import com.dariel25.android.pokeapp.domain.utils.PokemonUtils
+import com.dariel25.android.pokeapp.presentation.utils.PokemonUtils
 import com.dariel25.android.pokeapp.presentation.detail.PokemonDetailActivity
+import com.dariel25.android.pokeapp.presentation.model.PokemonSimpleUI
 
 class PokeListAdapter(
     private val context: Context
 ) : RecyclerView.Adapter<PokeListAdapter.PokemonViewHolder>(), Filterable {
 
     private val filter = PokemonListFilter(this)
-    var dataset: List<SimplePokemon> = ArrayList()
+    var dataset: List<PokemonSimpleUI> = ArrayList()
         set(value) {
             field = value
             filteredDataset = field
@@ -40,7 +41,7 @@ class PokeListAdapter(
         viewHolder.name.text = pokemon.name
         viewHolder.type1.text = pokemon.type1
         viewHolder.type2.text = pokemon.type2
-        viewHolder.card.setCardBackgroundColor(context.resources.getColor(pokemon.color))
+        viewHolder.card.setCardBackgroundColor(ContextCompat.getColor(context, pokemon.cardColor))
 
         if (pokemon.type2.isEmpty()) {
             viewHolder.type2Container.visibility = View.GONE

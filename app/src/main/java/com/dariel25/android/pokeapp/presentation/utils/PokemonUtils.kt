@@ -1,11 +1,11 @@
-package com.dariel25.android.pokeapp.domain.utils
+package com.dariel25.android.pokeapp.presentation.utils
 
 import com.dariel25.android.pokeapp.R
 import java.util.*
 
 object PokemonUtils {
 
-    fun getImageUrl(id: String): String {
+    fun getImageUrl(id: String?): String {
         return "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${id}.png"
     }
 
@@ -40,8 +40,8 @@ object PokemonUtils {
         return idTitle + id
     }
 
-    fun getPokemonTypeColor(type: String): Int {
-        return when (type.lowercase(Locale.getDefault())) {
+    fun getPokemonTypeColor(type: String?): Int {
+        return when (type?.lowercase(Locale.getDefault())) {
             "grass" -> R.color.grass
             "fire" -> R.color.fire
             "water" -> R.color.water
