@@ -13,6 +13,7 @@ import com.dariel25.android.pokeapp.presentation.utils.PokemonUtils
 import com.dariel25.android.pokeapp.presentation.core.ui.BaseActivity
 import com.dariel25.android.pokeapp.presentation.model.PokemonUI
 import com.dariel25.android.pokeapp.presentation.model.UIState
+import com.dariel25.android.pokeapp.presentation.utils.UIUtils
 import com.dariel25.android.pokeapp.presentation.widgets.PokemonTypeWidget
 import com.dariel25.android.pokeapp.presentation.widgets.StatWidget
 import dagger.hilt.android.AndroidEntryPoint
@@ -72,6 +73,7 @@ class PokemonDetailActivity : BaseActivity() {
             Glide.with(this)
                 .load(pokemon.imageUrl)
                 .centerCrop()
+                .placeholder(UIUtils.getLoadingPlaceholder(this))
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .into(binding.image)
 

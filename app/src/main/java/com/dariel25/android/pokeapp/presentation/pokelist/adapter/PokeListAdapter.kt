@@ -2,7 +2,6 @@ package com.dariel25.android.pokeapp.presentation.pokelist.adapter
 
 import android.content.Context
 import android.content.Intent
-import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,13 +9,13 @@ import android.widget.*
 import androidx.cardview.widget.CardView
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
-import androidx.swiperefreshlayout.widget.CircularProgressDrawable
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.dariel25.android.pokeapp.R
 import com.dariel25.android.pokeapp.presentation.utils.PokemonUtils
 import com.dariel25.android.pokeapp.presentation.detail.PokemonDetailActivity
 import com.dariel25.android.pokeapp.presentation.model.PokemonSimpleUI
+import com.dariel25.android.pokeapp.presentation.utils.UIUtils
 
 class PokeListAdapter(
     private val context: Context
@@ -49,16 +48,10 @@ class PokeListAdapter(
             viewHolder.type2Container.visibility = View.VISIBLE
         }
 
-        val circularProgressDrawable = CircularProgressDrawable(context)
-        circularProgressDrawable.strokeWidth = 3f
-        circularProgressDrawable.centerRadius = 20f
-        circularProgressDrawable.setColorSchemeColors(Color.WHITE)
-        circularProgressDrawable.start()
-
         Glide.with(context)
             .load(pokemon.imageUrl)
             .centerCrop()
-            .placeholder(circularProgressDrawable)
+            .placeholder(UIUtils.getLoadingPlaceholder(context))
             .diskCacheStrategy(DiskCacheStrategy.ALL)
             .into(viewHolder.icon)
 

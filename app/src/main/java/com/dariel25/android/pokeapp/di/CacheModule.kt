@@ -3,6 +3,7 @@ package com.dariel25.android.pokeapp.di
 import android.content.Context
 import androidx.room.Room
 import com.dariel25.android.pokeapp.data.room.PokeAppDatabase
+import com.dariel25.android.pokeapp.data.room.PokemonDao
 import com.dariel25.android.pokeapp.data.room.PokemonSimpleDao
 import dagger.Module
 import dagger.Provides
@@ -18,12 +19,16 @@ object CacheModule {
     @Provides
     @Singleton
     internal fun providesPokeAppDatabase(@ApplicationContext context: Context): PokeAppDatabase =
-        Room.databaseBuilder(context, PokeAppDatabase::class.java, "pokemonSimple")
+        Room.databaseBuilder(context, PokeAppDatabase::class.java, "pokemon")
             .fallbackToDestructiveMigration()
             .build()
 
     @Provides
     internal fun providesPokemonSimpleDao(pokeAppDatabase: PokeAppDatabase): PokemonSimpleDao =
         pokeAppDatabase.pokemonSimpleDao()
+
+    @Provides
+    internal fun providesPokemonDao(pokeAppDatabase: PokeAppDatabase): PokemonDao =
+        pokeAppDatabase.pokemonDao()
 
 }

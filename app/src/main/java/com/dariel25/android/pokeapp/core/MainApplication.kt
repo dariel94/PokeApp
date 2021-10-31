@@ -1,4 +1,4 @@
-package com.dariel25.android.pokeapp.presentation.core
+package com.dariel25.android.pokeapp.core
 
 import android.app.Application
 import dagger.hilt.android.HiltAndroidApp
