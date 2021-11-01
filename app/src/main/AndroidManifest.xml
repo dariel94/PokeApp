@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.dariel25.android.pokeapp">
 
     <!-- Permissions -->
@@ -9,7 +10,7 @@
         android:name=".core.MainApplication"
         android:icon="@mipmap/pokeapp_ic_launcher"
         android:label="@string/pokeapp_app_name"
-        android:roundIcon="@mipmap/pokeapp_ic_launcher_round"
+        android:roundIcon="@mipmap/pokeapp_ic_launcher"
         android:supportsRtl="true"
         android:usesCleartextTraffic="true"
         android:theme="@style/pokeapp_AppTheme"
@@ -25,7 +26,9 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".presentation.detail.PokemonDetailActivity">
+        <activity android:name=".presentation.detail.PokemonDetailActivity"
+            android:screenOrientation="portrait"
+            tools:ignore="LockedOrientationActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
             </intent-filter>

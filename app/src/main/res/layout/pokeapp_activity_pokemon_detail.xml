@@ -12,8 +12,8 @@
     <ImageView
         android:layout_width="300dp"
         android:layout_height="300dp"
-        android:src="@drawable/pokeapp_pokeball"
-        android:tint="@color/pokeapp_white"
+        android:background="@drawable/pokeapp_pokeball"
+        android:backgroundTint="@color/pokeapp_white_transparent"
         android:layout_marginStart="200dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

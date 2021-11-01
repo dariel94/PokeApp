@@ -33,13 +33,6 @@ class PokemonDetailActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        supportActionBar?.apply {
-            setHomeAsUpIndicator(R.drawable.pokeapp_ic_arrow_white)
-            setDisplayHomeAsUpEnabled(true)
-            elevation = 0f
-            title = ""
-        }
-
         pokemonDetailViewModel.getViewStateLiveData()
             .observe(this, { updateViewStatus(it) })
 
@@ -86,8 +79,7 @@ class PokemonDetailActivity : BaseActivity() {
             binding.statWeight.text = pokemon.weight
 
             binding.detailContainer.background = ContextCompat.getDrawable(this, pokemon.color)
-            supportActionBar?.setBackgroundDrawable(ContextCompat.getDrawable(this, pokemon.color))
-            UIUtils.changeStatusBarColor(this, pokemon.color)
+            setUpActionbar(pokemon.color)
 
             for (type in pokemon.types) {
                 val pokemonTypeWidget = PokemonTypeWidget(this)
@@ -102,5 +94,16 @@ class PokemonDetailActivity : BaseActivity() {
             }
         }
         showLayoutView()
+    }
+
+    private fun setUpActionbar(color: Int) {
+        supportActionBar?.apply {
+            setHomeAsUpIndicator(R.drawable.pokeapp_ic_arrow_white)
+            setDisplayHomeAsUpEnabled(true)
+            setBackgroundDrawable(ContextCompat.getDrawable(applicationContext, color))
+            elevation = 0f
+            title = ""
+        }
+        UIUtils.changeStatusBarColor(this, color)
     }
 }

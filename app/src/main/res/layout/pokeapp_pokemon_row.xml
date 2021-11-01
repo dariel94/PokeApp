@@ -8,7 +8,7 @@
     android:layout_marginTop="8dp"
     android:layout_marginStart="8dp"
     card_view:cardCornerRadius="24dp"
-    tools:backgroundTint="@color/pokeapp_black">
+    tools:backgroundTint="@color/pokeapp_fire">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -96,14 +96,13 @@
         </LinearLayout>
 
         <ImageView
-            android:layout_width="100dp"
-            android:layout_height="100dp"
+            android:layout_width="110dp"
+            android:layout_height="110dp"
             android:rotation="180"
-            android:src="@drawable/pokeapp_pokeball"
-            android:tint="@color/pokeapp_white"
+            android:background="@drawable/pokeapp_pokeball"
+            android:backgroundTint="@color/pokeapp_white_transparent"
             android:layout_gravity="end"
-            android:layout_marginTop="24dp"
-            android:layout_marginEnd="4dp"
+            android:layout_marginTop="10dp"
             card_view:layout_constraintEnd_toEndOf="parent"
             card_view:layout_constraintTop_toTopOf="@+id/pokemon_row_name"
             card_view:layout_constraintBottom_toBottomOf="parent"
