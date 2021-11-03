@@ -96,15 +96,13 @@
         </LinearLayout>
 
         <ImageView
-            android:layout_width="110dp"
-            android:layout_height="110dp"
-            android:rotation="180"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
             android:background="@drawable/pokeapp_pokeball"
             android:backgroundTint="@color/pokeapp_white_transparent"
             android:layout_gravity="end"
             android:layout_marginTop="10dp"
             card_view:layout_constraintEnd_toEndOf="parent"
-            card_view:layout_constraintTop_toTopOf="@+id/pokemon_row_name"
             card_view:layout_constraintBottom_toBottomOf="parent"
             tools:ignore="ContentDescription" />
 
