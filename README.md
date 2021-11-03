@@ -5,10 +5,10 @@ This is a sample Pokemon App written in Kotlin using a modern Android Architectu
 # Technology stack
 
 - IDE: Android Studio
-- API: PokeAPI (https://pokeapi.co/)
+- API: [PokeAPI](https://pokeapi.co/)
 - Architecture: Clean Architecture + MVVM + LiveData
 - Programming Language: Kotlin
-- Third Party Libraries: Retrofit, Room, Glide, Dagger Hilt, Gson, Mockito, JUnit4, Okhttp3
+- Third Party Libraries: Retrofit, Room, Glide, Dagger Hilt, Gson, MockK, JUnit4, Okhttp3
 
 # Screens
 
@@ -16,13 +16,17 @@ This is a sample Pokemon App written in Kotlin using a modern Android Architectu
   <tr>
     <th>List</th>
     <th>Detail</th>
-    <th>GIF</th>
   </tr>
   <tr>
     <td><img src="screenshots/screen1.jpeg"/></td>
     <td><img src="screenshots/screen2.jpeg"/></td>
-    <td><img src="screenshots/gif1.gif"/></td>
   </tr>
+  <tr>
+      <th>GIF</th>
+    </tr>
+    <tr>
+      <td><img src="screenshots/gif1.gif"/></td>
+    </tr>
 </table>
 
 * David Diaz
