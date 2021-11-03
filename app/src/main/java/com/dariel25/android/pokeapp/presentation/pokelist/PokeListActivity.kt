@@ -42,6 +42,7 @@ class PokeListActivity : BaseActivity() {
         binding.swipeRefresh.setOnRefreshListener {
             pokeListViewModel.fetchPokemons()
         }
+        pokeListViewModel.fetchPokemons()
     }
 
     override fun getLayoutView() : View = binding.root

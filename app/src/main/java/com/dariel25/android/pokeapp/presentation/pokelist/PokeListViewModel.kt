@@ -23,10 +23,6 @@ class PokeListViewModel @Inject constructor(
 
     private val mutableViewState = MutableLiveData<UIState<List<PokemonSimpleUI>?>>()
 
-    init {
-        fetchPokemons()
-    }
-
     fun getViewStateLiveData(): LiveData<UIState<List<PokemonSimpleUI>?>> {
         return mutableViewState
     }
