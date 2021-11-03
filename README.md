@@ -6,7 +6,7 @@ This is a sample Pokemon App written in Kotlin using a modern Android Architectu
 
 - IDE: Android Studio
 - API: [PokeAPI](https://pokeapi.co/)
-- Architecture: Clean Architecture + MVVM + LiveData
+- Architecture: Clean Architecture + MVVM & LiveData
 - Programming Language: Kotlin
 - Third Party Libraries: Retrofit, Room, Glide, Dagger Hilt, Gson, MockK, JUnit4, Okhttp3
 
