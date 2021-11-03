@@ -12,17 +12,17 @@
 
     <TextView
         android:id="@+id/stat_name"
-        android:layout_width="60dp"
+        android:layout_width="68dp"
         android:textSize="14sp"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        tools:text="Stat" />
+        android:layout_marginEnd="6dp"
+        tools:text="Defense" />
 
     <ProgressBar
         android:id="@+id/stat_bar"
         style="?android:attr/progressBarStyleHorizontal"
         android:layout_gravity="center"
-        android:layout_width="200dp"
+        android:layout_width="190dp"
         android:layout_height="wrap_content"
         android:max="200"
         android:progressTint="@color/pokeapp_black"
@@ -30,9 +30,9 @@
 
     <TextView
         android:id="@+id/stat_value"
-        android:layout_width="60dp"
+        android:layout_width="50dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="18dp"
+        android:layout_marginStart="16dp"
         android:textSize="14sp"
         tools:text="50" />
 
