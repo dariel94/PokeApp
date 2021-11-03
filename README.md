@@ -21,12 +21,15 @@ This is a sample Pokemon App written in Kotlin using a modern Android Architectu
     <td><img src="screenshots/screen1.jpeg"/></td>
     <td><img src="screenshots/screen2.jpeg"/></td>
   </tr>
+</table>
+
+<table style="width:50%">
+<tr>
+    <th>GIF</th>
+  </tr>
   <tr>
-      <th>GIF</th>
-    </tr>
-    <tr>
-      <td><img src="screenshots/gif1.gif"/></td>
-    </tr>
+    <td><img src="screenshots/gif1.gif"/></td>
+  </tr>
 </table>
 
 * David Diaz
