@@ -63,7 +63,7 @@
         android:background="@drawable/pokeapp_top_rounded_corner"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/stats_container"/>
+        app:layout_constraintBottom_toTopOf="@id/general_container"/>
 
     <ImageView
         android:id="@+id/image"
@@ -76,17 +76,14 @@
         tools:ignore="ContentDescription" />
 
     <LinearLayout
-        android:id="@+id/stats_container"
+        android:id="@+id/general_container"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:orientation="vertical"
-        android:paddingEnd="20dp"
-        android:paddingStart="20dp"
-        android:background="@color/pokeapp_white"
+        android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/image"
-        app:layout_constraintBottom_toBottomOf="parent">
+        android:background="@color/pokeapp_white"
+        android:orientation="vertical">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -139,13 +136,29 @@
 
         </LinearLayout>
 
-        <TextView
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/pager_container"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="@color/pokeapp_white"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/general_container"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tab_layout"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:textSize="16sp"
-            android:layout_marginBottom="4dp"
-            android:text="@string/pokeapp_stats_title"/>
+            android:layout_height="wrap_content" />
+
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/pager"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
 
     </LinearLayout>
 

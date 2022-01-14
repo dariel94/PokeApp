@@ -22,7 +22,10 @@ class PokeApiRepositoryImpl @Inject constructor(
 
         return if (cachedPokemon == null) {
             val remotePokemon = api.getPokemon(id)
-            dao.insert(remotePokemon.mapToEntity())
+            val pokemonSpecies = api.getPokemonSpecies(id)
+            val pokemonChainId = pokemonSpecies.evolutionChain.url.split('/').last()
+            val evolutionChain = api.getEvolutionChain(pokemonChainId)
+            //dao.insert(remotePokemon.mapToEntity())
             remotePokemon.mapToDomain()
         } else {
             cachedPokemon.mapToDomain()
