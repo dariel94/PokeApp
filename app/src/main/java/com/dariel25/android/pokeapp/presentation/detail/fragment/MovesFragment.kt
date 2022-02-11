@@ -25,9 +25,10 @@ class MovesFragment(
     ): View? {
         val view = inflater.inflate(R.layout.pokeapp_detail_fragment_base, container, false)
         movesContainer = view.findViewById(R.id.container)
+        movesContainer.setPadding(20, 0, 20, 0)
         for (move in moves) {
             val tv = TextView(view.context)
-            tv.text = move
+            tv.text = move.replace("-", "").uppercase()
             movesContainer.addView(tv)
         }
         return view
