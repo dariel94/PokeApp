@@ -35,7 +35,7 @@ object PokemonMapper {
         return Pokemon(
             pokemonDto.id,
             pokemonDto.name,
-            pokemonSpeciesDto.flavorTextEntries[0].flavorText,
+            pokemonSpeciesDto.flavorTextEntries[6].flavorText.replace('\n', ' '),
             pokemonDto.height,
             pokemonDto.weight,
             types,
@@ -48,10 +48,27 @@ object PokemonMapper {
         val list = chainDto.evolvesTo.map {
             getEvolutionChain(it)
         }
-        val minLevel = if (chainDto.evolutionDetails.isEmpty()) 0
-            else chainDto.evolutionDetails[0].minLevel
+
+        var condition = ""
+        if (chainDto.evolutionDetails.isNotEmpty()) {
+            val level = chainDto.evolutionDetails[0].level
+            val happiness = chainDto.evolutionDetails[0].happiness
+            val item = chainDto.evolutionDetails[0].item
+            val heldItem = chainDto.evolutionDetails[0].heldItem
+            val trigger = chainDto.evolutionDetails[0].trigger
+            when {
+                level != null -> condition = "Lvl $level"
+                item != null -> condition = item.name.replace('-', ' ').uppercase()
+                heldItem != null -> condition = heldItem.name.replace('-', ' ').uppercase()
+                happiness != null -> condition = "Happiness $happiness"
+                trigger != null -> condition = trigger.name.replace('-', ' ').uppercase()
+            }
+        }
 
         return EvolutionChain(
-            StringUtils.getIdFromUrl(chainDto.species.url), chainDto.species.name, minLevel, list)
+            StringUtils.getIdFromUrl(chainDto.species.url),
+            chainDto.species.name.replaceFirstChar { c -> c.uppercase() },
+            condition,
+            list)
     }
 }

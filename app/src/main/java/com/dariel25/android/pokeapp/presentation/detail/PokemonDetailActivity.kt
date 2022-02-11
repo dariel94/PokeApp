@@ -80,8 +80,8 @@ class PokemonDetailActivity : BaseActivity() {
 
             binding.name.text = it.name.replaceFirstChar { c -> c.uppercase() }
             binding.id.text = PokemonUtils.getIdTitle(it.id)
-            binding.statHeight.text = pokemon.height
-            binding.statWeight.text = pokemon.weight
+
+            binding.desc.text = pokemon.desc
 
             binding.detailContainer.background = ContextCompat.getDrawable(this, pokemon.color)
             setUpActionbar(pokemon.color)

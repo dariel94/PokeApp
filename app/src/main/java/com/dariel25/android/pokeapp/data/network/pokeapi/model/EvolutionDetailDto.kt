@@ -9,5 +9,9 @@ import kotlinx.android.parcel.Parcelize
  */
 @Parcelize
 data class EvolutionDetailDto(
-    @SerializedName("min_level") val minLevel: Int
+    @SerializedName("min_level") val level: Int?,
+    @SerializedName("min_happiness") val happiness: Int?,
+    @SerializedName("item") val item: Resource?,
+    @SerializedName("held_item") val heldItem: Resource?,
+    @SerializedName("trigger") val trigger: Resource?,
 ) : Parcelable

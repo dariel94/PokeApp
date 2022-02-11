@@ -59,7 +59,7 @@ object PokemonToUIMapper : BaseMapper<Pokemon, PokemonUI> {
                 evolutionChain.name,
                 evolve.id,
                 evolve.name,
-                "Lvl " + evolve.level.toString()
+                evolve.condition
             )
             evolutions.add(evolution)
             mapEvolutionChainToList(evolve, evolutions)

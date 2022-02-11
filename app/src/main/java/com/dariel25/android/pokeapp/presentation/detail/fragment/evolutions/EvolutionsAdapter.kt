@@ -31,6 +31,10 @@ class EvolutionsAdapter(
     override fun onBindViewHolder(viewHolder: EvolutionViewHolder, pos: Int) {
         val evolution = dataset[pos]
 
+        if (pos == 0) {
+            viewHolder.itemView.setPadding(0, 0, 0, 0)
+        }
+
         viewHolder.originNameTextView.text = evolution.originName
         viewHolder.evolutionNameTextView.text = evolution.evolutionName
         viewHolder.levelTextView.text = evolution.condition

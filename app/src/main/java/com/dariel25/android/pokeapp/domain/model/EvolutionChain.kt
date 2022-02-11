@@ -10,6 +10,6 @@ import kotlinx.android.parcel.Parcelize
 data class EvolutionChain(
     val id: String = "",
     val name: String = "",
-    val level: Int,
+    val condition: String,
     val evolvesTo: List<EvolutionChain>
 ) : Parcelable

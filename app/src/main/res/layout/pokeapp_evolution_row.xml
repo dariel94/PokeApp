@@ -64,6 +64,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         tools:text="Lvl 10"
+        android:textSize="12sp"
+        android:textColor="#A6A6A6"
         app:layout_constraintTop_toBottomOf="@+id/evolutionArrow"
         app:layout_constraintStart_toEndOf="@+id/originImage"
         app:layout_constraintEnd_toStartOf="@+id/evolutionImage"/>
@@ -71,7 +73,7 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="0.5dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:background="@android:color/darker_gray"

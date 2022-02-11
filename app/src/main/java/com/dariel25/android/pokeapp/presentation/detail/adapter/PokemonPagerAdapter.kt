@@ -21,7 +21,7 @@ class PokemonPagerAdapter(
     override fun createFragment(position: Int): Fragment {
         return when(position) {
             0 -> {
-                StatsFragment(pokemonUI.stats, pokemonUI.color)
+                StatsFragment(pokemonUI.stats, pokemonUI.height, pokemonUI.weight, pokemonUI.color)
             }
             1 -> {
                 EvolutionsFragment(pokemonUI.evolutions)
