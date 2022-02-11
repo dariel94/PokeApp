@@ -26,8 +26,8 @@ class StatsFragment(
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view = inflater.inflate(R.layout.pokeapp_detail_fragment_stats, container, false)
-        statsContainer = view.findViewById(R.id.stats_container)
+        val view = inflater.inflate(R.layout.pokeapp_detail_fragment_base, container, false)
+        statsContainer = view.findViewById(R.id.container)
         for (stat in stats) {
             val statWidget = StatWidget(view.context)
             statWidget.setStat(stat, color)

@@ -22,13 +22,15 @@ object PokemonToUIMapper : BaseMapper<Pokemon, PokemonUI> {
         return PokemonUI(
             type.id,
             type.name,
+            type.desc,
             PokemonUtils.getHeightInMeters(type.height),
             PokemonUtils.getWeightInKilograms(type.weight),
+            PokemonUtils.getImageUrl(type.id),
+            color,
             type.types,
             stats,
             type.abilities,
-            PokemonUtils.getImageUrl(type.id),
-            color
+            type.evolutionChain
         )
     }
 }

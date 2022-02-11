@@ -5,6 +5,7 @@ package com.dariel25.android.pokeapp.data.utils
  */
 object StringUtils {
     fun getIdFromUrl(url: String): String {
-        return url.split('/').last()
+        val splitUrl = url.split('/')
+        return splitUrl[splitUrl.size - 2]
     }
 }

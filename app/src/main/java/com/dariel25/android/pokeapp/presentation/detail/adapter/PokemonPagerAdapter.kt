@@ -24,7 +24,7 @@ class PokemonPagerAdapter(
                 StatsFragment(pokemonUI.stats, pokemonUI.color)
             }
             1 -> {
-                EvolutionsFragment(pokemonUI.abilities)
+                EvolutionsFragment(pokemonUI.evolutionChain)
             }
             else -> {
                 MovesFragment(pokemonUI.abilities)

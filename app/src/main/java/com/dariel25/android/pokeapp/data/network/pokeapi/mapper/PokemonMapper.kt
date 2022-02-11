@@ -14,6 +14,7 @@ import com.dariel25.android.pokeapp.domain.model.Stat
  * Created by dariel94 on 11/1/2022.
  */
 object PokemonMapper {
+
     fun mapToDomain(
         pokemonDto: PokemonDto,
         pokemonSpeciesDto: PokemonSpeciesDto,
@@ -31,8 +32,6 @@ object PokemonMapper {
             Stat(it.stat.name, it.baseStat)
         }
 
-        val evolutionChain = evolutionChainDto.chain.
-
         return Pokemon(
             pokemonDto.id,
             pokemonDto.name,
@@ -42,15 +41,17 @@ object PokemonMapper {
             types,
             stats,
             abilities,
-            evolutionChainDto.chain.)
+            getEvolutionChain(evolutionChainDto.chain))
     }
 
-    private fun getEvolutionChain(chainDto: ChainDto?): EvolutionChain? {
-        chainDto?.let {
-            return EvolutionChain(
-                StringUtils.getIdFromUrl(it.species.url),
-                getEvolutionChain(it.evolvesTo))
+    private fun getEvolutionChain(chainDto: ChainDto): EvolutionChain {
+        val list = chainDto.evolvesTo.map {
+            getEvolutionChain(it)
         }
-        return null
+        val minLevel = if (chainDto.evolutionDetails.isEmpty()) 0
+            else chainDto.evolutionDetails[0].minLevel
+
+        return EvolutionChain(
+            StringUtils.getIdFromUrl(chainDto.species.url), chainDto.species.name, minLevel, list)
     }
 }
