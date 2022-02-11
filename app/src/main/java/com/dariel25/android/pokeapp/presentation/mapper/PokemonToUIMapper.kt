@@ -1,8 +1,10 @@
 package com.dariel25.android.pokeapp.presentation.mapper
 
 import com.dariel25.android.pokeapp.core.BaseMapper
+import com.dariel25.android.pokeapp.domain.model.EvolutionChain
 import com.dariel25.android.pokeapp.domain.model.Pokemon
 import com.dariel25.android.pokeapp.domain.model.Stat
+import com.dariel25.android.pokeapp.presentation.model.Evolution
 import com.dariel25.android.pokeapp.presentation.model.PokemonUI
 import com.dariel25.android.pokeapp.presentation.utils.PokemonUtils
 
@@ -19,6 +21,10 @@ object PokemonToUIMapper : BaseMapper<Pokemon, PokemonUI> {
         val stats = type.stats.map {
             Stat(PokemonUtils.getStatName(it.name), it.value)
         }
+
+        val evolutions: ArrayList<Evolution> = arrayListOf()
+        mapEvolutionChainToList(type.evolutionChain, evolutions)
+
         return PokemonUI(
             type.id,
             type.name,
@@ -30,7 +36,25 @@ object PokemonToUIMapper : BaseMapper<Pokemon, PokemonUI> {
             type.types,
             stats,
             type.abilities,
-            type.evolutionChain
+            evolutions
         )
+    }
+
+    private fun mapEvolutionChainToList(
+        evolutionChain: EvolutionChain,
+        evolutions: ArrayList<Evolution>
+    ) {
+
+        for (evolve in evolutionChain.evolvesTo) {
+            val evolution = Evolution(
+                evolutionChain.id,
+                evolutionChain.name,
+                evolve.id,
+                evolve.name,
+                "Lvl " + evolve.level.toString()
+            )
+            evolutions.add(evolution)
+            mapEvolutionChainToList(evolve, evolutions)
+        }
     }
 }

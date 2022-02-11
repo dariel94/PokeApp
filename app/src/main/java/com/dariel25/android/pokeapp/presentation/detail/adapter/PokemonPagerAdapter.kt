@@ -3,7 +3,7 @@ package com.dariel25.android.pokeapp.presentation.detail.adapter
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
-import com.dariel25.android.pokeapp.presentation.detail.fragment.EvolutionsFragment
+import com.dariel25.android.pokeapp.presentation.detail.fragment.evolutions.EvolutionsFragment
 import com.dariel25.android.pokeapp.presentation.detail.fragment.MovesFragment
 import com.dariel25.android.pokeapp.presentation.detail.fragment.StatsFragment
 import com.dariel25.android.pokeapp.presentation.model.PokemonUI
@@ -24,7 +24,7 @@ class PokemonPagerAdapter(
                 StatsFragment(pokemonUI.stats, pokemonUI.color)
             }
             1 -> {
-                EvolutionsFragment(pokemonUI.evolutionChain)
+                EvolutionsFragment(pokemonUI.evolutions)
             }
             else -> {
                 MovesFragment(pokemonUI.abilities)

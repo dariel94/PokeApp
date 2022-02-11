@@ -8,7 +8,7 @@
     android:paddingTop="10dp">
 
     <ImageView
-        android:id="@+id/evolutionFromImage"
+        android:id="@+id/originImage"
         android:layout_width="90dp"
         android:layout_height="90dp"
         android:layout_gravity="end"
@@ -18,16 +18,16 @@
         tools:ignore="ContentDescription" />
 
     <TextView
-        android:id="@+id/evolutionFromTextView"
+        android:id="@+id/originTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         tools:text="Pokemon"
-        app:layout_constraintTop_toBottomOf="@+id/evolutionFromImage"
-        app:layout_constraintStart_toStartOf="@+id/evolutionFromImage"
-        app:layout_constraintEnd_toEndOf="@+id/evolutionFromImage"/>
+        app:layout_constraintTop_toBottomOf="@+id/originImage"
+        app:layout_constraintStart_toStartOf="@+id/originImage"
+        app:layout_constraintEnd_toEndOf="@+id/originImage"/>
 
     <ImageView
-        android:id="@+id/evolutionToImage"
+        android:id="@+id/evolutionImage"
         android:layout_width="90dp"
         android:layout_height="90dp"
         android:layout_gravity="end"
@@ -37,13 +37,13 @@
         tools:ignore="ContentDescription" />
 
     <TextView
-        android:id="@+id/evolutionToTextView"
+        android:id="@+id/evolutionTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         tools:text="Pokemon"
-        app:layout_constraintTop_toBottomOf="@+id/evolutionToImage"
-        app:layout_constraintStart_toStartOf="@+id/evolutionToImage"
-        app:layout_constraintEnd_toEndOf="@+id/evolutionToImage"/>
+        app:layout_constraintTop_toBottomOf="@+id/evolutionImage"
+        app:layout_constraintStart_toStartOf="@+id/evolutionImage"
+        app:layout_constraintEnd_toEndOf="@+id/evolutionImage"/>
 
     <ImageView
         android:id="@+id/evolutionArrow"
@@ -52,10 +52,10 @@
         android:layout_gravity="end"
         android:scaleType="centerCrop"
         android:src="@drawable/pokeapp_ic_arrow_evolution"
-        app:layout_constraintTop_toTopOf="@+id/evolutionFromImage"
-        app:layout_constraintStart_toEndOf="@+id/evolutionFromImage"
-        app:layout_constraintEnd_toStartOf="@+id/evolutionToImage"
-        app:layout_constraintBottom_toBottomOf="@+id/evolutionFromImage"
+        app:layout_constraintTop_toTopOf="@+id/originImage"
+        app:layout_constraintStart_toEndOf="@+id/originImage"
+        app:layout_constraintEnd_toStartOf="@+id/evolutionImage"
+        app:layout_constraintBottom_toBottomOf="@+id/originImage"
         tools:ignore="ContentDescription,UseAppTint"
         android:tint="#C1C1C1"
         app:tint="#C1C1C1"/>
@@ -66,8 +66,8 @@
         android:layout_height="wrap_content"
         tools:text="Lvl 10"
         app:layout_constraintTop_toBottomOf="@+id/evolutionArrow"
-        app:layout_constraintStart_toEndOf="@+id/evolutionFromImage"
-        app:layout_constraintEnd_toStartOf="@+id/evolutionToImage"/>
+        app:layout_constraintStart_toEndOf="@+id/originImage"
+        app:layout_constraintEnd_toStartOf="@+id/evolutionImage"/>
 
     <View
         android:layout_width="match_parent"
@@ -78,6 +78,6 @@
         android:background="@android:color/darker_gray"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/evolutionFromTextView"/>
+        app:layout_constraintTop_toBottomOf="@+id/originTextView"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
