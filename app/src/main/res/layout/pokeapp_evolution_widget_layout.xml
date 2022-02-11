@@ -56,8 +56,9 @@
         app:layout_constraintStart_toEndOf="@+id/evolutionFromImage"
         app:layout_constraintEnd_toStartOf="@+id/evolutionToImage"
         app:layout_constraintBottom_toBottomOf="@+id/evolutionFromImage"
-        tools:ignore="ContentDescription"
-        app:tint="@color/pokeapp_grey"/>
+        tools:ignore="ContentDescription,UseAppTint"
+        android:tint="#C1C1C1"
+        app:tint="#C1C1C1"/>
 
     <TextView
         android:id="@+id/evolutionLvl"

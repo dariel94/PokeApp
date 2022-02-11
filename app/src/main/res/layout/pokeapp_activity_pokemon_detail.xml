@@ -152,7 +152,16 @@
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/tab_layout"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="44dp"
+            app:tabMode="auto"
+            app:tabGravity="center"
+            app:tabIndicatorGravity="stretch"
+            app:tabPaddingStart="10dp"
+            app:tabIndicator="@drawable/pokeapp_rounded_tab"
+            app:tabBackground="@color/pokeapp_transparent"
+            android:background="@color/pokeapp_transparent"
+            app:tabRippleColor="@color/pokeapp_transparent"
+            />
 
         <androidx.viewpager2.widget.ViewPager2
             android:id="@+id/pager"

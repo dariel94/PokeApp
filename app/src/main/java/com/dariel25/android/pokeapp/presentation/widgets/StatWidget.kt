@@ -24,6 +24,7 @@ class StatWidget @JvmOverloads constructor(
     private val statName: TextView
     private val statValue: TextView
     private val statBar: ProgressBar
+    private var stat: Stat? = null
 
     init {
         val inflater = LayoutInflater.from(context)
@@ -34,12 +35,23 @@ class StatWidget @JvmOverloads constructor(
     }
 
     fun setStat(stat: Stat, color: Int) {
+        this.stat = stat
         statName.text = stat.name
-        statValue.text = stat.value.toString()
+        var value = stat.value.toString()
+        while (value.length < 3) {
+            value = "0$value"
+        }
+        statValue.text = value
+        statName.setTextColor(ContextCompat.getColor(context, color))
         statBar.progressTintList = ColorStateList.valueOf(ContextCompat.getColor(context, color))
+        animateStat()
+    }
 
-        ObjectAnimator.ofInt(statBar, "progress", stat.value)
-            .setDuration(1000)
-            .start()
+    private fun animateStat() {
+        stat?.let {
+            ObjectAnimator.ofInt(statBar, "progress", it.value)
+                .setDuration(1000)
+                .start()
+        }
     }
 }

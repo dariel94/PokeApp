@@ -1,5 +1,6 @@
 package com.dariel25.android.pokeapp.presentation.detail
 
+import android.graphics.Color
 import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.view.MenuItem
@@ -94,16 +95,21 @@ class PokemonDetailActivity : BaseActivity() {
             pagerAdapter = PokemonPagerAdapter(this, pokemon)
             binding.pager.adapter = pagerAdapter
 
+            binding.tabLayout.setTabTextColors(
+                ContextCompat.getColor(applicationContext, pokemon.color), Color.WHITE)
+            binding.tabLayout.setSelectedTabIndicatorColor(
+                ContextCompat.getColor(applicationContext, pokemon.color))
+
             val tableLayoutMediator = TabLayoutMediator(binding.tabLayout, pager) { tab, pos ->
                 when (pos) {
                     0 -> {
-                        tab.text = "Stats"
+                        tab.text = "     Stats     "
                     }
                     1 -> {
-                        tab.text = "Evolutions"
+                        tab.text = " Evolutions "
                     }
                     2 -> {
-                        tab.text = "Moves"
+                        tab.text = "     Moves     "
                     }
                 }
             }
