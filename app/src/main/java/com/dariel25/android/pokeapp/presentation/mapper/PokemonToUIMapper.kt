@@ -22,6 +22,14 @@ object PokemonToUIMapper : BaseMapper<Pokemon, PokemonUI> {
             Stat(PokemonUtils.getStatName(it.name), it.value)
         }
 
+        val abilities = type.abilities.map {
+            it.replace("-", "").uppercase()
+        }
+
+        val types = type.types.map {
+            it.replaceFirstChar { c -> c.uppercase() }
+        }
+
         val evolutions: ArrayList<Evolution> = arrayListOf()
         mapEvolutionChainToList(type.evolutionChain, evolutions)
 
@@ -33,9 +41,9 @@ object PokemonToUIMapper : BaseMapper<Pokemon, PokemonUI> {
             PokemonUtils.getWeightInKilograms(type.weight),
             PokemonUtils.getImageUrl(type.id),
             color,
-            type.types,
+            types,
             stats,
-            type.abilities,
+            abilities,
             evolutions
         )
     }

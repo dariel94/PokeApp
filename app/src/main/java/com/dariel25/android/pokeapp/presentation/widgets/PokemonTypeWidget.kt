@@ -27,6 +27,6 @@ class PokemonTypeWidget @JvmOverloads constructor(
     }
 
     fun setType(type: String) {
-        typeTextView.text = type.replaceFirstChar { c -> c.uppercase() }
+        typeTextView.text = type
     }
 }

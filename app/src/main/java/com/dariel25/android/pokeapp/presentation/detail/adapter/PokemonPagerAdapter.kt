@@ -4,7 +4,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.dariel25.android.pokeapp.presentation.detail.fragment.evolutions.EvolutionsFragment
-import com.dariel25.android.pokeapp.presentation.detail.fragment.MovesFragment
+import com.dariel25.android.pokeapp.presentation.detail.fragment.moves.MovesFragment
 import com.dariel25.android.pokeapp.presentation.detail.fragment.StatsFragment
 import com.dariel25.android.pokeapp.presentation.model.PokemonUI
 

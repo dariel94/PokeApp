@@ -32,7 +32,7 @@ class EvolutionsFragment(
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.pokeapp_detail_fragment_evolution, container, false)
-        evolutionsRecyclerView = view.findViewById(R.id.evolutionsRV)
+        evolutionsRecyclerView = view.findViewById(R.id.evolutionsRecyclerView)
 
         context?.let { context ->
             adapter = EvolutionsAdapter(context, evolutions)
