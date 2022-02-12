@@ -1,9 +1,3 @@
-/*
- * *
- *  Created by dariel94 on ${DATE}.
- * /
- */
-
 package com.example.dariel94.pokeapp.presentation.pokelist
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule

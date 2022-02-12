@@ -1,13 +1,8 @@
-/*
- * *
- *  Created by dariel94 on ${DATE}.
- * /
- */
-
 package com.example.dariel94.pokeapp.presentation.detail
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.dariel25.android.pokeapp.data.network.NetworkState
+import com.dariel25.android.pokeapp.domain.model.EvolutionChain
 import com.dariel25.android.pokeapp.domain.model.Pokemon
 import com.dariel25.android.pokeapp.domain.usecase.PokemonDetailUseCase
 import com.dariel25.android.pokeapp.presentation.detail.PokemonDetailViewModel
@@ -78,6 +73,7 @@ class PokemonDetailViewModelTest {
     }
 
     private fun getMockedPokemon() : Pokemon {
-        return Pokemon("1", "test pokemon", 1, 1, listOf(), listOf(), listOf())
+        return Pokemon("1", "test pokemon", "desc", 1, 1, listOf(),
+            listOf(), listOf(), EvolutionChain("", "", "", listOf()))
     }
 }
