@@ -9,11 +9,13 @@ import com.dariel25.android.pokeapp.domain.model.Stat
 data class PokemonUI(
     val id: String = "",
     val name: String = "",
+    val desc: String = "",
     val height: String,
     val weight: String,
+    val imageUrl: String = "",
+    @ColorRes val color: Int,
     val types: List<String>,
     val stats: List<Stat>,
     val abilities: List<String>,
-    val imageUrl: String = "",
-    @ColorRes val color: Int
+    val evolutions: List<Evolution>
 )

@@ -1,5 +1,7 @@
 package com.dariel25.android.pokeapp.presentation.detail
 
+import android.graphics.Color
+import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.view.MenuItem
 import android.view.View
@@ -10,13 +12,15 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.dariel25.android.pokeapp.R
 import com.dariel25.android.pokeapp.databinding.PokeappActivityPokemonDetailBinding
 import com.dariel25.android.pokeapp.presentation.core.ui.BaseActivity
+import com.dariel25.android.pokeapp.presentation.detail.adapter.PokemonPagerAdapter
 import com.dariel25.android.pokeapp.presentation.model.PokemonUI
 import com.dariel25.android.pokeapp.presentation.model.UIState
 import com.dariel25.android.pokeapp.presentation.utils.PokemonUtils
 import com.dariel25.android.pokeapp.presentation.utils.UIUtils
 import com.dariel25.android.pokeapp.presentation.widgets.PokemonTypeWidget
-import com.dariel25.android.pokeapp.presentation.widgets.StatWidget
+import com.google.android.material.tabs.TabLayoutMediator
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.android.synthetic.main.pokeapp_activity_pokemon_detail.*
 
 /**
  * Created by dariel94 on 31/10/2021.
@@ -28,10 +32,13 @@ class PokemonDetailActivity : BaseActivity() {
     private val binding: PokeappActivityPokemonDetailBinding by lazy {
         PokeappActivityPokemonDetailBinding.inflate(layoutInflater)
     }
+    private var pagerAdapter: PokemonPagerAdapter? = null
     private var id: String = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        supportActionBar?.hide()
 
         pokemonDetailViewModel.getViewStateLiveData()
             .observe(this, { updateViewStatus(it) })
@@ -69,14 +76,14 @@ class PokemonDetailActivity : BaseActivity() {
             Glide.with(this)
                 .load(pokemon.imageUrl)
                 .centerCrop()
-                .placeholder(UIUtils.getLoadingPlaceholder(this))
+                .placeholder(UIUtils.getLoadingPlaceholder(this) as Drawable)
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .into(binding.image)
 
             binding.name.text = it.name.replaceFirstChar { c -> c.uppercase() }
             binding.id.text = PokemonUtils.getIdTitle(it.id)
-            binding.statHeight.text = pokemon.height
-            binding.statWeight.text = pokemon.weight
+
+            binding.desc.text = pokemon.desc
 
             binding.detailContainer.background = ContextCompat.getDrawable(this, pokemon.color)
             setUpActionbar(pokemon.color)
@@ -87,17 +94,35 @@ class PokemonDetailActivity : BaseActivity() {
                 binding.typesContainer.addView(pokemonTypeWidget)
             }
 
-            for (stat in pokemon.stats) {
-                val statWidget = StatWidget(this)
-                statWidget.setStat(stat, pokemon.color)
-                binding.statsContainer.addView(statWidget)
+            pagerAdapter = PokemonPagerAdapter(this, pokemon)
+            binding.pager.adapter = pagerAdapter
+
+            binding.tabLayout.setTabTextColors(
+                ContextCompat.getColor(applicationContext, pokemon.color), Color.WHITE)
+            binding.tabLayout.setSelectedTabIndicatorColor(
+                ContextCompat.getColor(applicationContext, pokemon.color))
+
+            val tableLayoutMediator = TabLayoutMediator(binding.tabLayout, pager) { tab, pos ->
+                when (pos) {
+                    0 -> {
+                        tab.text = "     Stats     "
+                    }
+                    1 -> {
+                        tab.text = " Evolutions "
+                    }
+                    2 -> {
+                        tab.text = "     Moves     "
+                    }
+                }
             }
+            tableLayoutMediator.attach()
         }
         showLayoutView()
     }
 
     private fun setUpActionbar(color: Int) {
         supportActionBar?.apply {
+            show()
             setHomeAsUpIndicator(R.drawable.pokeapp_ic_arrow_white)
             setDisplayHomeAsUpEnabled(true)
             setBackgroundDrawable(ContextCompat.getDrawable(applicationContext, color))

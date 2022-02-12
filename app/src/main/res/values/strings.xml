@@ -5,4 +5,5 @@
     <string name="pokeapp_stats_title">Base Stats</string>
     <string name="pokeapp_error">Error</string>
     <string name="pokeapp_retry">Retry</string>
+    <string name="pokeapp_no_evolutions">No evolutions</string>
 </resources>

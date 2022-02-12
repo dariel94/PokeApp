@@ -15,11 +15,11 @@ object PokemonUtils {
     fun getStatName(statId: String): String {
         return when(statId) {
             "hp" -> "HP"
-            "attack" -> "Attack"
-            "defense" -> "Defense"
-            "special-attack" -> "Sp Atk"
-            "special-defense" -> "Sp Def"
-            "speed" -> "Speed"
+            "attack" -> "ATK"
+            "defense" -> "DEF"
+            "special-attack" -> "SATK"
+            "special-defense" -> "SDEF"
+            "speed" -> "SPD"
             else -> statId
         }
     }

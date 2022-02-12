@@ -3,6 +3,7 @@ package com.dariel25.android.pokeapp.data.room.model
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import com.dariel25.android.pokeapp.domain.model.EvolutionChain
 import com.dariel25.android.pokeapp.domain.model.Pokemon
 import com.dariel25.android.pokeapp.domain.model.Stat
 
@@ -13,20 +14,24 @@ import com.dariel25.android.pokeapp.domain.model.Stat
 data class PokemonEntity(
     @PrimaryKey val id: String = "",
     @ColumnInfo(name = "name") val name: String = "",
+    @ColumnInfo(name = "desc") val desc: String = "",
     @ColumnInfo(name = "height") val height: Int = 0,
     @ColumnInfo(name = "weight") val weight: Int = 0,
     @ColumnInfo(name = "types") val types: List<String>,
     @ColumnInfo(name = "stats") val stats: List<Stat>,
-    @ColumnInfo(name = "abilities") val abilities: List<String>
+    @ColumnInfo(name = "abilities") val abilities: List<String>,
+    @ColumnInfo(name = "evolution_chain") val evolutionChain: EvolutionChain
 )
 
 fun PokemonEntity.mapToDomain(): Pokemon {
     return Pokemon(
         id,
         name,
+        desc,
         height,
         weight,
         types,
         stats,
-        abilities)
+        abilities,
+        evolutionChain)
 }

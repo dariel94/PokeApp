@@ -1,6 +1,7 @@
 package com.dariel25.android.pokeapp.data.room.model
 
 import androidx.room.TypeConverter
+import com.dariel25.android.pokeapp.domain.model.EvolutionChain
 import com.dariel25.android.pokeapp.domain.model.Stat
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
@@ -29,5 +30,19 @@ object Converters {
         val gson = Gson()
         val type: Type = object : TypeToken<List<Stat?>?>() {}.type
         return gson.fromJson<List<Stat>>(json, type)
+    }
+
+    @TypeConverter
+    fun evolutionChainToJson(evolutionChain: EvolutionChain): String {
+        val gson = Gson()
+        val type: Type = object : TypeToken<EvolutionChain?>() {}.type
+        return gson.toJson(evolutionChain, type)
+    }
+
+    @TypeConverter
+    fun jsonToEvolutionChain(json: String?): EvolutionChain {
+        val gson = Gson()
+        val type: Type = object : TypeToken<EvolutionChain?>() {}.type
+        return gson.fromJson<EvolutionChain>(json, type)
     }
 }

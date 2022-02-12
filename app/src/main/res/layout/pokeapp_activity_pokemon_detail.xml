@@ -63,7 +63,7 @@
         android:background="@drawable/pokeapp_top_rounded_corner"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/stats_container"/>
+        app:layout_constraintBottom_toTopOf="@id/desc"/>
 
     <ImageView
         android:id="@+id/image"
@@ -75,77 +75,51 @@
         app:layout_constraintTop_toBottomOf="@id/name"
         tools:ignore="ContentDescription" />
 
+    <TextView
+        android:id="@+id/desc"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:text="lorem ipsum"
+        android:gravity="center_horizontal"
+        android:background="@color/pokeapp_white"
+        android:paddingStart="24dp"
+        android:paddingEnd="24dp"
+        android:textSize="12sp"
+        android:paddingBottom="8dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/image"/>
+
     <LinearLayout
-        android:id="@+id/stats_container"
+        android:id="@+id/pager_container"
+        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:orientation="vertical"
-        android:paddingEnd="20dp"
-        android:paddingStart="20dp"
         android:background="@color/pokeapp_white"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/image"
+        app:layout_constraintTop_toBottomOf="@id/desc"
         app:layout_constraintBottom_toBottomOf="parent">
 
-        <LinearLayout
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tab_layout"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginBottom="10dp"
-            android:baselineAligned="false">
+            android:layout_height="44dp"
+            app:tabMode="auto"
+            app:tabGravity="center"
+            app:tabIndicatorGravity="stretch"
+            android:layout_marginTop="8dp"
+            app:tabIndicator="@drawable/pokeapp_rounded_tab"
+            app:tabBackground="@color/pokeapp_transparent"
+            android:background="@color/pokeapp_transparent"
+            app:tabRippleColor="@color/pokeapp_transparent"
+            />
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.5"
-                android:gravity="center"
-                android:orientation="vertical">
-
-                <TextView
-                    android:id="@+id/stat_height"
-                    android:textSize="18sp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="14sp"
-                    android:text="@string/pokeapp_height"/>
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:layout_weight="0.5"
-                android:orientation="vertical">
-
-                <TextView
-                    android:id="@+id/stat_weight"
-                    android:textSize="18sp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="14sp"
-                    android:text="@string/pokeapp_weight"/>
-
-            </LinearLayout>
-
-        </LinearLayout>
-
-        <TextView
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/pager"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:textSize="16sp"
-            android:layout_marginBottom="4dp"
-            android:text="@string/pokeapp_stats_title"/>
+            android:layout_height="0dp"
+            android:layout_weight="1" />
 
     </LinearLayout>
 
