@@ -38,6 +38,8 @@ class PokemonDetailActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        supportActionBar?.hide()
+
         pokemonDetailViewModel.getViewStateLiveData()
             .observe(this, { updateViewStatus(it) })
 
@@ -120,6 +122,7 @@ class PokemonDetailActivity : BaseActivity() {
 
     private fun setUpActionbar(color: Int) {
         supportActionBar?.apply {
+            show()
             setHomeAsUpIndicator(R.drawable.pokeapp_ic_arrow_white)
             setDisplayHomeAsUpEnabled(true)
             setBackgroundDrawable(ContextCompat.getDrawable(applicationContext, color))
