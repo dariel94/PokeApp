@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    android:layout_width="match_parent"
+<LinearLayout android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/evolutionsRecyclerView"
@@ -11,6 +11,14 @@
         android:paddingEnd="20dp"
         android:paddingStart="20dp"
         android:paddingTop="20dp"
-        android:background="@color/pokeapp_white"/>
+        android:background="@color/pokeapp_white" />
+
+    <TextView
+        android:id="@+id/empty_state"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"
+        android:text="@string/pokeapp_no_evolutions"
+        android:gravity="center"/>
 
 </LinearLayout>

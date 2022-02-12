@@ -10,5 +10,6 @@ import kotlinx.android.parcel.Parcelize
 @Parcelize
 data class FlavorTextEntry(
     @SerializedName("flavor_text") val flavorText: String = "",
-    val language: Resource
+    val language: Resource,
+    val version: Resource
 ) : Parcelable

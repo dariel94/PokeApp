@@ -1,4 +1,3 @@
-
 package com.dariel25.android.pokeapp.data.network.pokeapi.mapper
 
 import com.dariel25.android.pokeapp.data.network.pokeapi.model.ChainDto
@@ -32,10 +31,18 @@ object PokemonMapper {
             Stat(it.stat.name, it.baseStat)
         }
 
+        var desc = ""
+        for (entry in pokemonSpeciesDto.flavorTextEntries) {
+            if (entry.language.name == "en") {
+                desc = entry.flavorText.replace('\n', ' ')
+                break
+            }
+        }
+
         return Pokemon(
             pokemonDto.id,
             pokemonDto.name,
-            pokemonSpeciesDto.flavorTextEntries[6].flavorText.replace('\n', ' '),
+            desc,
             pokemonDto.height,
             pokemonDto.weight,
             types,
@@ -51,17 +58,35 @@ object PokemonMapper {
 
         var condition = ""
         if (chainDto.evolutionDetails.isNotEmpty()) {
-            val level = chainDto.evolutionDetails[0].level
-            val happiness = chainDto.evolutionDetails[0].happiness
-            val item = chainDto.evolutionDetails[0].item
-            val heldItem = chainDto.evolutionDetails[0].heldItem
-            val trigger = chainDto.evolutionDetails[0].trigger
-            when {
-                level != null -> condition = "Lvl $level"
-                item != null -> condition = item.name.replace('-', ' ').uppercase()
-                heldItem != null -> condition = heldItem.name.replace('-', ' ').uppercase()
-                happiness != null -> condition = "Happiness $happiness"
-                trigger != null -> condition = trigger.name.replace('-', ' ').uppercase()
+            val evolutionDetailDto = chainDto.evolutionDetails[0]
+            evolutionDetailDto.trigger?.let { condition += normalize(it.name) + " " }
+            evolutionDetailDto.level?.let { condition += it }
+            evolutionDetailDto.item?.let { condition += "\n${normalize(it.name)}" }
+            evolutionDetailDto.timeOfDay?.let {
+                if (it.isNotEmpty()) condition += "at $it"
+            }
+            evolutionDetailDto.heldItem?.let { condition += "\n Held ${normalize(it.name)}" }
+            evolutionDetailDto.location?.let { condition += "\nIn ${normalize(it.name)}" }
+            evolutionDetailDto.knownMoveType?.let { condition += "\nKnown ${normalize(it.name)} move" }
+            evolutionDetailDto.knownMove?.let { condition += "\nKnown ${normalize(it.name)}" }
+            evolutionDetailDto.happiness?.let { condition += "\nHappiness $it" }
+            evolutionDetailDto.beauty?.let { condition += "\nBeauty $it" }
+            evolutionDetailDto.affection?.let { condition += "\nAffection $it" }
+            evolutionDetailDto.gender?.let {
+                condition += "\n${if (it == 0) "Male" else "Female"} gender"
+            }
+            evolutionDetailDto.relativePhysicalStats?.let {
+                condition += when (it) {
+                    0 -> {
+                        "\nIf Attack = Defense"
+                    }
+                    1 -> {
+                        "\nIf Attack > Defense"
+                    }
+                    else -> {
+                        "\nIf Attack < Defense"
+                    }
+                }
             }
         }
 
@@ -71,4 +96,7 @@ object PokemonMapper {
             condition,
             list)
     }
+
+    private fun normalize(string: String) =
+        string.replace('-', ' ').replaceFirstChar { c -> c.uppercase() }
 }

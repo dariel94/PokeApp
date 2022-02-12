@@ -1,9 +1,3 @@
-/*
- * *
- *  Created by dariel94 on ${DATE}.
- * /
- */
-
 package com.dariel25.android.pokeapp.presentation.detail.fragment.evolutions
 
 import android.os.Bundle
@@ -35,14 +29,18 @@ class EvolutionsFragment(
         evolutionsRecyclerView = view.findViewById(R.id.evolutionsRecyclerView)
 
         context?.let { context ->
-            adapter = EvolutionsAdapter(context, evolutions)
-            evolutionsRecyclerView.adapter = adapter
-            evolutionsRecyclerView.setHasFixedSize(true)
-            val layoutManager = LinearLayoutManager(context)
-            evolutionsRecyclerView.layoutManager = layoutManager
-            adapter.notifyDataSetChanged()
+            if (evolutions.isNullOrEmpty()) {
+                evolutionsRecyclerView.visibility = View.GONE
+                view.findViewById<View>(R.id.empty_state).visibility = View.VISIBLE
+            } else {
+                adapter = EvolutionsAdapter(context, evolutions)
+                evolutionsRecyclerView.adapter = adapter
+                evolutionsRecyclerView.setHasFixedSize(true)
+                val layoutManager = LinearLayoutManager(context)
+                evolutionsRecyclerView.layoutManager = layoutManager
+                adapter.notifyDataSetChanged()
+            }
         }
-
         return view
     }
 }

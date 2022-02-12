@@ -56,8 +56,7 @@
         app:layout_constraintEnd_toStartOf="@+id/evolutionImage"
         app:layout_constraintBottom_toBottomOf="@+id/originImage"
         tools:ignore="ContentDescription,UseAppTint"
-        android:tint="#C1C1C1"
-        app:tint="#C1C1C1"/>
+        android:tint="#C1C1C1"/>
 
     <TextView
         android:id="@+id/evolutionLvl"
@@ -65,6 +64,7 @@
         android:layout_height="wrap_content"
         tools:text="Lvl 10"
         android:textSize="12sp"
+        android:gravity="center"
         android:textColor="#A6A6A6"
         app:layout_constraintTop_toBottomOf="@+id/evolutionArrow"
         app:layout_constraintStart_toEndOf="@+id/originImage"
