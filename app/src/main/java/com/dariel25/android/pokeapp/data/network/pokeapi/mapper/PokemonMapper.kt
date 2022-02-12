@@ -72,6 +72,7 @@ object PokemonMapper {
             evolutionDetailDto.happiness?.let { condition += "\nHappiness $it" }
             evolutionDetailDto.beauty?.let { condition += "\nBeauty $it" }
             evolutionDetailDto.affection?.let { condition += "\nAffection $it" }
+            if (evolutionDetailDto.needsOverWorldRain) { condition += "\nNeeds over world rain" }
             evolutionDetailDto.gender?.let {
                 condition += "\n${if (it == 0) "Male" else "Female"} gender"
             }

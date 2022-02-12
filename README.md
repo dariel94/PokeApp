@@ -19,7 +19,8 @@ This is a sample Pokemon App written in Kotlin using a modern Android Architectu
   </tr>
   <tr>
     <td><img src="screenshots/screen1.jpeg"/></td>
-    <td><img src="screenshots/screen2.jpeg"/></td>
+    <td><img src="screenshots/screen2.png"/></td>
+    <td><img src="screenshots/screen3.png"/></td>
   </tr>
 </table>
 
@@ -30,7 +31,7 @@ This is a sample Pokemon App written in Kotlin using a modern Android Architectu
   </tr>
   <tr>
     <td><img src="screenshots/gif1.gif"/></td>
-    <td><img src="screenshots/screen3.png"/></td>
+    <td><img src="screenshots/screen4.png"/></td>
   </tr>
 </table>
 
