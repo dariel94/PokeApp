@@ -14,8 +14,20 @@ data class Pokemon(
     val types: List<String>,
     val stats: List<Stat>,
     val abilities: List<String>,
-    val evolutionChain: EvolutionChain
+    val evolutionChain: EvolutionChain,
+    val isLegendary: Boolean
 ) {
     fun mapToEntity(): PokemonEntity =
-        PokemonEntity(id, name, desc, height, weight, types, stats, abilities, evolutionChain)
+        PokemonEntity(
+            id,
+            name,
+            desc,
+            height,
+            weight,
+            types,
+            stats,
+            abilities,
+            evolutionChain,
+            isLegendary
+        )
 }

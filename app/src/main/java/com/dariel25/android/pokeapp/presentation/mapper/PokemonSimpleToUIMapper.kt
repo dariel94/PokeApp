@@ -9,14 +9,14 @@ import com.dariel25.android.pokeapp.presentation.model.PokemonSimpleUI
  * Created by dariel94 on 31/10/2021.
  */
 object PokemonSimpleToUIMapper : BaseMapper<PokemonSimple, PokemonSimpleUI> {
-    override fun map(type: PokemonSimple): PokemonSimpleUI {
+    override fun map(obj: PokemonSimple): PokemonSimpleUI {
         return PokemonSimpleUI(
-            type.id,
-            type.name,
-            type.type1,
-            type.type2,
-            PokemonUtils.getImageUrl(type.id),
-            PokemonUtils.getPokemonTypeColor(type.type1)
+            obj.id,
+            obj.name,
+            obj.type1,
+            obj.type2,
+            PokemonUtils.getImageUrl(obj.id),
+            PokemonUtils.getPokemonTypeColor(obj.type1)
         )
     }
 }

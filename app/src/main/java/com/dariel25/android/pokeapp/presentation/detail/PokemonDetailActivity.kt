@@ -9,19 +9,16 @@ import androidx.activity.viewModels
 import androidx.core.content.ContextCompat
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
-import com.dariel25.android.pokeapp.R
 import com.dariel25.android.pokeapp.databinding.PokeappActivityPokemonDetailBinding
 import com.dariel25.android.pokeapp.presentation.core.ui.BaseActivity
 import com.dariel25.android.pokeapp.presentation.detail.adapter.PokemonPagerAdapter
 import com.dariel25.android.pokeapp.presentation.model.PokemonUI
 import com.dariel25.android.pokeapp.presentation.model.UIState
-import com.dariel25.android.pokeapp.presentation.utils.PokemonUtils
-import com.dariel25.android.pokeapp.presentation.utils.UIUtils
+import com.dariel25.android.pokeapp.presentation.utils.*
 import com.dariel25.android.pokeapp.presentation.widgets.PokemonTypeWidget
 import com.google.android.material.appbar.AppBarLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.android.synthetic.main.pokeapp_activity_pokemon_detail.*
 
 /**
  * Created by dariel94 on 31/10/2021.
@@ -33,13 +30,17 @@ class PokemonDetailActivity : BaseActivity() {
     private val binding: PokeappActivityPokemonDetailBinding by lazy {
         PokeappActivityPokemonDetailBinding.inflate(layoutInflater)
     }
-    private var pagerAdapter: PokemonPagerAdapter? = null
     private var id: String = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        init()
+    }
 
+    private fun init() {
         supportActionBar?.hide()
+        binding.toolbar.setNavigationOnClickListener { finish() }
+        setUpCollapsingToolBar()
 
         pokemonDetailViewModel.getViewStateLiveData()
             .observe(this, { updateViewStatus(it) })
@@ -74,6 +75,9 @@ class PokemonDetailActivity : BaseActivity() {
 
     private fun showPokemonData(pokemon: PokemonUI?) {
         pokemon?.let {
+            UIUtils.changeStatusBarColor(this, pokemon.color)
+            setPokemonColor(pokemon.color)
+
             Glide.with(this)
                 .load(pokemon.imageUrl)
                 .centerCrop()
@@ -81,34 +85,9 @@ class PokemonDetailActivity : BaseActivity() {
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .into(binding.image)
 
-            binding.collapsingToolbarLayout.title = it.name.replaceFirstChar { c -> c.uppercase() }
+            binding.collapsingToolbarLayout.title = it.name.firstCharUpperCase()
             binding.id.text = PokemonUtils.getIdTitle(it.id)
-
             binding.desc.text = pokemon.desc
-
-            binding.pokeappAppbarlayout.background =
-                ContextCompat.getDrawable(this, pokemon.color)
-            binding.bottomSheetBackground.background =
-                ContextCompat.getDrawable(this, pokemon.color)
-            binding.collapsingToolbarLayout.contentScrim =
-                ContextCompat.getDrawable(this, pokemon.color)
-
-            binding.toolbar.setNavigationOnClickListener { finish() }
-
-            binding.pokeappAppbarlayout.addOnOffsetChangedListener(
-                AppBarLayout.OnOffsetChangedListener { _, verticalOffset ->
-                    val h = binding.collapsingToolbarLayout.height
-                    val alpha = (verticalOffset*3 + h).toFloat() / h
-                    binding.image.alpha = alpha
-                    binding.typesContainer.alpha = alpha
-                    if (verticalOffset == h) {
-                        binding.bottomSheetBackground.visibility = View.VISIBLE
-                    } else {
-                        binding.bottomSheetBackground.visibility = View.GONE
-                    }
-            })
-
-            setUpActionbar(pokemon.color)
 
             for (type in pokemon.types) {
                 val pokemonTypeWidget = PokemonTypeWidget(this)
@@ -116,40 +95,51 @@ class PokemonDetailActivity : BaseActivity() {
                 binding.typesContainer.addView(pokemonTypeWidget)
             }
 
-            pagerAdapter = PokemonPagerAdapter(this, pokemon)
-            binding.pager.adapter = pagerAdapter
-
-            binding.tabLayout.setTabTextColors(
-                ContextCompat.getColor(applicationContext, pokemon.color), Color.WHITE)
-            binding.tabLayout.setSelectedTabIndicatorColor(
-                ContextCompat.getColor(applicationContext, pokemon.color))
-
-            val tableLayoutMediator = TabLayoutMediator(binding.tabLayout, pager) { tab, pos ->
-                when (pos) {
-                    0 -> {
-                        tab.text = "     Stats     "
-                    }
-                    1 -> {
-                        tab.text = " Evolutions "
-                    }
-                    2 -> {
-                        tab.text = "     Moves     "
-                    }
-                }
+            if (pokemon.isLegendary) {
+                binding.legendaryTextView.show()
             }
-            tableLayoutMediator.attach()
+
+            setUpTabView(pokemon)
+
+            showLayoutView()
         }
-        showLayoutView()
     }
 
-    private fun setUpActionbar(color: Int) {
-        supportActionBar?.apply {
-            setHomeAsUpIndicator(R.drawable.pokeapp_ic_arrow_white)
-            setDisplayHomeAsUpEnabled(true)
-            setBackgroundDrawable(ContextCompat.getDrawable(applicationContext, color))
-            elevation = 0f
-            title = ""
+    private fun setUpTabView(pokemon: PokemonUI) {
+        val pagerAdapter = PokemonPagerAdapter(this, pokemon)
+        binding.pager.adapter = pagerAdapter
+        val tableLayoutMediator = TabLayoutMediator(binding.tabLayout, binding.pager) { tab, pos ->
+            when (pos) {
+                0 -> tab.text = "     Stats     "
+                1 -> tab.text = " Evolutions "
+                2 -> tab.text = "    Abilities    "
+            }
         }
-        UIUtils.changeStatusBarColor(this, color)
+        tableLayoutMediator.attach()
+    }
+
+    private fun setPokemonColor(color: Int) {
+        val colorInt = ContextCompat.getColor(applicationContext, color)
+        binding.tabLayout.setTabTextColors(colorInt, Color.WHITE)
+        binding.tabLayout.setSelectedTabIndicatorColor(colorInt)
+        binding.pokeappAppbarlayout.background = ContextCompat.getDrawable(this, color)
+        binding.bottomSheetBackground.background = ContextCompat.getDrawable(this, color)
+        binding.collapsingToolbarLayout.contentScrim = ContextCompat.getDrawable(this, color)
+    }
+
+    private fun setUpCollapsingToolBar() {
+        binding.pokeappAppbarlayout.addOnOffsetChangedListener(
+            AppBarLayout.OnOffsetChangedListener { _, verticalOffset ->
+                val h = binding.collapsingToolbarLayout.height
+                val alpha = (verticalOffset * 3 + h).toFloat() / h
+                binding.image.alpha = alpha
+                binding.typesContainer.alpha = alpha
+                binding.rightContainer.alpha = alpha
+                if (verticalOffset == h) {
+                    binding.bottomSheetBackground.show()
+                } else {
+                    binding.bottomSheetBackground.hide()
+                }
+            })
     }
 }

@@ -12,39 +12,40 @@ import com.dariel25.android.pokeapp.presentation.utils.PokemonUtils
  * Created by dariel94 on 31/10/2021.
  */
 object PokemonToUIMapper : BaseMapper<Pokemon, PokemonUI> {
-    override fun map(type: Pokemon): PokemonUI {
-        val color = if (type.types.isNotEmpty()) {
-            PokemonUtils.getPokemonTypeColor(type.types.first())
+    override fun map(obj: Pokemon): PokemonUI {
+        val color = if (obj.types.isNotEmpty()) {
+            PokemonUtils.getPokemonTypeColor(obj.types.first())
         } else {
             PokemonUtils.getPokemonTypeColor("")
         }
-        val stats = type.stats.map {
+        val stats = obj.stats.map {
             Stat(PokemonUtils.getStatName(it.name), it.value)
         }
 
-        val abilities = type.abilities.map {
+        val abilities = obj.abilities.map {
             it.replace("-", "").uppercase()
         }
 
-        val types = type.types.map {
+        val types = obj.types.map {
             it.replaceFirstChar { c -> c.uppercase() }
         }
 
         val evolutions: ArrayList<Evolution> = arrayListOf()
-        mapEvolutionChainToList(type.evolutionChain, evolutions)
+        mapEvolutionChainToList(obj.evolutionChain, evolutions)
 
         return PokemonUI(
-            type.id,
-            type.name,
-            type.desc,
-            PokemonUtils.getHeightInMeters(type.height),
-            PokemonUtils.getWeightInKilograms(type.weight),
-            PokemonUtils.getImageUrl(type.id),
+            obj.id,
+            obj.name,
+            obj.desc,
+            PokemonUtils.getHeightInMeters(obj.height),
+            PokemonUtils.getWeightInKilograms(obj.weight),
+            PokemonUtils.getImageUrl(obj.id),
             color,
             types,
             stats,
             abilities,
-            evolutions
+            evolutions,
+            obj.isLegendary
         )
     }
 

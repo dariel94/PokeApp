@@ -5,5 +5,5 @@ package com.dariel25.android.pokeapp.core
  */
 interface BaseMapper<in A, out B> {
 
-    fun map(type: A): B
+    fun map(obj: A): B
 }

@@ -48,7 +48,9 @@ object PokemonMapper {
             types,
             stats,
             abilities,
-            getEvolutionChain(evolutionChainDto.chain))
+            getEvolutionChain(evolutionChainDto.chain),
+            pokemonSpeciesDto.isLegendary
+        )
     }
 
     private fun getEvolutionChain(chainDto: ChainDto): EvolutionChain {

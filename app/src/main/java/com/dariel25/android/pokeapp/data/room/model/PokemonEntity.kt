@@ -20,7 +20,9 @@ data class PokemonEntity(
     @ColumnInfo(name = "types") val types: List<String>,
     @ColumnInfo(name = "stats") val stats: List<Stat>,
     @ColumnInfo(name = "abilities") val abilities: List<String>,
-    @ColumnInfo(name = "evolution_chain") val evolutionChain: EvolutionChain
+    @ColumnInfo(name = "evolution_chain") val evolutionChain: EvolutionChain,
+    @ColumnInfo(name = "is_legendary") val isLegendary: Boolean,
+
 )
 
 fun PokemonEntity.mapToDomain(): Pokemon {
@@ -33,5 +35,7 @@ fun PokemonEntity.mapToDomain(): Pokemon {
         types,
         stats,
         abilities,
-        evolutionChain)
+        evolutionChain,
+        isLegendary
+    )
 }

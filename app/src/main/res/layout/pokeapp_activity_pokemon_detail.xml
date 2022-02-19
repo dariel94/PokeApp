@@ -71,11 +71,14 @@
                 android:gravity="center"/>
 
             <LinearLayout
+                android:id="@+id/right_container"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="?attr/actionBarSize"
                 android:layout_gravity="end"
                 android:layout_marginEnd="10dp"
+                app:layout_collapseMode="parallax"
+                app:layout_collapseParallaxMultiplier="1"
                 android:orientation="vertical">
 
                 <TextView
@@ -88,29 +91,17 @@
                     android:paddingTop="8dp"
                     tools:text="#001"
                     android:layout_gravity="end"
-                    app:layout_collapseMode="parallax"
-                    app:layout_collapseParallaxMultiplier="1"
                     />
 
                 <TextView
-                    android:id="@+id/type_widget_name"
+                    android:id="@+id/legendary_text_view"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:visibility="gone"
                     style="@style/pokeapp_type_widget"
-                    tools:text="Legendary"/>
+                    android:text="@string/pokeapp_legendary"/>
 
             </LinearLayout>
-
-
-            <com.dariel25.android.pokeapp.presentation.widgets.PokemonTypeWidget
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="20dp"
-                android:layout_marginTop="?attr/actionBarSize"
-                android:paddingTop="34dp"
-                android:layout_gravity="end"
-                />
 
             <androidx.appcompat.widget.Toolbar
                 android:id="@+id/toolbar"

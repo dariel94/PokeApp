@@ -4,7 +4,6 @@ import android.content.Context
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.widget.FrameLayout
-import android.widget.LinearLayout
 import android.widget.TextView
 import com.dariel25.android.pokeapp.R
 
@@ -18,13 +17,11 @@ class PokemonTypeWidget @JvmOverloads constructor(
 ) : FrameLayout(context, attrs, defStyleAttr) {
 
     private val typeTextView: TextView
-    private val typeContainer: LinearLayout
 
     init {
         val inflater = LayoutInflater.from(context)
         inflater.inflate(R.layout.pokeapp_type_widget_layout, this)
         typeTextView = findViewById(R.id.type_widget_name)
-        typeContainer = findViewById(R.id.type_widget_container)
     }
 
     fun setType(type: String) {
