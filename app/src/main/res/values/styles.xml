@@ -11,4 +11,22 @@
         <item name="android:windowLightStatusBar">true</item>
     </style>
 
+    <style name="pokeapp_title_collapsed_style" parent="pokeapp_AppTheme">
+        <item name="android:textSize">18sp</item>
+        <item name="android:textColor">@color/pokeapp_white</item>
+    </style>
+
+    <style name="pokeapp_title_expanded_style" parent="pokeapp_AppTheme">
+        <item name="android:textSize">24sp</item>
+        <item name="android:textColor">@color/pokeapp_white</item>
+    </style>
+
+    <style name="pokeapp_type_widget" parent="pokeapp_AppTheme">
+        <item name="android:textColor">@color/pokeapp_white</item>
+        <item name="android:paddingEnd">8dp</item>
+        <item name="android:paddingStart">8dp</item>
+        <item name="android:layout_marginEnd">4dp</item>
+        <item name="android:background">@drawable/pokeapp_rounded_corner</item>
+    </style>
+
 </resources>

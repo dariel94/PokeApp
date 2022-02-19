@@ -18,6 +18,7 @@ import com.dariel25.android.pokeapp.presentation.model.UIState
 import com.dariel25.android.pokeapp.presentation.utils.PokemonUtils
 import com.dariel25.android.pokeapp.presentation.utils.UIUtils
 import com.dariel25.android.pokeapp.presentation.widgets.PokemonTypeWidget
+import com.google.android.material.appbar.AppBarLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.pokeapp_activity_pokemon_detail.*
@@ -80,12 +81,33 @@ class PokemonDetailActivity : BaseActivity() {
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .into(binding.image)
 
-            binding.name.text = it.name.replaceFirstChar { c -> c.uppercase() }
+            binding.collapsingToolbarLayout.title = it.name.replaceFirstChar { c -> c.uppercase() }
             binding.id.text = PokemonUtils.getIdTitle(it.id)
 
             binding.desc.text = pokemon.desc
 
-            binding.detailContainer.background = ContextCompat.getDrawable(this, pokemon.color)
+            binding.pokeappAppbarlayout.background =
+                ContextCompat.getDrawable(this, pokemon.color)
+            binding.bottomSheetBackground.background =
+                ContextCompat.getDrawable(this, pokemon.color)
+            binding.collapsingToolbarLayout.contentScrim =
+                ContextCompat.getDrawable(this, pokemon.color)
+
+            binding.toolbar.setNavigationOnClickListener { finish() }
+
+            binding.pokeappAppbarlayout.addOnOffsetChangedListener(
+                AppBarLayout.OnOffsetChangedListener { _, verticalOffset ->
+                    val h = binding.collapsingToolbarLayout.height
+                    val alpha = (verticalOffset*3 + h).toFloat() / h
+                    binding.image.alpha = alpha
+                    binding.typesContainer.alpha = alpha
+                    if (verticalOffset == h) {
+                        binding.bottomSheetBackground.visibility = View.VISIBLE
+                    } else {
+                        binding.bottomSheetBackground.visibility = View.GONE
+                    }
+            })
+
             setUpActionbar(pokemon.color)
 
             for (type in pokemon.types) {
@@ -122,7 +144,6 @@ class PokemonDetailActivity : BaseActivity() {
 
     private fun setUpActionbar(color: Int) {
         supportActionBar?.apply {
-            show()
             setHomeAsUpIndicator(R.drawable.pokeapp_ic_arrow_white)
             setDisplayHomeAsUpEnabled(true)
             setBackgroundDrawable(ContextCompat.getDrawable(applicationContext, color))

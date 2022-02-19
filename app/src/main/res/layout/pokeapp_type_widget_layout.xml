@@ -1,21 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout android:id="@+id/type_widget_container"
+<TextView
+    android:id="@+id/type_widget_name"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
+    android:textColor="@color/pokeapp_white"
+    android:textSize="14sp"
     android:paddingStart="8dp"
     android:paddingEnd="8dp"
     android:layout_marginEnd="4dp"
     tools:backgroundTint="@color/pokeapp_black"
     android:background="@drawable/pokeapp_rounded_corner"
+    tools:text="Type"
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools">
-
-    <TextView
-        android:id="@+id/type_widget_name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColor="@color/pokeapp_white"
-        android:textSize="14sp"
-        tools:text="Type" />
-
-</LinearLayout>
+    xmlns:tools="http://schemas.android.com/tools"/>
