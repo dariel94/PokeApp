@@ -16,7 +16,7 @@ This is a sample Pokemon App written in Kotlin using a modern Android Architectu
   <tr>
     <th>Stats</th>
     <th>Evolutions</th>
-    <th>Moves</th>
+    <th>Abilities</th>
   </tr>
   <tr>
     <td><img src="screenshots/detail1.png"/></td>
@@ -28,6 +28,7 @@ This is a sample Pokemon App written in Kotlin using a modern Android Architectu
 <table style="width:100%">
 <tr>
     <th>GIF</th>
+    <th>List</th>
     <th>Detail</th>
   </tr>
   <tr>
