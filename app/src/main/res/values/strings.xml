@@ -7,4 +7,5 @@
     <string name="pokeapp_retry">Retry</string>
     <string name="pokeapp_no_evolutions">No evolutions</string>
     <string name="pokeapp_legendary">Legendary</string>
+    <string name="pokeapp_set_as_favorite">Set as favorite</string>
 </resources>

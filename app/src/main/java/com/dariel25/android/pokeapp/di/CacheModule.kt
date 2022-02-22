@@ -2,9 +2,9 @@ package com.dariel25.android.pokeapp.di
 
 import android.content.Context
 import androidx.room.Room
-import com.dariel25.android.pokeapp.data.room.PokeAppDatabase
-import com.dariel25.android.pokeapp.data.room.PokemonDao
-import com.dariel25.android.pokeapp.data.room.PokemonSimpleDao
+import com.dariel25.android.pokeapp.data.database.PokeAppDatabase
+import com.dariel25.android.pokeapp.data.database.PokemonDao
+import com.dariel25.android.pokeapp.data.database.PokemonSimpleDao
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

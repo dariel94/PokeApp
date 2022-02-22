@@ -18,5 +18,6 @@ data class PokemonUI(
     val stats: List<Stat>,
     val abilities: List<String>,
     val evolutions: List<Evolution>,
-    val isLegendary: Boolean
+    val isLegendary: Boolean,
+    var isFavorite: Boolean
 )

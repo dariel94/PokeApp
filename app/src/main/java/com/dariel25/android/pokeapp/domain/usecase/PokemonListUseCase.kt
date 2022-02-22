@@ -1,6 +1,6 @@
 package com.dariel25.android.pokeapp.domain.usecase
 
-import com.dariel25.android.pokeapp.data.network.NetworkState
+import com.dariel25.android.pokeapp.domain.NetworkState
 import com.dariel25.android.pokeapp.domain.model.PokemonSimple
 import com.dariel25.android.pokeapp.domain.repository.PokemonListRepository
 import kotlinx.coroutines.Dispatchers

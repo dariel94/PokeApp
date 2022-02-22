@@ -4,8 +4,9 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.dariel25.android.pokeapp.data.network.NetworkState
-import com.dariel25.android.pokeapp.domain.usecase.PokemonDetailUseCase
+import com.dariel25.android.pokeapp.domain.NetworkState
+import com.dariel25.android.pokeapp.domain.model.Pokemon
+import com.dariel25.android.pokeapp.domain.usecase.PokemonUseCase
 import com.dariel25.android.pokeapp.presentation.mapper.PokemonToUIMapper
 import com.dariel25.android.pokeapp.presentation.model.PokemonUI
 import com.dariel25.android.pokeapp.presentation.model.UIState
@@ -18,10 +19,12 @@ import javax.inject.Inject
  */
 @HiltViewModel
 class PokemonDetailViewModel @Inject constructor(
-    private val pokemonDetailUseCase: PokemonDetailUseCase
+    private val pokemonUseCase: PokemonUseCase
 ) : ViewModel() {
 
     private val mutableViewState = MutableLiveData<UIState<PokemonUI?>>()
+
+    private var pokemon: Pokemon? = null
 
     fun getViewStateLiveData(): LiveData<UIState<PokemonUI?>> {
         return mutableViewState
@@ -31,15 +34,24 @@ class PokemonDetailViewModel @Inject constructor(
         mutableViewState.value = UIState.Loading
 
         viewModelScope.launch {
-            when (val networkStatus = pokemonDetailUseCase.invoke(id)) {
+            when (val networkStatus = pokemonUseCase.invoke(id)) {
                 is NetworkState.Success -> {
-                    mutableViewState.value =
-                        UIState.Success(PokemonToUIMapper.map(networkStatus.data))
+                    pokemon = networkStatus.data
+                    mutableViewState.value = UIState.Success(PokemonToUIMapper.map(networkStatus.data))
                 }
                 is NetworkState.Error -> {
                     val msg = networkStatus.error.message ?: "Error"
                     mutableViewState.value = UIState.Error(msg)
                 }
+            }
+        }
+    }
+
+    fun setFavorite(favorite: Boolean) {
+        pokemon?.let {
+            it.isFavorite = favorite
+            viewModelScope.launch {
+                pokemonUseCase.updatePokemon(it)
             }
         }
     }

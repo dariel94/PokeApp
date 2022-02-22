@@ -1,8 +1,8 @@
 package com.dariel25.android.pokeapp.di
 
 import com.dariel25.android.pokeapp.BuildConfig
-import com.dariel25.android.pokeapp.data.network.pokelist.PokeList
-import com.dariel25.android.pokeapp.data.network.pokeapi.PokeApi
+import com.dariel25.android.pokeapp.data.api.pokelist.PokeList
+import com.dariel25.android.pokeapp.data.api.pokeapi.PokeApi
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

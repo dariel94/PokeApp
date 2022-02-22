@@ -45,7 +45,8 @@ object PokemonToUIMapper : BaseMapper<Pokemon, PokemonUI> {
             stats,
             abilities,
             evolutions,
-            obj.isLegendary
+            obj.isLegendary,
+            obj.isFavorite
         )
     }
 

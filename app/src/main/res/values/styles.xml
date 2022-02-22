@@ -11,6 +11,16 @@
         <item name="android:windowLightStatusBar">true</item>
     </style>
 
+    <style name="pokeapp_AppTheme_noActionBar" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/pokeapp_colorPrimary</item>
+        <item name="colorPrimaryDark">@color/pokeapp_colorPrimaryDark</item>
+        <item name="colorAccent">@color/pokeapp_colorAccent</item>
+        <item name="fontFamily">@font/poppins_bold</item>
+        <item name="android:fontFamily">@font/poppins_bold</item>
+        <item name="android:windowLightStatusBar">true</item>
+    </style>
+
     <style name="pokeapp_title_collapsed_style" parent="pokeapp_AppTheme">
         <item name="android:textSize">18sp</item>
         <item name="android:textColor">@color/pokeapp_white</item>

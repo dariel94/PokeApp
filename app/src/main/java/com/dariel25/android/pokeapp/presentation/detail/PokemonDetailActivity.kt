@@ -3,18 +3,23 @@ package com.dariel25.android.pokeapp.presentation.detail
 import android.graphics.Color
 import android.graphics.drawable.Drawable
 import android.os.Bundle
+import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import androidx.activity.viewModels
-import androidx.core.content.ContextCompat
+import androidx.core.content.ContextCompat.*
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
+import com.dariel25.android.pokeapp.R
 import com.dariel25.android.pokeapp.databinding.PokeappActivityPokemonDetailBinding
 import com.dariel25.android.pokeapp.presentation.core.ui.BaseActivity
 import com.dariel25.android.pokeapp.presentation.detail.adapter.PokemonPagerAdapter
 import com.dariel25.android.pokeapp.presentation.model.PokemonUI
 import com.dariel25.android.pokeapp.presentation.model.UIState
-import com.dariel25.android.pokeapp.presentation.utils.*
+import com.dariel25.android.pokeapp.presentation.utils.PokemonUtils
+import com.dariel25.android.pokeapp.presentation.utils.UIUtils
+import com.dariel25.android.pokeapp.presentation.utils.firstCharUpperCase
+import com.dariel25.android.pokeapp.presentation.utils.show
 import com.dariel25.android.pokeapp.presentation.widgets.PokemonTypeWidget
 import com.google.android.material.appbar.AppBarLayout
 import com.google.android.material.tabs.TabLayoutMediator
@@ -27,10 +32,16 @@ import dagger.hilt.android.AndroidEntryPoint
 class PokemonDetailActivity : BaseActivity() {
 
     private val pokemonDetailViewModel by viewModels<PokemonDetailViewModel>()
+
     private val binding: PokeappActivityPokemonDetailBinding by lazy {
         PokeappActivityPokemonDetailBinding.inflate(layoutInflater)
     }
-    private var id: String = ""
+
+    private val id: String by lazy {
+        intent.getStringExtra("id").toString()
+    }
+
+    private var favItem: MenuItem? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,22 +50,36 @@ class PokemonDetailActivity : BaseActivity() {
 
     private fun init() {
         supportActionBar?.hide()
-        binding.toolbar.setNavigationOnClickListener { finish() }
+        setSupportActionBar(binding.toolbar)
+        binding.toolbar.setNavigationOnClickListener { onBackPressed() }
         setUpCollapsingToolBar()
 
         pokemonDetailViewModel.getViewStateLiveData()
             .observe(this, { updateViewStatus(it) })
-
-        id = intent.getStringExtra("id").toString()
-        pokemonDetailViewModel.fetchPokemon(id)
     }
 
     override fun getLayoutView() : View = binding.root
 
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        menuInflater.inflate(R.menu.pokeapp_detail_menu, menu)
+        favItem = menu.findItem(R.id.action_favorite)
+
+        pokemonDetailViewModel.fetchPokemon(id)
+
+        return true
+    }
+
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
-            android.R.id.home -> {
-                onBackPressed()
+            R.id.action_favorite -> {
+                item.icon = if (item.isChecked) {
+                    item.isChecked = false
+                    getDrawable(this, R.drawable.pokeapp_ic_favorite_border)
+                } else {
+                    item.isChecked = true
+                    getDrawable(this, R.drawable.pokeapp_ic_favorite)
+                }
+                pokemonDetailViewModel.setFavorite(item.isChecked)
                 return true
             }
         }
@@ -99,6 +124,13 @@ class PokemonDetailActivity : BaseActivity() {
                 binding.legendaryTextView.show()
             }
 
+            favItem?.apply {
+                isChecked = pokemon.isFavorite
+                if (pokemon.isFavorite) {
+                    icon = getDrawable(applicationContext, R.drawable.pokeapp_ic_favorite)
+                }
+            }
+
             setUpTabView(pokemon)
 
             showLayoutView()
@@ -109,22 +141,17 @@ class PokemonDetailActivity : BaseActivity() {
         val pagerAdapter = PokemonPagerAdapter(this, pokemon)
         binding.pager.adapter = pagerAdapter
         val tableLayoutMediator = TabLayoutMediator(binding.tabLayout, binding.pager) { tab, pos ->
-            when (pos) {
-                0 -> tab.text = "     Stats     "
-                1 -> tab.text = " Evolutions "
-                2 -> tab.text = "    Abilities    "
-            }
+            tab.text = pagerAdapter.tabTitles[pos]
         }
         tableLayoutMediator.attach()
     }
 
     private fun setPokemonColor(color: Int) {
-        val colorInt = ContextCompat.getColor(applicationContext, color)
+        val colorInt = getColor(applicationContext, color)
         binding.tabLayout.setTabTextColors(colorInt, Color.WHITE)
         binding.tabLayout.setSelectedTabIndicatorColor(colorInt)
-        binding.pokeappAppbarlayout.background = ContextCompat.getDrawable(this, color)
-        binding.bottomSheetBackground.background = ContextCompat.getDrawable(this, color)
-        binding.collapsingToolbarLayout.contentScrim = ContextCompat.getDrawable(this, color)
+        binding.pokeappAppbarlayout.background = getDrawable(this, color)
+        binding.collapsingToolbarLayout.contentScrim = getDrawable(this, color)
     }
 
     private fun setUpCollapsingToolBar() {
@@ -135,11 +162,6 @@ class PokemonDetailActivity : BaseActivity() {
                 binding.image.alpha = alpha
                 binding.typesContainer.alpha = alpha
                 binding.rightContainer.alpha = alpha
-                if (verticalOffset == h) {
-                    binding.bottomSheetBackground.show()
-                } else {
-                    binding.bottomSheetBackground.hide()
-                }
             })
     }
 }

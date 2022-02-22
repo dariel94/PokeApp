@@ -1,7 +1,7 @@
 package com.example.dariel94.pokeapp.presentation.detail
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
-import com.dariel25.android.pokeapp.data.network.NetworkState
+import com.dariel25.android.pokeapp.data.api.NetworkState
 import com.dariel25.android.pokeapp.domain.model.EvolutionChain
 import com.dariel25.android.pokeapp.domain.model.Pokemon
 import com.dariel25.android.pokeapp.domain.usecase.PokemonDetailUseCase

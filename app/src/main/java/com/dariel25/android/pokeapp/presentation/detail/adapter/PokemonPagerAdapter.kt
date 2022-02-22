@@ -16,7 +16,20 @@ class PokemonPagerAdapter(
     private val pokemonUI: PokemonUI
 ): FragmentStateAdapter(fa) {
 
-    override fun getItemCount(): Int = 3
+    val tabTitles: Array<String> = if (pokemonUI.isLegendary) {
+        arrayOf(
+            "     Stats     ",
+            "    Abilities    "
+        )
+    } else {
+        arrayOf(
+            "     Stats     ",
+            " Evolutions ",
+            "    Abilities    "
+        )
+    }
+
+    override fun getItemCount(): Int = if (pokemonUI.isLegendary) 2 else 3
 
     override fun createFragment(position: Int): Fragment {
         return when(position) {
@@ -24,7 +37,11 @@ class PokemonPagerAdapter(
                 StatsFragment(pokemonUI.stats, pokemonUI.height, pokemonUI.weight, pokemonUI.color)
             }
             1 -> {
-                EvolutionsFragment(pokemonUI.evolutions)
+                if (pokemonUI.isLegendary) {
+                    MovesFragment(pokemonUI.abilities)
+                } else {
+                    EvolutionsFragment(pokemonUI.evolutions)
+                }
             }
             else -> {
                 MovesFragment(pokemonUI.abilities)
