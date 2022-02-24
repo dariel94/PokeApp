@@ -54,7 +54,7 @@ object PokemonToUIMapper : BaseMapper<Pokemon, PokemonUI> {
             PokemonUtils.getIdTitle(obj.id),
             obj.name.normalizeProperty(),
             obj.specie.normalizeProperty(),
-            obj.desc,
+            obj.desc.replace('\n', ' '),
             PokemonUtils.getHeightInMeters(obj.height),
             PokemonUtils.getWeightInKilograms(obj.weight),
             PokemonUtils.getImageUrl(obj.id),
@@ -83,14 +83,48 @@ object PokemonToUIMapper : BaseMapper<Pokemon, PokemonUI> {
         evolutionChain: EvolutionChain,
         evolutions: ArrayList<Evolution>
     ) {
-
         for (evolve in evolutionChain.evolvesTo) {
+
+            var condition = ""
+            evolve.evolutionDetail?.let { evolutionDetail ->
+                evolutionDetail.trigger?.let { condition += it.normalizeProperty() + " " }
+                evolutionDetail.level?.let { condition += it }
+                evolutionDetail.item?.let { condition += "\n${it.normalizeProperty()}" }
+                evolutionDetail.timeOfDay?.let {
+                    if (it.isNotEmpty()) condition += "at $it"
+                }
+                evolutionDetail.heldItem?.let { condition += "\n Held ${it.normalizeProperty()}" }
+                evolutionDetail.location?.let { condition += "\nIn ${it.normalizeProperty()}" }
+                evolutionDetail.knownMoveType?.let { condition += "\nKnown ${it.normalizeProperty()} move" }
+                evolutionDetail.knownMove?.let { condition += "\nKnown ${it.normalizeProperty()}" }
+                evolutionDetail.happiness?.let { condition += "\nHappiness $it" }
+                evolutionDetail.beauty?.let { condition += "\nBeauty $it" }
+                evolutionDetail.affection?.let { condition += "\nAffection $it" }
+                if (evolutionDetail.needsOverWorldRain) { condition += "\nNeeds over world rain" }
+                evolutionDetail.gender?.let {
+                    condition += "\n${if (it == 0) "Male" else "Female"} gender"
+                }
+                evolutionDetail.relativePhysicalStats?.let {
+                    condition += when (it) {
+                        0 -> {
+                            "\nIf Attack = Defense"
+                        }
+                        1 -> {
+                            "\nIf Attack > Defense"
+                        }
+                        else -> {
+                            "\nIf Attack < Defense"
+                        }
+                    }
+                }
+            }
+
             val evolution = Evolution(
                 evolutionChain.id,
                 evolutionChain.name,
                 evolve.id,
                 evolve.name,
-                evolve.condition
+                condition
             )
             evolutions.add(evolution)
             mapEvolutionChainToList(evolve, evolutions)

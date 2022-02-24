@@ -16,5 +16,5 @@ data class EvolutionChainDto(
 data class ChainDto(
     val species: Resource,
     @SerializedName("evolves_to") val evolvesTo: List<ChainDto>,
-    @SerializedName("evolution_details") val evolutionDetails: List<EvolutionDetailDto>
+    @SerializedName("evolution_details") val evolutionDetailsDto: List<EvolutionDetailDto>
 ) : Parcelable

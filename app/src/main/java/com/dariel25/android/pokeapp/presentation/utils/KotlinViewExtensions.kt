@@ -24,3 +24,5 @@ fun String.capitalizeWords(): String =
 
 fun String.normalizeProperty(): String =
     replace("-", " ").capitalizeWords()
+
+fun String?.safe(): String = this ?: ""

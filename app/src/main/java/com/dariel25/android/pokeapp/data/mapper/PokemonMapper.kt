@@ -6,10 +6,11 @@ import com.dariel25.android.pokeapp.data.api.pokeapi.model.PokemonDto
 import com.dariel25.android.pokeapp.data.api.pokeapi.model.PokemonSpeciesDto
 import com.dariel25.android.pokeapp.data.utils.StringUtils
 import com.dariel25.android.pokeapp.domain.model.EvolutionChain
+import com.dariel25.android.pokeapp.domain.model.EvolutionDetail
 import com.dariel25.android.pokeapp.domain.model.Pokemon
 import com.dariel25.android.pokeapp.domain.model.Stat
 import com.dariel25.android.pokeapp.presentation.utils.capitalizeWords
-import com.dariel25.android.pokeapp.presentation.utils.normalizeProperty
+import com.dariel25.android.pokeapp.presentation.utils.safe
 
 /**
  * Created by dariel94 on 11/1/2022.
@@ -36,7 +37,7 @@ object PokemonMapper {
         var desc = ""
         for (entry in pokemonSpeciesDto.flavorTextEntries) {
             if (entry.language.name == "en") {
-                desc = entry.flavorText.replace('\n', ' ')
+                desc = entry.flavorText
                 break
             }
         }
@@ -67,18 +68,14 @@ object PokemonMapper {
             pokemonSpeciesDto.isMythical,
             pokemonDto.baseExperience,
             eggGroups,
-            safeString(pokemonSpeciesDto.growthRate?.name),
+            pokemonSpeciesDto.growthRate?.name.safe(),
             pokemonSpeciesDto.genderRate,
             pokemonSpeciesDto.captureRate,
             pokemonSpeciesDto.baseHappiness,
             pokemonSpeciesDto.hatchCounter,
-            safeString(pokemonSpeciesDto.generation?.name),
-            safeString(pokemonSpeciesDto.habitat?.name)
+            pokemonSpeciesDto.generation?.name.safe(),
+            pokemonSpeciesDto.habitat?.name.safe()
         )
-    }
-
-    private fun safeString(string: String?): String {
-        return string ?: ""
     }
 
     private fun getEvolutionChain(chainDto: ChainDto): EvolutionChain {
@@ -86,45 +83,33 @@ object PokemonMapper {
             getEvolutionChain(it)
         }
 
-        var condition = ""
-        if (chainDto.evolutionDetails.isNotEmpty()) {
-            val evolutionDetailDto = chainDto.evolutionDetails[0]
-            evolutionDetailDto.trigger?.let { condition += it.name.normalizeProperty() + " " }
-            evolutionDetailDto.level?.let { condition += it }
-            evolutionDetailDto.item?.let { condition += "\n${it.name.normalizeProperty()}" }
-            evolutionDetailDto.timeOfDay?.let {
-                if (it.isNotEmpty()) condition += "at $it"
-            }
-            evolutionDetailDto.heldItem?.let { condition += "\n Held ${it.name.normalizeProperty()}" }
-            evolutionDetailDto.location?.let { condition += "\nIn ${it.name.normalizeProperty()}" }
-            evolutionDetailDto.knownMoveType?.let { condition += "\nKnown ${it.name.normalizeProperty()} move" }
-            evolutionDetailDto.knownMove?.let { condition += "\nKnown ${it.name.normalizeProperty()}" }
-            evolutionDetailDto.happiness?.let { condition += "\nHappiness $it" }
-            evolutionDetailDto.beauty?.let { condition += "\nBeauty $it" }
-            evolutionDetailDto.affection?.let { condition += "\nAffection $it" }
-            if (evolutionDetailDto.needsOverWorldRain) { condition += "\nNeeds over world rain" }
-            evolutionDetailDto.gender?.let {
-                condition += "\n${if (it == 0) "Male" else "Female"} gender"
-            }
-            evolutionDetailDto.relativePhysicalStats?.let {
-                condition += when (it) {
-                    0 -> {
-                        "\nIf Attack = Defense"
-                    }
-                    1 -> {
-                        "\nIf Attack > Defense"
-                    }
-                    else -> {
-                        "\nIf Attack < Defense"
-                    }
-                }
-            }
+        var evolutionDetail: EvolutionDetail? = null
+        val detailsDto = chainDto.evolutionDetailsDto
+
+        if (detailsDto.isNotEmpty()) {
+            val detailDto = detailsDto[0]
+            evolutionDetail = EvolutionDetail(
+                detailDto.level,
+                detailDto.happiness,
+                detailDto.affection,
+                detailDto.gender,
+                detailDto.relativePhysicalStats,
+                detailDto.needsOverWorldRain,
+                detailDto.item?.name,
+                detailDto.heldItem?.name,
+                detailDto.knownMoveType?.name,
+                detailDto.knownMove?.name,
+                detailDto.timeOfDay,
+                detailDto.beauty,
+                detailDto.location?.name,
+                detailDto.trigger?.name
+            )
         }
 
         return EvolutionChain(
             StringUtils.getIdFromUrl(chainDto.species.url),
             chainDto.species.name.capitalizeWords(),
-            condition,
+            evolutionDetail,
             list)
     }
 }
