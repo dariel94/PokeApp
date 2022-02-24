@@ -45,7 +45,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textSize="12sp"
-                        android:textColor="#A6A6A6"
+                        android:textColor="@color/pokeapp_text_grey"
                         android:text="@string/pokeapp_height"/>
 
                 </LinearLayout>
@@ -67,7 +67,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textSize="12sp"
-                        android:textColor="#A6A6A6"
+                        android:textColor="@color/pokeapp_text_grey"
                         android:text="@string/pokeapp_weight"/>
 
                 </LinearLayout>

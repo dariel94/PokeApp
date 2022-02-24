@@ -16,6 +16,11 @@ fun View.hide(): View {
     return this
 }
 
-fun String.firstCharUpperCase(): String {
-    return this.replaceFirstChar { c -> c.uppercase() }
-}
+fun String.capitalizeFirst(): String =
+    replaceFirstChar { c -> c.uppercase() }
+
+fun String.capitalizeWords(): String =
+    split(" ").map { it.capitalizeFirst() }.joinToString(" ")
+
+fun String.normalizeProperty(): String =
+    replace("-", " ").capitalizeWords()

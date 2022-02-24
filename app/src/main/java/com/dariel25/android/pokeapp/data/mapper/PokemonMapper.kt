@@ -8,6 +8,8 @@ import com.dariel25.android.pokeapp.data.utils.StringUtils
 import com.dariel25.android.pokeapp.domain.model.EvolutionChain
 import com.dariel25.android.pokeapp.domain.model.Pokemon
 import com.dariel25.android.pokeapp.domain.model.Stat
+import com.dariel25.android.pokeapp.presentation.utils.capitalizeWords
+import com.dariel25.android.pokeapp.presentation.utils.normalizeProperty
 
 /**
  * Created by dariel94 on 11/1/2022.
@@ -39,9 +41,20 @@ object PokemonMapper {
             }
         }
 
+        var specie = ""
+        for (entry in pokemonSpeciesDto.genera) {
+            if (entry.language.name == "en") {
+                specie = entry.genus
+                break
+            }
+        }
+
+        val eggGroups = pokemonSpeciesDto.eggGroups.map { it.name }
+
         return Pokemon(
             pokemonDto.id,
             pokemonDto.name,
+            specie,
             desc,
             pokemonDto.height,
             pokemonDto.weight,
@@ -49,8 +62,23 @@ object PokemonMapper {
             stats,
             abilities,
             getEvolutionChain(evolutionChainDto.chain),
-            pokemonSpeciesDto.isLegendary
+            pokemonSpeciesDto.isLegendary,
+            pokemonSpeciesDto.isBaby,
+            pokemonSpeciesDto.isMythical,
+            pokemonDto.baseExperience,
+            eggGroups,
+            safeString(pokemonSpeciesDto.growthRate?.name),
+            pokemonSpeciesDto.genderRate,
+            pokemonSpeciesDto.captureRate,
+            pokemonSpeciesDto.baseHappiness,
+            pokemonSpeciesDto.hatchCounter,
+            safeString(pokemonSpeciesDto.generation?.name),
+            safeString(pokemonSpeciesDto.habitat?.name)
         )
+    }
+
+    private fun safeString(string: String?): String {
+        return string ?: ""
     }
 
     private fun getEvolutionChain(chainDto: ChainDto): EvolutionChain {
@@ -61,16 +89,16 @@ object PokemonMapper {
         var condition = ""
         if (chainDto.evolutionDetails.isNotEmpty()) {
             val evolutionDetailDto = chainDto.evolutionDetails[0]
-            evolutionDetailDto.trigger?.let { condition += normalize(it.name) + " " }
+            evolutionDetailDto.trigger?.let { condition += it.name.normalizeProperty() + " " }
             evolutionDetailDto.level?.let { condition += it }
-            evolutionDetailDto.item?.let { condition += "\n${normalize(it.name)}" }
+            evolutionDetailDto.item?.let { condition += "\n${it.name.normalizeProperty()}" }
             evolutionDetailDto.timeOfDay?.let {
                 if (it.isNotEmpty()) condition += "at $it"
             }
-            evolutionDetailDto.heldItem?.let { condition += "\n Held ${normalize(it.name)}" }
-            evolutionDetailDto.location?.let { condition += "\nIn ${normalize(it.name)}" }
-            evolutionDetailDto.knownMoveType?.let { condition += "\nKnown ${normalize(it.name)} move" }
-            evolutionDetailDto.knownMove?.let { condition += "\nKnown ${normalize(it.name)}" }
+            evolutionDetailDto.heldItem?.let { condition += "\n Held ${it.name.normalizeProperty()}" }
+            evolutionDetailDto.location?.let { condition += "\nIn ${it.name.normalizeProperty()}" }
+            evolutionDetailDto.knownMoveType?.let { condition += "\nKnown ${it.name.normalizeProperty()} move" }
+            evolutionDetailDto.knownMove?.let { condition += "\nKnown ${it.name.normalizeProperty()}" }
             evolutionDetailDto.happiness?.let { condition += "\nHappiness $it" }
             evolutionDetailDto.beauty?.let { condition += "\nBeauty $it" }
             evolutionDetailDto.affection?.let { condition += "\nAffection $it" }
@@ -95,11 +123,8 @@ object PokemonMapper {
 
         return EvolutionChain(
             StringUtils.getIdFromUrl(chainDto.species.url),
-            chainDto.species.name.replaceFirstChar { c -> c.uppercase() },
+            chainDto.species.name.capitalizeWords(),
             condition,
             list)
     }
-
-    private fun normalize(string: String) =
-        string.replace('-', ' ').replaceFirstChar { c -> c.uppercase() }
 }

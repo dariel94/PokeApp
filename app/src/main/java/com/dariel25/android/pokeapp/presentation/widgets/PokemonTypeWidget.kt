@@ -25,6 +25,7 @@ class PokemonTypeWidget @JvmOverloads constructor(
     }
 
     fun setType(type: String) {
-        typeTextView.text = type
+        val text = " $type "
+        typeTextView.text = text
     }
 }

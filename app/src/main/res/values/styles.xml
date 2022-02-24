@@ -27,7 +27,7 @@
     </style>
 
     <style name="pokeapp_title_expanded_style" parent="pokeapp_AppTheme">
-        <item name="android:textSize">24sp</item>
+        <item name="android:textSize">26sp</item>
         <item name="android:textColor">@color/pokeapp_white</item>
     </style>
 

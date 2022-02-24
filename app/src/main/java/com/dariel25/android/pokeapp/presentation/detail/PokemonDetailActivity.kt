@@ -16,10 +16,7 @@ import com.dariel25.android.pokeapp.presentation.core.ui.BaseActivity
 import com.dariel25.android.pokeapp.presentation.detail.adapter.PokemonPagerAdapter
 import com.dariel25.android.pokeapp.presentation.model.PokemonUI
 import com.dariel25.android.pokeapp.presentation.model.UIState
-import com.dariel25.android.pokeapp.presentation.utils.PokemonUtils
-import com.dariel25.android.pokeapp.presentation.utils.UIUtils
-import com.dariel25.android.pokeapp.presentation.utils.firstCharUpperCase
-import com.dariel25.android.pokeapp.presentation.utils.show
+import com.dariel25.android.pokeapp.presentation.utils.*
 import com.dariel25.android.pokeapp.presentation.widgets.PokemonTypeWidget
 import com.google.android.material.appbar.AppBarLayout
 import com.google.android.material.tabs.TabLayoutMediator
@@ -110,8 +107,9 @@ class PokemonDetailActivity : BaseActivity() {
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .into(binding.image)
 
-            binding.collapsingToolbarLayout.title = it.name.firstCharUpperCase()
-            binding.id.text = PokemonUtils.getIdTitle(it.id)
+            binding.collapsingToolbarLayout.title = it.name
+            binding.id.text = it.id
+            binding.specie.text = it.specie
             binding.desc.text = pokemon.desc
 
             for (type in pokemon.types) {
@@ -121,7 +119,13 @@ class PokemonDetailActivity : BaseActivity() {
             }
 
             if (pokemon.isLegendary) {
-                binding.legendaryTextView.show()
+                binding.legendaryTag.show()
+            }
+            if (pokemon.isBaby) {
+                binding.babyTag.show()
+            }
+            if (pokemon.isMythical) {
+                binding.mythicTag.show()
             }
 
             favItem?.apply {

@@ -1,6 +1,7 @@
 package com.dariel25.android.pokeapp.data.api.pokeapi.model
 
 import android.os.Parcelable
+import com.google.gson.annotations.SerializedName
 import kotlinx.android.parcel.Parcelize
 
 /**
@@ -14,5 +15,6 @@ data class PokemonDto(
     val weight: Int = 0,
     val types: List<TypeSlot>,
     val stats: List<StatSlot>,
-    val abilities: List<AbilitySlot>
+    val abilities: List<AbilitySlot>,
+    @SerializedName("base_experience") val baseExperience: Int = 0
 ) : Parcelable

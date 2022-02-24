@@ -7,35 +7,53 @@ import com.dariel25.android.pokeapp.domain.model.Stat
 import com.dariel25.android.pokeapp.presentation.model.Evolution
 import com.dariel25.android.pokeapp.presentation.model.PokemonUI
 import com.dariel25.android.pokeapp.presentation.utils.PokemonUtils
+import com.dariel25.android.pokeapp.presentation.utils.capitalizeFirst
+import com.dariel25.android.pokeapp.presentation.utils.normalizeProperty
 
 /**
  * Created by dariel94 on 31/10/2021.
  */
 object PokemonToUIMapper : BaseMapper<Pokemon, PokemonUI> {
     override fun map(obj: Pokemon): PokemonUI {
+
         val color = if (obj.types.isNotEmpty()) {
             PokemonUtils.getPokemonTypeColor(obj.types.first())
         } else {
             PokemonUtils.getPokemonTypeColor("")
         }
+
         val stats = obj.stats.map {
             Stat(PokemonUtils.getStatName(it.name), it.value)
         }
 
         val abilities = obj.abilities.map {
-            it.replace("-", "").uppercase()
+            it.normalizeProperty().uppercase()
         }
 
         val types = obj.types.map {
-            it.replaceFirstChar { c -> c.uppercase() }
+            it.capitalizeFirst()
         }
 
         val evolutions: ArrayList<Evolution> = arrayListOf()
         mapEvolutionChainToList(obj.evolutionChain, evolutions)
 
+        val genderRateText = if (obj.genderRate != -1) {
+            "${(8 - obj.genderRate) * 12.5F}% male, ${obj.genderRate * 12.5F}% female"
+        } else {
+            "Genderless"
+        }
+
+        val capturePercent = String.format("%.2f", obj.captureRate / 255F * 33.33F)
+        val captureRateString = "${obj.captureRate} ($capturePercent%)"
+
+        val eggGroupsText = obj.eggGroups.joinToString(", ") { it.normalizeProperty() }
+
+        val hatchCounterText = "${obj.hatchCounter} (${(obj.hatchCounter-1) * 257}-${obj.hatchCounter * 257} steps)"
+
         return PokemonUI(
-            obj.id,
-            obj.name,
+            PokemonUtils.getIdTitle(obj.id),
+            obj.name.normalizeProperty(),
+            obj.specie.normalizeProperty(),
             obj.desc,
             PokemonUtils.getHeightInMeters(obj.height),
             PokemonUtils.getWeightInKilograms(obj.weight),
@@ -46,6 +64,17 @@ object PokemonToUIMapper : BaseMapper<Pokemon, PokemonUI> {
             abilities,
             evolutions,
             obj.isLegendary,
+            obj.isBaby,
+            obj.isMythical,
+            obj.baseExperience.toString(),
+            eggGroupsText,
+            obj.growthRate.normalizeProperty(),
+            genderRateText,
+            captureRateString,
+            obj.baseHappiness.toString(),
+            hatchCounterText,
+            obj.generation,
+            obj.habitat,
             obj.isFavorite
         )
     }

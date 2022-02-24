@@ -26,5 +26,6 @@
     <color name="pokeapp_dragon">#f7b251</color>
     <color name="pokeapp_dark">#253960</color>
     <color name="pokeapp_other">#8eadcc</color>
+    <color name="pokeapp_text_grey">#A6A6A6</color>
 
 </resources>

@@ -6,6 +6,22 @@
     <string name="pokeapp_error">Error</string>
     <string name="pokeapp_retry">Retry</string>
     <string name="pokeapp_no_evolutions">No evolutions</string>
-    <string name="pokeapp_legendary">Legendary</string>
+    <string name="pokeapp_legendary"> Legendary </string>
+    <string name="pokeapp_baby"> Baby </string>
+    <string name="pokeapp_mythic"> Mythic </string>
     <string name="pokeapp_set_as_favorite">Set as favorite</string>
+    <string name="pokeapp_egg_groups">Egg Groups</string>
+    <string name="pokeapp_growth_rate">Growth Rate</string>
+    <string name="pokeapp_gender_rate">Gender</string>
+    <string name="pokeapp_capture_rate">Capture Rate</string>
+    <string name="pokeapp_base_happiness">Happiness</string>
+    <string name="pokeapp_hatch_counter">Hatch Counter</string>
+    <string name="pokeapp_generation">Generation</string>
+    <string name="pokeapp_habitat">Habitat</string>
+    <string name="pokeapp_others">Others</string>
+    <string name="pokeapp_breeding">Breeding</string>
+    <string name="pokeapp_training">Training</string>
+    <string name="pokeapp_catch_rate">Catch Rate</string>
+    <string name="pokeapp_base_experience">Base Exp.</string>
+    <string name="pokeapp_egg_cycles">Egg Cycles</string>
 </resources>
