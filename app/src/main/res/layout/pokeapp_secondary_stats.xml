@@ -25,27 +25,30 @@
             android:text="@string/pokeapp_breeding"/>
 
         <TextView
+            android:id="@+id/genderRateText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="12dp"
             android:layout_marginStart="12dp"
-            android:textColor="@color/pokeapp_text_grey"
+            android:textColor="@color/pokeapp_grey"
             android:text="@string/pokeapp_gender_rate"/>
 
         <TextView
+            android:id="@+id/eggCyclesText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="12dp"
             android:layout_marginStart="12dp"
-            android:textColor="@color/pokeapp_text_grey"
+            android:textColor="@color/pokeapp_grey"
             android:text="@string/pokeapp_egg_cycles"/>
 
         <TextView
+            android:id="@+id/eggGroupsText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="12dp"
             android:layout_marginStart="12dp"
-            android:textColor="@color/pokeapp_text_grey"
+            android:textColor="@color/pokeapp_grey"
             android:text="@string/pokeapp_egg_groups"/>
 
         <TextView
@@ -53,41 +56,45 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="12dp"
             android:layout_marginStart="12dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="12dp"
             android:textStyle="bold"
             android:textSize="18sp"
             android:text="@string/pokeapp_training"/>
 
         <TextView
+            android:id="@+id/catchRateText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="12dp"
             android:layout_marginStart="12dp"
-            android:textColor="@color/pokeapp_text_grey"
+            android:textColor="@color/pokeapp_grey"
             android:text="@string/pokeapp_catch_rate"/>
 
         <TextView
+            android:id="@+id/growthRateText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="12dp"
             android:layout_marginStart="12dp"
-            android:textColor="@color/pokeapp_text_grey"
+            android:textColor="@color/pokeapp_grey"
             android:text="@string/pokeapp_growth_rate"/>
 
         <TextView
+            android:id="@+id/baseHappinessText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="12dp"
             android:layout_marginStart="12dp"
-            android:textColor="@color/pokeapp_text_grey"
+            android:textColor="@color/pokeapp_grey"
             android:text="@string/pokeapp_base_happiness"/>
 
         <TextView
+            android:id="@+id/baseExperienceText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="12dp"
             android:layout_marginStart="12dp"
-            android:textColor="@color/pokeapp_text_grey"
+            android:textColor="@color/pokeapp_grey"
             android:text="@string/pokeapp_base_experience"/>
 
     </LinearLayout>
@@ -134,7 +141,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="12dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="12dp"
             android:textStyle="bold"
             android:textSize="18sp"/>
 

@@ -11,14 +11,12 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
 import android.widget.TextView
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.dariel25.android.pokeapp.R
 import com.dariel25.android.pokeapp.presentation.model.PokemonUI
 import com.dariel25.android.pokeapp.presentation.widgets.StatWidget
 
-/**
- * Created by dariel94 on 9/1/2022.
- */
 class StatsFragment(
     private val pokemon: PokemonUI
 ): Fragment() {
@@ -49,6 +47,17 @@ class StatsFragment(
         view.findViewById<TextView>(R.id.baseExperience).text = pokemon.baseExperience
         view.findViewById<TextView>(R.id.growthRate).text = pokemon.growthRate
         view.findViewById<TextView>(R.id.eggCycles).text = pokemon.hatchCounter
+
+        context?.let {
+            val colorDrawable = ContextCompat.getColor(it, pokemon.color)
+            view.findViewById<TextView>(R.id.genderRateText).setTextColor(colorDrawable)
+            view.findViewById<TextView>(R.id.eggGroupsText).setTextColor(colorDrawable)
+            view.findViewById<TextView>(R.id.eggCyclesText).setTextColor(colorDrawable)
+            view.findViewById<TextView>(R.id.baseExperienceText).setTextColor(colorDrawable)
+            view.findViewById<TextView>(R.id.baseHappinessText).setTextColor(colorDrawable)
+            view.findViewById<TextView>(R.id.growthRateText).setTextColor(colorDrawable)
+            view.findViewById<TextView>(R.id.catchRateText).setTextColor(colorDrawable)
+        }
 
         return view
     }
