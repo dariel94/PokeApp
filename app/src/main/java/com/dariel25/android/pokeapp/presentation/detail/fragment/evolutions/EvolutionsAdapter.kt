@@ -2,6 +2,7 @@ package com.dariel25.android.pokeapp.presentation.detail.fragment.evolutions
 
 import android.content.Context
 import android.content.Intent
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -42,14 +43,14 @@ class EvolutionsAdapter(
         Glide.with(context)
             .load(PokemonUtils.getImageUrl(evolution.originId))
             .centerCrop()
-            .placeholder(UIUtils.getLoadingPlaceholder(context))
+            .placeholder(UIUtils.getLoadingPlaceholder(context, Color.GRAY))
             .diskCacheStrategy(DiskCacheStrategy.ALL)
             .into(viewHolder.originImageView)
 
         Glide.with(context)
             .load(PokemonUtils.getImageUrl(evolution.evolutionId))
             .centerCrop()
-            .placeholder(UIUtils.getLoadingPlaceholder(context))
+            .placeholder(UIUtils.getLoadingPlaceholder(context, Color.GRAY))
             .diskCacheStrategy(DiskCacheStrategy.ALL)
             .into(viewHolder.evolutionImageView)
 

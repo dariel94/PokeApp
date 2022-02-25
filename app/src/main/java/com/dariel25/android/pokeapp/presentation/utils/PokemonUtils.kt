@@ -24,14 +24,16 @@ object PokemonUtils {
         }
     }
 
-    fun getWeightInKilograms(weight: Int): String {
+    fun getFormattedWeight(weight: Int): String {
         val kg = weight / 10f
-        return "$kg KG"
+        val lbs = kg * 2.2F
+        return "$kg kg"
     }
 
-    fun getHeightInMeters(height: Int): String {
+    fun getFormattedHeight(height: Int): String {
         val m = height / 10f
-        return "$m M"
+        val f = m * 3.28F
+        return "$m m"
     }
 
     fun getIdTitle(id: String): String {

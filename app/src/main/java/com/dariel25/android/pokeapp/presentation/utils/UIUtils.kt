@@ -12,11 +12,11 @@ import androidx.swiperefreshlayout.widget.CircularProgressDrawable
  * Created by dariel94 on 31/10/2021.
  */
 object UIUtils {
-    fun getLoadingPlaceholder(context: Context): CircularProgressDrawable {
+    fun getLoadingPlaceholder(context: Context, color: Int = Color.WHITE): CircularProgressDrawable {
         val circularProgressDrawable = CircularProgressDrawable(context)
         circularProgressDrawable.strokeWidth = 3f
         circularProgressDrawable.centerRadius = 20f
-        circularProgressDrawable.setColorSchemeColors(Color.WHITE)
+        circularProgressDrawable.setColorSchemeColors(color)
         circularProgressDrawable.start()
 
         return circularProgressDrawable
