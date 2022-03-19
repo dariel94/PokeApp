@@ -3,6 +3,7 @@ package com.dariel25.android.pokeapp.data.api.pokeapi
 import com.dariel25.android.pokeapp.data.api.pokeapi.model.EvolutionChainDto
 import com.dariel25.android.pokeapp.data.api.pokeapi.model.PokemonDto
 import com.dariel25.android.pokeapp.data.api.pokeapi.model.PokemonSpeciesDto
+import com.dariel25.android.pokeapp.data.api.pokeapi.model.ResourcesResponse
 import retrofit2.http.GET
 import retrofit2.http.Path
 
@@ -25,4 +26,11 @@ interface PokeApi {
     suspend fun getEvolutionChain(
         @Path("id") id: String
     ): EvolutionChainDto
+
+    @GET("generation")
+    suspend fun getGenerations(): ResourcesResponse
+
+    @GET("type")
+    suspend fun getTypes(): ResourcesResponse
+
 }

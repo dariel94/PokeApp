@@ -18,14 +18,14 @@ class PokemonPagerAdapter(
 
     val tabTitles: Array<String> = if (pokemonUI.isLegendary) {
         arrayOf(
-            "     Stats     ",
-            "    Abilities    "
+            "  Stats  ",
+            " Abilities "
         )
     } else {
         arrayOf(
-            "     Stats     ",
+            "  Stats  ",
             " Evolutions ",
-            "    Abilities    "
+            " Abilities "
         )
     }
 

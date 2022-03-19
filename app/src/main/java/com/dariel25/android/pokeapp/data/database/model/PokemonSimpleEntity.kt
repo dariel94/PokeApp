@@ -14,6 +14,7 @@ data class PokemonSimpleEntity(
     @ColumnInfo(name = "name") val name: String = "",
     @ColumnInfo(name = "type1") val type1: String = "",
     @ColumnInfo(name = "type2") val type2: String = "",
+    @ColumnInfo(name = "generation") val generation: Int = 0,
     @ColumnInfo(name = "legendary") val legendary: Boolean = false
 )
 
@@ -22,6 +23,7 @@ fun PokemonSimpleEntity.mapToPokemonSimple(): PokemonSimple {
         id,
         name,
         type1,
-        type2
+        type2,
+        generation
     )
 }

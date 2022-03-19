@@ -14,6 +14,7 @@ data class PokemonSimpleDto(
     val name: String = "",
     val type1: String = "",
     val type2: String = "",
+    val generation: Float = 0F,
     val legendary: Boolean = false
 ) : Parcelable
 
@@ -22,7 +23,8 @@ fun PokemonSimpleDto.mapToDomain(): PokemonSimple {
         id,
         name,
         type1,
-        type2
+        type2,
+        generation.toInt()
     )
 }
 
@@ -32,6 +34,7 @@ fun PokemonSimpleDto.mapToEntity(): PokemonSimpleEntity {
         name,
         type1,
         type2,
+        generation.toInt(),
         legendary
     )
 }
