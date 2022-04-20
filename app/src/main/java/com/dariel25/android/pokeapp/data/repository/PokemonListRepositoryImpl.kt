@@ -5,6 +5,7 @@ import com.dariel25.android.pokeapp.data.api.pokelist.model.mapToEntity
 import com.dariel25.android.pokeapp.data.database.model.mapToPokemonSimple
 import com.dariel25.android.pokeapp.data.source.PokemonListCacheDataSource
 import com.dariel25.android.pokeapp.data.source.PokemonListRemoteDataSource
+import com.dariel25.android.pokeapp.domain.NetworkState
 import com.dariel25.android.pokeapp.domain.model.PokemonSimple
 import com.dariel25.android.pokeapp.domain.repository.PokemonListRepository
 import javax.inject.Inject
@@ -17,15 +18,24 @@ class PokemonListRepositoryImpl @Inject constructor(
     private val remoteDataSource: PokemonListRemoteDataSource
 ) : PokemonListRepository {
 
-    override suspend fun getPokemonList(): List<PokemonSimple> {
-        val cachedList = cacheDataSource.getPokemonList()
+    override suspend fun getPokemonList(): NetworkState<List<PokemonSimple>> =
+        try {
+            val pokemonSimpleDtoList = remoteDataSource.getPokemonList()
 
-        return if (cachedList.isNullOrEmpty()) {
-            val remoteList = remoteDataSource.getPokemonList()
-            cacheDataSource.insert(remoteList.map { it.mapToEntity() })
-            remoteList.map { it.mapToDomain() }
-        } else {
-            cachedList.map { it.mapToPokemonSimple() }
+            val pokemonEntityList = pokemonSimpleDtoList.map { it.mapToEntity() }
+            cacheDataSource.insert(pokemonEntityList)
+
+            val pokemonList = pokemonSimpleDtoList.map { it.mapToDomain() }
+            NetworkState.Success(pokemonList)
+
+        } catch (e: Throwable) {
+            val cachedPokemonList = cacheDataSource.getPokemonList()
+
+            if (cachedPokemonList.isNullOrEmpty()) {
+                NetworkState.Error(e)
+            } else {
+                val pokemonList = cachedPokemonList.map { it.mapToPokemonSimple() }
+                NetworkState.Success(pokemonList)
+            }
         }
-    }
 }
