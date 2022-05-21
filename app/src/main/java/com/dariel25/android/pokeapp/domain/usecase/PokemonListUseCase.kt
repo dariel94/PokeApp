@@ -3,8 +3,6 @@ package com.dariel25.android.pokeapp.domain.usecase
 import com.dariel25.android.pokeapp.domain.NetworkState
 import com.dariel25.android.pokeapp.domain.model.PokemonSimple
 import com.dariel25.android.pokeapp.domain.repository.PokemonListRepository
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 /**
@@ -13,12 +11,7 @@ import javax.inject.Inject
 class PokemonListUseCase @Inject constructor(
     private val repository: PokemonListRepository
 ) {
-    suspend fun invoke() : NetworkState<List<PokemonSimple>> = try {
-        val pokemonList = withContext(Dispatchers.IO) {
-            repository.getPokemonList()
-        }
-        NetworkState.Success(pokemonList)
-    } catch (e: Throwable) {
-        NetworkState.Error(e)
+    suspend fun invoke() : NetworkState<List<PokemonSimple>> {
+        return repository.getPokemonList()
     }
 }

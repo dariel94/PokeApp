@@ -1,5 +1,6 @@
 package com.dariel25.android.pokeapp.domain.repository
 
+import com.dariel25.android.pokeapp.domain.NetworkState
 import com.dariel25.android.pokeapp.domain.model.PokemonSimple
 
 /**
@@ -7,5 +8,5 @@ import com.dariel25.android.pokeapp.domain.model.PokemonSimple
  */
 interface PokemonListRepository {
 
-    suspend fun getPokemonList(): List<PokemonSimple>
+    suspend fun getPokemonList(): NetworkState<List<PokemonSimple>>
 }
