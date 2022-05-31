@@ -1,9 +1,11 @@
 package com.example.dariel94.pokeapp.presentation.pokelist
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
-import com.dariel25.android.pokeapp.data.api.NetworkState
+import com.dariel25.android.pokeapp.domain.NetworkState
 import com.dariel25.android.pokeapp.domain.model.PokemonSimple
+import com.dariel25.android.pokeapp.domain.usecase.GenerationsUseCase
 import com.dariel25.android.pokeapp.domain.usecase.PokemonListUseCase
+import com.dariel25.android.pokeapp.domain.usecase.TypesUseCase
 import com.dariel25.android.pokeapp.presentation.model.UIState
 import com.dariel25.android.pokeapp.presentation.pokelist.PokeListViewModel
 import com.example.dariel94.pokeapp.utils.getOrAwaitValue
@@ -29,7 +31,13 @@ class PokeListViewModelTest {
     val rule = InstantTaskExecutorRule()
 
     @MockK
-    private lateinit var useCase: PokemonListUseCase
+    private lateinit var pokemonListUseCase: PokemonListUseCase
+
+    @MockK
+    private lateinit var typesUseCase: TypesUseCase
+
+    @MockK
+    private lateinit var generationsUseCase: GenerationsUseCase
 
     private lateinit var viewModel: PokeListViewModel
 
@@ -39,7 +47,7 @@ class PokeListViewModelTest {
     fun setUp() {
         Dispatchers.setMain(testDispatcher)
         MockKAnnotations.init(this)
-        viewModel = PokeListViewModel(useCase)
+        viewModel = PokeListViewModel(pokemonListUseCase, typesUseCase, generationsUseCase)
     }
 
     @After
@@ -50,9 +58,11 @@ class PokeListViewModelTest {
 
     @Test
     fun testFetchPokemonsSuccess() = runBlockingTest {
-        coEvery { useCase.invoke() } returns NetworkState.Success(getMockedPokemonList())
+        coEvery { pokemonListUseCase.invoke() } returns NetworkState.Success(getMockedPokemonList())
+        coEvery { typesUseCase.invoke() } returns NetworkState.Success(emptyList())
+        coEvery { generationsUseCase.invoke() } returns NetworkState.Success(emptyList())
 
-        viewModel.fetchPokemons()
+        viewModel.fetchPokemonListData()
 
         Assert.assertTrue(
             viewModel.getViewStateLiveData().getOrAwaitValue() is UIState.Success<*>
@@ -61,9 +71,11 @@ class PokeListViewModelTest {
 
     @Test
     fun testFetchPokemonsError() = runBlockingTest {
-        coEvery { useCase.invoke() } returns NetworkState.Error(Error())
+        coEvery { pokemonListUseCase.invoke() } returns NetworkState.Error(Error())
+        coEvery { typesUseCase.invoke() } returns NetworkState.Success(emptyList())
+        coEvery { generationsUseCase.invoke() } returns NetworkState.Success(emptyList())
 
-        viewModel.fetchPokemons()
+        viewModel.fetchPokemonListData()
 
         Assert.assertTrue(
             viewModel.getViewStateLiveData().getOrAwaitValue() is UIState.Error
@@ -72,9 +84,9 @@ class PokeListViewModelTest {
 
     private fun getMockedPokemonList() : List<PokemonSimple> {
         val list = arrayListOf<PokemonSimple>()
-        list.add(PokemonSimple("1", "test pokemon 1", "type2", "type2"))
-        list.add(PokemonSimple("2", "test pokemon 2", "type2", "type2"))
-        list.add(PokemonSimple("3", "test pokemon 3", "type2", "type2"))
+        list.add(PokemonSimple("1", "test pokemon 1", "type2", "type2", 1))
+        list.add(PokemonSimple("2", "test pokemon 2", "type2", "type2", 1))
+        list.add(PokemonSimple("3", "test pokemon 3", "type2", "type2", 1))
         return list
     }
 }

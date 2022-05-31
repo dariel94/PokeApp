@@ -11,14 +11,15 @@ import androidx.recyclerview.widget.GridLayoutManager
 import com.dariel25.android.pokeapp.R
 import com.dariel25.android.pokeapp.databinding.PokeappActivityPokelistBinding
 import com.dariel25.android.pokeapp.presentation.core.ui.BaseActivity
-import com.dariel25.android.pokeapp.presentation.model.OptionFilters
-import com.dariel25.android.pokeapp.presentation.model.PokemonSimpleUI
+import com.dariel25.android.pokeapp.presentation.model.PokeListData
 import com.dariel25.android.pokeapp.presentation.model.UIState
 import com.dariel25.android.pokeapp.presentation.pokelist.adapter.PokeListAdapter
-import com.dariel25.android.pokeapp.presentation.pokelist.dialog.FilterDialog
-import com.dariel25.android.pokeapp.presentation.pokelist.dialog.FilterDataViewModel
-import com.dariel25.android.pokeapp.presentation.pokelist.dialog.OptionFilterListener
+import com.dariel25.android.pokeapp.presentation.utils.hide
+import com.dariel25.android.pokeapp.presentation.utils.show
+import com.dariel25.android.pokeapp.presentation.widgets.filter.FilterBottomSheet
+import com.dariel25.android.pokeapp.presentation.widgets.filter.OptionFilterListener
 import dagger.hilt.android.AndroidEntryPoint
+
 
 /**
  * Created by dariel94 on 31/10/2021.
@@ -27,10 +28,11 @@ import dagger.hilt.android.AndroidEntryPoint
 class PokeListActivity : BaseActivity(), OptionFilterListener {
 
     private val pokeListViewModel by viewModels<PokeListViewModel>()
-    private val filterDataViewModel by viewModels<FilterDataViewModel>()
     private var pokeListAdapter: PokeListAdapter = PokeListAdapter(this)
-    private val filterDialog = FilterDialog()
     private lateinit var searchView: SearchView
+    private val filterBottomSheet: FilterBottomSheet by lazy {
+        FilterBottomSheet(this)
+    }
     private val binding: PokeappActivityPokelistBinding by lazy {
         PokeappActivityPokelistBinding.inflate(layoutInflater)
     }
@@ -42,28 +44,25 @@ class PokeListActivity : BaseActivity(), OptionFilterListener {
         val layoutManager = GridLayoutManager(this, 2)
         binding.recyclerView.layoutManager = layoutManager
         binding.recyclerView.adapter = pokeListAdapter
-        filterDialog.listener = this
+        filterBottomSheet.listener = this
+
         setListAnimation()
-        binding.swipeRefresh.setOnRefreshListener {
-            pokeListViewModel.fetchPokemons()
+
+        binding.clearFilterView.setOnClickListener {
+            clearFilters()
         }
 
-        pokeListViewModel.getViewStateLiveData()
-            .observe(this) { updateViewStatus(it) }
-        pokeListViewModel.fetchPokemons()
-
-        filterDataViewModel.getViewStateLiveData().observe(this) {
-            if (it is UIState.Success) {
-                filterDialog.optionFilters = it.data
-            }
+        pokeListViewModel.getViewStateLiveData().observe(this) {
+            updateViewStatus(it)
         }
-        filterDataViewModel.fetchOptionFilters()
+        pokeListViewModel.fetchPokemonListData()
+
     }
 
     override fun getLayoutView() : View = binding.root
 
     override fun onRetry() {
-        pokeListViewModel.fetchPokemons()
+        pokeListViewModel.fetchPokemonListData()
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -82,28 +81,34 @@ class PokeListActivity : BaseActivity(), OptionFilterListener {
         })
         val filterItem = menu.findItem(R.id.filter)
         filterItem.setOnMenuItemClickListener {
-            filterDialog.show(supportFragmentManager, "")
+            if (!filterBottomSheet.isShowing) {
+                filterBottomSheet.show()
+            }
             false
         }
         return true
     }
 
-    private fun updateViewStatus(networkState: UIState<List<PokemonSimpleUI>?>) {
+    private fun updateViewStatus(networkState: UIState<PokeListData>) {
         when (networkState) {
             is UIState.Loading -> showLoadingView()
-            is UIState.Success -> loadList(networkState.data)
+            is UIState.Success -> loadPokemonListData(networkState.data)
             is UIState.Error -> showErrorView(networkState.message)
         }
     }
 
     @SuppressLint("NotifyDataSetChanged")
-    private fun loadList(list: List<PokemonSimpleUI>?) {
-        list?.let {
+    private fun loadPokemonListData(pokemonListData: PokeListData) {
+        pokemonListData.pokemons?.let {
             pokeListAdapter.dataset = it
             pokeListAdapter.notifyDataSetChanged()
         }
         showLayoutView()
-        binding.swipeRefresh.isRefreshing = false
+        filterBottomSheet.setFilterData(
+            pokemonListData.types ?: emptyList(),
+            pokemonListData.generations ?: emptyList(),
+            pokemonListData.categories ?: emptyList()
+        )
     }
 
     private fun setListAnimation() {
@@ -112,8 +117,18 @@ class PokeListActivity : BaseActivity(), OptionFilterListener {
         binding.recyclerView.layoutAnimation = animation
     }
 
-    override fun setFilterData(optionFilters: OptionFilters) {
-        pokeListAdapter.filter.setOptionFilters(optionFilters)
+    override fun onFilterData(types: List<String>, gens: List<String>, cats: List<String>) {
+        if (types.isEmpty() && gens.isEmpty() && cats.isEmpty()) {
+            binding.clearFilterView.hide()
+        } else {
+            binding.clearFilterView.show()
+        }
+        pokeListAdapter.filter.setOptionFilters(types, gens, cats)
         pokeListAdapter.filter.filter(searchView.query)
+    }
+
+    private fun clearFilters() {
+        onFilterData(emptyList(), emptyList(), emptyList())
+        filterBottomSheet.clearSelections()
     }
 }

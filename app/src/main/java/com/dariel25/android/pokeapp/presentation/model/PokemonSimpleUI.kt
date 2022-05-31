@@ -12,5 +12,6 @@ data class PokemonSimpleUI(
     val type2: String = "",
     val imageUrl: String = "",
     val generation: String = "",
-    @ColorRes val cardColor: Int = 0
+    @ColorRes val cardColor: Int = 0,
+    val legendary: Boolean = false
 )

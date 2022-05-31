@@ -18,7 +18,7 @@ interface PokemonSimpleDao {
     @Update
     suspend fun update(pokemonSimpleEntity: PokemonSimpleEntity)
 
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insert(list: List<PokemonSimpleEntity>)
 
     @Delete

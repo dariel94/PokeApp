@@ -29,6 +29,7 @@ class PokeListAdapter(
         set(value) {
             field = value
             filteredDataset = field
+            filter.list = field
         }
     var filteredDataset = dataset
 

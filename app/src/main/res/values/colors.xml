@@ -7,6 +7,7 @@
     <color name="pokeapp_black">#000000</color>
     <color name="pokeapp_white">#FFFFFF</color>
     <color name="pokeapp_grey">#808080</color>
+    <color name="pokeapp_chip_text">#5C5C5C</color>
     <color name="pokeapp_white_transparent">#36FFFFFF</color>
 
     <color name="pokeapp_grass">#48d0b0</color>

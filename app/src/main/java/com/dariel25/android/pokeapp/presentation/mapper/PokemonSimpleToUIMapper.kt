@@ -17,7 +17,8 @@ object PokemonSimpleToUIMapper : BaseMapper<PokemonSimple, PokemonSimpleUI> {
             obj.type2,
             PokemonUtils.getImageUrl(obj.id),
             obj.generation.toString(),
-            PokemonUtils.getPokemonTypeColor(obj.type1)
+            PokemonUtils.getPokemonTypeColor(obj.type1),
+            obj.legendary
         )
     }
 }

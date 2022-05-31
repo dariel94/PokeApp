@@ -39,4 +39,13 @@
         <item name="android:background">@drawable/pokeapp_rounded_corner</item>
     </style>
 
+    <style name="pokeapp_chip" parent="Widget.MaterialComponents.Chip.Choice">
+        <item name="chipBackgroundColor">@color/pokeapp_chip_background_color</item>
+    </style>
+
+    <style name="pokeapp_chipTextAppearance" parent="TextAppearance.MaterialComponents.Chip">
+        <item name="android:textSize">14sp</item>
+        <item name="android:fontFamily">@font/poppins</item>
+    </style>
+
 </resources>

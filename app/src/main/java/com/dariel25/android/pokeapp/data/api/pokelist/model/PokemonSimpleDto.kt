@@ -24,7 +24,8 @@ fun PokemonSimpleDto.mapToDomain(): PokemonSimple {
         name,
         type1,
         type2,
-        generation.toInt()
+        generation.toInt(),
+        legendary
     )
 }
 

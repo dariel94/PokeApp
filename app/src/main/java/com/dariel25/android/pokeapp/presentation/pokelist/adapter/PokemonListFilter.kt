@@ -2,7 +2,6 @@ package com.dariel25.android.pokeapp.presentation.pokelist.adapter
 
 import android.annotation.SuppressLint
 import android.widget.Filter
-import com.dariel25.android.pokeapp.presentation.model.OptionFilters
 import com.dariel25.android.pokeapp.presentation.model.PokemonSimpleUI
 
 /**
@@ -12,7 +11,7 @@ class PokemonListFilter(
     private val adapter: PokeListAdapter
 ): Filter() {
 
-    var list = adapter.dataset
+    var list = emptyList<PokemonSimpleUI>()
 
     override fun performFiltering(constraint: CharSequence?): FilterResults {
         val filterString = constraint.toString()
@@ -35,22 +34,30 @@ class PokemonListFilter(
     @SuppressLint("NotifyDataSetChanged")
     @Suppress("UNCHECKED_CAST")
     override fun publishResults(constraint: CharSequence?, results: FilterResults?) {
-        adapter.filteredDataset = results?.values as List<PokemonSimpleUI>
-        adapter.notifyDataSetChanged()
+        results?.values?.let {
+            adapter.filteredDataset = it as List<PokemonSimpleUI>
+            adapter.notifyDataSetChanged()
+        }
     }
 
-    fun setOptionFilters(optionFilters: OptionFilters) {
+    fun setOptionFilters(types: List<String>, gens: List<String>, cats: List<String>) {
         list = ArrayList(adapter.dataset)
 
-        if (optionFilters.generations.isNotEmpty()) {
+        if (gens.isNotEmpty()) {
             list = list.filter {
-                optionFilters.generations.contains(it.generation)
+                gens.contains(it.generation)
             }
         }
 
-        if (optionFilters.types.isNotEmpty()) {
+        if (types.isNotEmpty()) {
             list = list.filter {
-                optionFilters.types.contains(it.type1) || optionFilters.types.contains(it.type2)
+                types.contains(it.type1) || types.contains(it.type2)
+            }
+        }
+
+        if (cats.isNotEmpty() && cats.contains("Legendary")) {
+            list = list.filter {
+                it.legendary
             }
         }
     }
