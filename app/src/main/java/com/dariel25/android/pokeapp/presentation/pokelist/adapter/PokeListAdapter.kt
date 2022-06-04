@@ -29,6 +29,7 @@ class PokeListAdapter(
         set(value) {
             field = value
             filteredDataset = field
+            filter.list = field
         }
     var filteredDataset = dataset
 
@@ -67,7 +68,7 @@ class PokeListAdapter(
 
     override fun getItemCount(): Int = filteredDataset.size
 
-    override fun getFilter(): Filter = filter
+    override fun getFilter(): PokemonListFilter = filter
 
     class PokemonViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val card: CardView = itemView.findViewById<View>(R.id.card) as CardView

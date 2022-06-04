@@ -5,9 +5,11 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.dariel25.android.pokeapp.domain.NetworkState
+import com.dariel25.android.pokeapp.domain.usecase.GenerationsUseCase
 import com.dariel25.android.pokeapp.domain.usecase.PokemonListUseCase
+import com.dariel25.android.pokeapp.domain.usecase.TypesUseCase
 import com.dariel25.android.pokeapp.presentation.mapper.PokemonSimpleToUIMapper
-import com.dariel25.android.pokeapp.presentation.model.PokemonSimpleUI
+import com.dariel25.android.pokeapp.presentation.model.PokeListData
 import com.dariel25.android.pokeapp.presentation.model.UIState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
@@ -18,27 +20,49 @@ import javax.inject.Inject
  */
 @HiltViewModel
 class PokeListViewModel @Inject constructor(
-    private val pokemonListUseCase: PokemonListUseCase
+    private val pokemonListUseCase: PokemonListUseCase,
+    private val typesUseCase: TypesUseCase,
+    private val generationsUseCase: GenerationsUseCase
 ) : ViewModel() {
 
-    private val mutableViewState = MutableLiveData<UIState<List<PokemonSimpleUI>?>>()
+    private val mutableViewState = MutableLiveData<UIState<PokeListData>>()
 
-    fun getViewStateLiveData(): LiveData<UIState<List<PokemonSimpleUI>?>> {
+    fun getViewStateLiveData(): LiveData<UIState<PokeListData>> {
         return mutableViewState
     }
 
-    fun fetchPokemons() {
+    fun fetchPokemonListData() {
         mutableViewState.value = UIState.Loading
 
         viewModelScope.launch {
-            when (val networkStatus = pokemonListUseCase.invoke()) {
+            val typesState = typesUseCase.invoke()
+            val generationsState = generationsUseCase.invoke()
+
+            when (val pokemonListState = pokemonListUseCase.invoke()) {
                 is NetworkState.Success -> {
-                    mutableViewState.value = UIState.Success(networkStatus.data.map {
-                        PokemonSimpleToUIMapper.map(it)
-                    })
+                    val types = if (typesState is NetworkState.Success) {
+                        typesState.data
+                    } else {
+                        null
+                    }
+                    val generations = if (generationsState is NetworkState.Success) {
+                        generationsState.data
+                    } else {
+                        null
+                    }
+                    mutableViewState.value = UIState.Success(
+                        PokeListData(
+                            pokemonListState.data.map {
+                                PokemonSimpleToUIMapper.map(it)
+                            },
+                            types,
+                            generations,
+                            listOf("Legendary")
+                        )
+                    )
                 }
                 is NetworkState.Error -> {
-                    val msg = networkStatus.error.message ?: "Error"
+                    val msg = pokemonListState.error.message ?: "Error"
                     mutableViewState.value = UIState.Error(msg)
                 }
             }

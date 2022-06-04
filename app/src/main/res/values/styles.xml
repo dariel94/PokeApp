@@ -1,7 +1,7 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="pokeapp_AppTheme" parent="Base.Theme.AppCompat.Light">
+    <style name="pokeapp_AppTheme" parent="Base.Theme.MaterialComponents.Light">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/pokeapp_colorPrimary</item>
         <item name="colorPrimaryDark">@color/pokeapp_colorPrimaryDark</item>
@@ -11,7 +11,7 @@
         <item name="android:windowLightStatusBar">true</item>
     </style>
 
-    <style name="pokeapp_AppTheme_noActionBar" parent="Theme.AppCompat.Light.NoActionBar">
+    <style name="pokeapp_AppTheme_noActionBar" parent="Theme.MaterialComponents.Light.NoActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/pokeapp_colorPrimary</item>
         <item name="colorPrimaryDark">@color/pokeapp_colorPrimaryDark</item>
@@ -37,6 +37,15 @@
         <item name="android:paddingStart">8dp</item>
         <item name="android:layout_marginEnd">4dp</item>
         <item name="android:background">@drawable/pokeapp_rounded_corner</item>
+    </style>
+
+    <style name="pokeapp_chip" parent="Widget.MaterialComponents.Chip.Choice">
+        <item name="chipBackgroundColor">@color/pokeapp_chip_background_color</item>
+    </style>
+
+    <style name="pokeapp_chipTextAppearance" parent="TextAppearance.MaterialComponents.Chip">
+        <item name="android:textSize">14sp</item>
+        <item name="android:fontFamily">@font/poppins</item>
     </style>
 
 </resources>

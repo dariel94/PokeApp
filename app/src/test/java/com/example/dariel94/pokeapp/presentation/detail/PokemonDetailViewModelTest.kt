@@ -1,10 +1,10 @@
 package com.example.dariel94.pokeapp.presentation.detail
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
-import com.dariel25.android.pokeapp.data.api.NetworkState
+import com.dariel25.android.pokeapp.domain.NetworkState
 import com.dariel25.android.pokeapp.domain.model.EvolutionChain
 import com.dariel25.android.pokeapp.domain.model.Pokemon
-import com.dariel25.android.pokeapp.domain.usecase.PokemonDetailUseCase
+import com.dariel25.android.pokeapp.domain.usecase.PokemonUseCase
 import com.dariel25.android.pokeapp.presentation.detail.PokemonDetailViewModel
 import com.dariel25.android.pokeapp.presentation.model.UIState
 import com.example.dariel94.pokeapp.utils.getOrAwaitValue
@@ -31,7 +31,7 @@ class PokemonDetailViewModelTest {
     val rule = InstantTaskExecutorRule()
 
     @MockK
-    private lateinit var useCase: PokemonDetailUseCase
+    private lateinit var useCase: PokemonUseCase
 
     private lateinit var viewModel: PokemonDetailViewModel
 
@@ -73,7 +73,21 @@ class PokemonDetailViewModelTest {
     }
 
     private fun getMockedPokemon() : Pokemon {
-        return Pokemon("1", "test pokemon", "desc", 1, 1, listOf(),
-            listOf(), listOf(), EvolutionChain("", "", "", listOf()))
+        return Pokemon("1", "test pokemon", "test specie","desc", 1, 1, listOf(),
+            listOf(), listOf(), EvolutionChain("", "", null, listOf()),
+            isLegendary = false,
+            isBaby = false,
+            isMythical = false,
+            baseExperience = 1,
+            eggGroups = listOf(),
+            growthRate = "",
+            genderRate = 1,
+            captureRate = 1,
+            baseHappiness = 1,
+            hatchCounter = 1,
+            generation = "gen",
+            habitat = "",
+            isFavorite = false
+        )
     }
 }

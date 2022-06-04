@@ -7,4 +7,9 @@
         app:showAsAction="collapseActionView|ifRoom"
         app:actionViewClass="androidx.appcompat.widget.SearchView"
         tools:ignore="MenuTitle" />
+
+    <item android:id="@+id/filter"
+        android:icon="@drawable/pokeapp_ic_filter"
+        app:showAsAction="collapseActionView|ifRoom"
+        tools:ignore="MenuTitle" />
 </menu>
