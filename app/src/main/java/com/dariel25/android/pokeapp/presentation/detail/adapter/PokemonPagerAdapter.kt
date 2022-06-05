@@ -4,7 +4,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.dariel25.android.pokeapp.presentation.detail.fragment.evolutions.EvolutionsFragment
-import com.dariel25.android.pokeapp.presentation.detail.fragment.moves.MovesFragment
+import com.dariel25.android.pokeapp.presentation.detail.fragment.abilities.AbilitiesFragment
 import com.dariel25.android.pokeapp.presentation.detail.fragment.stats.StatsFragment
 import com.dariel25.android.pokeapp.presentation.model.PokemonUI
 
@@ -40,13 +40,13 @@ class PokemonPagerAdapter(
             }
             1 -> {
                 if (hasEvolutionTab) {
-                    MovesFragment(pokemonUI.abilities)
+                    AbilitiesFragment(pokemonUI.abilities)
                 } else {
                     EvolutionsFragment(pokemonUI.evolutions)
                 }
             }
             else -> {
-                MovesFragment(pokemonUI.abilities)
+                AbilitiesFragment(pokemonUI.abilities)
             }
         }
     }

@@ -1,8 +1,8 @@
 package com.dariel25.android.pokeapp.data.source
 
 import com.dariel25.android.pokeapp.data.api.pokeapi.PokeApi
-import com.dariel25.android.pokeapp.data.mapper.PokemonMapper
 import com.dariel25.android.pokeapp.data.utils.StringUtils
+import com.dariel25.android.pokeapp.data.mapper.mapToDomain
 import com.dariel25.android.pokeapp.domain.model.Pokemon
 import javax.inject.Inject
 
@@ -15,6 +15,10 @@ class PokemonRemoteDataSource @Inject constructor(
         val pokemonChainId = StringUtils.getIdFromUrl(pokemonSpeciesDto.evolutionChain.url)
         val evolutionChainDto = pokeApi.getEvolutionChain(pokemonChainId)
 
-        return PokemonMapper.mapToDomain(pokemonDto, pokemonSpeciesDto, evolutionChainDto)
+        val abilitiesDto = pokemonDto.abilities.map {
+            pokeApi.getAbility(it.ability.name)
+        }
+
+        return pokemonDto.mapToDomain(pokemonSpeciesDto, evolutionChainDto, abilitiesDto)
     }
 }

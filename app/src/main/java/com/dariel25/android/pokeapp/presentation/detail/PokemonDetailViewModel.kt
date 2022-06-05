@@ -7,7 +7,7 @@ import androidx.lifecycle.viewModelScope
 import com.dariel25.android.pokeapp.domain.NetworkState
 import com.dariel25.android.pokeapp.domain.model.Pokemon
 import com.dariel25.android.pokeapp.domain.usecase.PokemonUseCase
-import com.dariel25.android.pokeapp.presentation.mapper.PokemonToUIMapper
+import com.dariel25.android.pokeapp.presentation.mapper.toUI
 import com.dariel25.android.pokeapp.presentation.model.PokemonUI
 import com.dariel25.android.pokeapp.presentation.model.UIState
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -37,7 +37,7 @@ class PokemonDetailViewModel @Inject constructor(
             when (val networkStatus = pokemonUseCase.invoke(id)) {
                 is NetworkState.Success -> {
                     pokemon = networkStatus.data
-                    mutableViewState.value = UIState.Success(PokemonToUIMapper.map(networkStatus.data))
+                    mutableViewState.value = UIState.Success(pokemon?.toUI())
                 }
                 is NetworkState.Error -> {
                     val msg = networkStatus.error.message ?: "Error"

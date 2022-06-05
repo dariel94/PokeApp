@@ -3,6 +3,7 @@ package com.dariel25.android.pokeapp.data.database.model
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import com.dariel25.android.pokeapp.domain.model.Ability
 import com.dariel25.android.pokeapp.domain.model.EvolutionChain
 import com.dariel25.android.pokeapp.domain.model.Pokemon
 import com.dariel25.android.pokeapp.domain.model.Stat
@@ -20,7 +21,7 @@ data class PokemonEntity(
     @ColumnInfo(name = "weight") val weight: Int = 0,
     @ColumnInfo(name = "types") val types: List<String>,
     @ColumnInfo(name = "stats") val stats: List<Stat>,
-    @ColumnInfo(name = "abilities") val abilities: List<String>,
+    @ColumnInfo(name = "abilities") val abilities: List<Ability>,
     @ColumnInfo(name = "evolution_chain") val evolutionChain: EvolutionChain,
     @ColumnInfo(name = "is_legendary") val isLegendary: Boolean,
     @ColumnInfo(name = "is_baby") val isBaby: Boolean,

@@ -1,9 +1,6 @@
 package com.dariel25.android.pokeapp.data.api.pokeapi
 
-import com.dariel25.android.pokeapp.data.api.pokeapi.model.EvolutionChainDto
-import com.dariel25.android.pokeapp.data.api.pokeapi.model.PokemonDto
-import com.dariel25.android.pokeapp.data.api.pokeapi.model.PokemonSpeciesDto
-import com.dariel25.android.pokeapp.data.api.pokeapi.model.ResourcesResponse
+import com.dariel25.android.pokeapp.data.api.pokeapi.model.*
 import retrofit2.http.GET
 import retrofit2.http.Path
 
@@ -33,4 +30,8 @@ interface PokeApi {
     @GET("type")
     suspend fun getTypes(): ResourcesResponse
 
+    @GET("ability/{name}")
+    suspend fun getAbility(
+        @Path("name") name: String
+    ): AbilityDto
 }

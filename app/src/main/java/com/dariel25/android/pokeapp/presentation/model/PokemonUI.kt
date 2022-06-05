@@ -1,6 +1,7 @@
 package com.dariel25.android.pokeapp.presentation.model
 
 import androidx.annotation.ColorRes
+import com.dariel25.android.pokeapp.domain.model.Ability
 import com.dariel25.android.pokeapp.domain.model.Stat
 
 /**
@@ -17,7 +18,7 @@ data class PokemonUI(
     @ColorRes val color: Int,
     val types: List<String>,
     val stats: List<Stat>,
-    val abilities: List<String>,
+    val abilities: List<Ability>,
     val evolutions: List<Evolution>,
     val isLegendary: Boolean,
     val isBaby: Boolean,

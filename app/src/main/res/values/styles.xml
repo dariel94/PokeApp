@@ -48,4 +48,9 @@
         <item name="android:fontFamily">@font/poppins</item>
     </style>
 
+    <style name="pokeapp_abilityDialog" parent="Theme.AppCompat.Light.Dialog">
+        <item name="android:textColor">@color/pokeapp_black</item>
+        <item name="android:textColorPrimary">@color/pokeapp_grey</item>
+    </style>
+
 </resources>
