@@ -23,19 +23,19 @@ class PokemonPagerAdapter(
 
     init {
         fragmentList.add(StatsFragment(pokemonUI))
-        tabTitles.add("Stats")
+        tabTitles.add("STATS")
 
         if (pokemonUI.evolutions.isNotEmpty()) {
             fragmentList.add(EvolutionsFragment(pokemonUI.evolutions))
-            tabTitles.add("Evolutions")
+            tabTitles.add("EVOLUTIONS")
         }
 
         fragmentList.add(AbilitiesFragment(pokemonUI.abilities))
-        tabTitles.add("Abilities")
+        tabTitles.add("ABILITIES")
 
         if (pokemonUI.varieties.isNotEmpty()) {
             fragmentList.add(VarietiesFragment(pokemonUI.varieties))
-            tabTitles.add("Forms")
+            tabTitles.add("FORMS")
         }
     }
 

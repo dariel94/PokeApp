@@ -29,7 +29,7 @@
         <activity android:name=".presentation.detail.PokemonDetailActivity"
             android:screenOrientation="portrait"
             tools:ignore="LockedOrientationActivity"
-            android:theme="@style/pokeapp_AppTheme_noActionBar">
+            android:theme="@style/pokeapp_AppThemeNoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
             </intent-filter>

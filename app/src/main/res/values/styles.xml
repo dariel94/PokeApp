@@ -6,32 +6,55 @@
         <item name="colorPrimary">@color/pokeapp_colorPrimary</item>
         <item name="colorPrimaryDark">@color/pokeapp_colorPrimaryDark</item>
         <item name="colorAccent">@color/pokeapp_colorAccent</item>
-        <item name="fontFamily">@font/poppins_bold</item>
-        <item name="android:fontFamily">@font/poppins_bold</item>
+        <item name="fontFamily">@font/poppins</item>
+        <item name="android:fontFamily">@font/poppins</item>
         <item name="android:windowLightStatusBar">true</item>
+        <item name="actionBarStyle">@style/pokeapp_actionBarStyle</item>
     </style>
 
-    <style name="pokeapp_AppTheme_noActionBar" parent="Theme.MaterialComponents.Light.NoActionBar">
+    <style name="pokeapp_actionBarStyle" parent="Widget.MaterialComponents.Light.ActionBar.Solid">
+        <item name="titleTextStyle">@style/pokeapp_actionBarTitleStyle</item>
+    </style>
+
+    <style name="pokeapp_actionBarTitleStyle" parent="@style/TextAppearance.AppCompat.Widget.ActionBar.Title">
+        <item name="fontFamily">@font/poppins_bold</item>
+    </style>
+
+    <style name="pokeapp_AppThemeNoActionBar" parent="Theme.MaterialComponents.Light.NoActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/pokeapp_colorPrimary</item>
         <item name="colorPrimaryDark">@color/pokeapp_colorPrimaryDark</item>
         <item name="colorAccent">@color/pokeapp_colorAccent</item>
-        <item name="fontFamily">@font/poppins_bold</item>
-        <item name="android:fontFamily">@font/poppins_bold</item>
+        <item name="fontFamily">@font/poppins</item>
+        <item name="android:fontFamily">@font/poppins</item>
         <item name="android:windowLightStatusBar">true</item>
     </style>
 
-    <style name="pokeapp_title_collapsed_style" parent="pokeapp_AppTheme">
+    <style name="pokeapp_poppinsBold" parent="pokeapp_AppTheme">
+        <item name="fontFamily">@font/poppins_bold</item>
+    </style>
+
+    <style name="pokeapp_titleCollapsed" parent="pokeapp_AppTheme">
         <item name="android:textSize">18sp</item>
         <item name="android:textColor">@color/pokeapp_white</item>
+        <item name="fontFamily">@font/poppins_bold</item>
+        <item name="android:fontFamily">@font/poppins_bold</item>
     </style>
 
-    <style name="pokeapp_title_expanded_style" parent="pokeapp_AppTheme">
+    <style name="pokeapp_titleExpanded" parent="pokeapp_AppTheme">
         <item name="android:textSize">26sp</item>
         <item name="android:textColor">@color/pokeapp_white</item>
+        <item name="fontFamily">@font/poppins_bold</item>
+        <item name="android:fontFamily">@font/poppins_bold</item>
     </style>
 
-    <style name="pokeapp_type_widget" parent="pokeapp_AppTheme">
+    <style name="pokeapp_tabBarTitle" parent="pokeapp_AppTheme">
+        <item name="android:textSize">14sp</item>
+        <item name="fontFamily">@font/poppins_bold</item>
+        <item name="android:fontFamily">@font/poppins_bold</item>
+    </style>
+
+    <style name="pokeapp_typeWidget" parent="pokeapp_AppTheme">
         <item name="android:textColor">@color/pokeapp_white</item>
         <item name="android:paddingEnd">8dp</item>
         <item name="android:paddingStart">8dp</item>

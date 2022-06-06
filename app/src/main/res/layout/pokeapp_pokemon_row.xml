@@ -31,6 +31,7 @@
             android:layout_height="wrap_content"
             android:textColor="@color/pokeapp_white"
             android:textSize="18sp"
+            style="@style/pokeapp_poppinsBold"
             tools:text="Bulvasaur" />
 
         <TextView

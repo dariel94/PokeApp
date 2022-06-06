@@ -26,8 +26,8 @@
             app:expandedTitleMarginStart="20dp"
             app:scrimVisibleHeightTrigger="30dp"
             app:title="Name"
-            app:expandedTitleTextAppearance="@style/pokeapp_title_expanded_style"
-            app:collapsedTitleTextAppearance="@style/pokeapp_title_collapsed_style"
+            app:expandedTitleTextAppearance="@style/pokeapp_titleExpanded"
+            app:collapsedTitleTextAppearance="@style/pokeapp_titleCollapsed"
             android:fitsSystemWindows="true"
             app:layout_scrollFlags="scroll|snap|exitUntilCollapsed">
 
@@ -109,7 +109,7 @@
                     android:layout_gravity="end"
                     android:layout_marginTop="10dp"
                     android:visibility="gone"
-                    style="@style/pokeapp_type_widget"
+                    style="@style/pokeapp_typeWidget"
                     android:text="@string/pokeapp_legendary"/>
 
                 <TextView
@@ -119,7 +119,7 @@
                     android:layout_gravity="end"
                     android:layout_marginTop="10dp"
                     android:visibility="gone"
-                    style="@style/pokeapp_type_widget"
+                    style="@style/pokeapp_typeWidget"
                     android:text="@string/pokeapp_mythic"/>
 
                 <TextView
@@ -129,7 +129,7 @@
                     android:layout_gravity="end"
                     android:layout_marginTop="10dp"
                     android:visibility="gone"
-                    style="@style/pokeapp_type_widget"
+                    style="@style/pokeapp_typeWidget"
                     android:text="@string/pokeapp_baby"/>
 
             </LinearLayout>
@@ -183,6 +183,7 @@
                 android:background="@color/pokeapp_transparent"
                 app:tabRippleColor="@color/pokeapp_transparent"
                 app:tabMinWidth="120dp"
+                app:tabTextAppearance="@style/pokeapp_tabBarTitle"
                 />
 
             <androidx.viewpager2.widget.ViewPager2
