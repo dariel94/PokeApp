@@ -69,7 +69,7 @@ fun Pokemon.toUI(): PokemonUI {
         this.generation,
         this.habitat,
         this.isFavorite,
-        this.varieties.filter { it.id != this.id }
+        this.varieties.filter { !it.isDefault }
     )
 }
 

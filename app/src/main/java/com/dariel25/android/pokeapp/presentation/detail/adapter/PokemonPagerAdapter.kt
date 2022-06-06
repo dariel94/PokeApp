@@ -23,20 +23,20 @@ class PokemonPagerAdapter(
 
     init {
         fragmentList.add(StatsFragment(pokemonUI))
-        tabTitles.add("  Stats  ")
+        tabTitles.add("Stats")
 
         if (pokemonUI.evolutions.isNotEmpty()) {
             fragmentList.add(EvolutionsFragment(pokemonUI.evolutions))
-            tabTitles.add(" Evolutions ")
-        }
-
-        if (pokemonUI.varieties.isNotEmpty()) {
-            fragmentList.add(VarietiesFragment(pokemonUI.varieties))
-            tabTitles.add(" Forms ")
+            tabTitles.add("Evolutions")
         }
 
         fragmentList.add(AbilitiesFragment(pokemonUI.abilities))
-        tabTitles.add(" Abilities ")
+        tabTitles.add("Abilities")
+
+        if (pokemonUI.varieties.isNotEmpty()) {
+            fragmentList.add(VarietiesFragment(pokemonUI.varieties))
+            tabTitles.add("Forms")
+        }
     }
 
     override fun getItemCount(): Int = fragmentList.size
