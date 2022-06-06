@@ -176,6 +176,8 @@
                 app:tabGravity="center"
                 app:tabIndicatorGravity="stretch"
                 android:layout_marginTop="8dp"
+                android:paddingEnd="20dp"
+                android:paddingStart="20dp"
                 app:tabIndicator="@drawable/pokeapp_rounded_tab"
                 app:tabBackground="@color/pokeapp_transparent"
                 android:background="@color/pokeapp_transparent"

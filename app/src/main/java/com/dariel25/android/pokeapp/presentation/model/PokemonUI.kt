@@ -3,6 +3,7 @@ package com.dariel25.android.pokeapp.presentation.model
 import androidx.annotation.ColorRes
 import com.dariel25.android.pokeapp.domain.model.Ability
 import com.dariel25.android.pokeapp.domain.model.Stat
+import com.dariel25.android.pokeapp.domain.model.Variety
 
 /**
  * Created by dariel94 on 30/10/2021.
@@ -32,5 +33,6 @@ data class PokemonUI(
     val hatchCounter: String = "",
     val generation: String = "",
     val habitat: String = "",
-    var isFavorite: Boolean
+    var isFavorite: Boolean,
+    val varieties: List<Variety>
 )

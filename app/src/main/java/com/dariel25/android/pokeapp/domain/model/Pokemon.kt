@@ -28,7 +28,8 @@ data class Pokemon(
     val hatchCounter: Int,
     val generation: String,
     val habitat: String,
-    var isFavorite: Boolean = false
+    var isFavorite: Boolean = false,
+    val varieties: List<Variety>
 ) {
     fun mapToEntity(): PokemonEntity =
         PokemonEntity(
@@ -54,6 +55,7 @@ data class Pokemon(
             hatchCounter,
             generation,
             habitat,
-            isFavorite
+            isFavorite,
+            varieties
         )
 }

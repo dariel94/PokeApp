@@ -16,5 +16,6 @@ data class PokemonDto(
     val types: List<TypeSlot>,
     val stats: List<StatSlot>,
     val abilities: List<AbilitySlot>,
-    @SerializedName("base_experience") val baseExperience: Int = 0
+    @SerializedName("base_experience") val baseExperience: Int = 0,
+    val species: Resource,
 ) : Parcelable

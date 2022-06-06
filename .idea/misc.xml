@@ -13,12 +13,15 @@
         <entry key="..\:/Users/David/StudioProjects/PokeApp/app/src/main/res/layout/pokeapp_ability_row.xml" value="0.325" />
         <entry key="..\:/Users/David/StudioProjects/PokeApp/app/src/main/res/layout/pokeapp_activity_base.xml" value="0.3489583333333333" />
         <entry key="..\:/Users/David/StudioProjects/PokeApp/app/src/main/res/layout/pokeapp_activity_pokelist.xml" value="0.33" />
+        <entry key="..\:/Users/David/StudioProjects/PokeApp/app/src/main/res/layout/pokeapp_activity_pokemon_detail.xml" value="0.21944444444444444" />
         <entry key="..\:/Users/David/StudioProjects/PokeApp/app/src/main/res/layout/pokeapp_detail_fragment_evolution.xml" value="0.3489583333333333" />
+        <entry key="..\:/Users/David/StudioProjects/PokeApp/app/src/main/res/layout/pokeapp_detail_fragment_variety.xml" value="0.3489583333333333" />
         <entry key="..\:/Users/David/StudioProjects/PokeApp/app/src/main/res/layout/pokeapp_filter_chip.xml" value="0.31666666666666665" />
         <entry key="..\:/Users/David/StudioProjects/PokeApp/app/src/main/res/layout/pokeapp_filter_dialog.xml" value="0.25" />
         <entry key="..\:/Users/David/StudioProjects/PokeApp/app/src/main/res/layout/pokeapp_move_row.xml" value="0.3489583333333333" />
         <entry key="..\:/Users/David/StudioProjects/PokeApp/app/src/main/res/layout/pokeapp_pokemon_filter_view_layout.xml" value="0.3489583333333333" />
         <entry key="..\:/Users/David/StudioProjects/PokeApp/app/src/main/res/layout/pokeapp_pokemon_row.xml" value="0.3489583333333333" />
+        <entry key="..\:/Users/David/StudioProjects/PokeApp/app/src/main/res/layout/pokeapp_variety_row.xml" value="0.3489583333333333" />
         <entry key="..\:/Users/David/StudioProjects/PokeApp/app/src/main/res/menu/pokeapp_options_menu.xml" value="0.3489583333333333" />
       </map>
     </option>

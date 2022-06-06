@@ -3,10 +3,7 @@ package com.dariel25.android.pokeapp.data.database.model
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import com.dariel25.android.pokeapp.domain.model.Ability
-import com.dariel25.android.pokeapp.domain.model.EvolutionChain
-import com.dariel25.android.pokeapp.domain.model.Pokemon
-import com.dariel25.android.pokeapp.domain.model.Stat
+import com.dariel25.android.pokeapp.domain.model.*
 
 /**
  * Created by dariel94 on 31/10/2021.
@@ -35,7 +32,8 @@ data class PokemonEntity(
     @ColumnInfo(name = "hatch_counter") val hatchCounter: Int,
     @ColumnInfo(name = "generation") val generation: String,
     @ColumnInfo(name = "habitat") val habitat: String,
-    @ColumnInfo(name = "is_favorite") val isFavorite: Boolean
+    @ColumnInfo(name = "is_favorite") val isFavorite: Boolean,
+    @ColumnInfo(name = "varieties") val varieties: List<Variety>
 )
 
 fun PokemonEntity.mapToDomain(): Pokemon {
@@ -62,6 +60,7 @@ fun PokemonEntity.mapToDomain(): Pokemon {
         hatchCounter,
         generation,
         habitat,
-        isFavorite
+        isFavorite,
+        varieties
     )
 }

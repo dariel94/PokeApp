@@ -15,6 +15,7 @@ data class PokemonSpeciesDto(
     val generation: Resource?,
     val habitat: Resource?,
     val genera: List<GeneraTextEntry>,
+    val varieties: List<VarietyDto>,
     @SerializedName("flavor_text_entries") val flavorTextEntries: List<FlavorTextEntry>,
     @SerializedName("is_legendary") val isLegendary: Boolean = false,
     @SerializedName("is_baby") val isBaby: Boolean = false,

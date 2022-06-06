@@ -68,7 +68,8 @@ fun Pokemon.toUI(): PokemonUI {
         hatchCounterText,
         this.generation,
         this.habitat,
-        this.isFavorite
+        this.isFavorite,
+        this.varieties.filter { it.id != this.id }
     )
 }
 

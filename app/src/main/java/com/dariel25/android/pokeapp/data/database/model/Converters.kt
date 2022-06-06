@@ -4,6 +4,7 @@ import androidx.room.TypeConverter
 import com.dariel25.android.pokeapp.domain.model.Ability
 import com.dariel25.android.pokeapp.domain.model.EvolutionChain
 import com.dariel25.android.pokeapp.domain.model.Stat
+import com.dariel25.android.pokeapp.domain.model.Variety
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import java.lang.reflect.Type
@@ -45,6 +46,20 @@ object Converters {
         val gson = Gson()
         val type: Type = object : TypeToken<List<Ability?>?>() {}.type
         return gson.fromJson<List<Ability>>(json, type)
+    }
+
+    @TypeConverter
+    fun varietyListToJson(list: List<Variety>?): String {
+        val gson = Gson()
+        val type: Type = object : TypeToken<List<Variety?>?>() {}.type
+        return gson.toJson(list, type)
+    }
+
+    @TypeConverter
+    fun jsonToVarietyList(json: String?): List<Variety> {
+        val gson = Gson()
+        val type: Type = object : TypeToken<List<Variety?>?>() {}.type
+        return gson.fromJson<List<Variety>>(json, type)
     }
 
     @TypeConverter

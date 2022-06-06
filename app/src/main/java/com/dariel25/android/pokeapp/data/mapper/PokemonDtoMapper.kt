@@ -8,6 +8,7 @@ import com.dariel25.android.pokeapp.data.api.pokeapi.model.*
 import com.dariel25.android.pokeapp.data.utils.StringUtils
 import com.dariel25.android.pokeapp.domain.model.*
 import com.dariel25.android.pokeapp.presentation.utils.capitalizeWords
+import com.dariel25.android.pokeapp.presentation.utils.normalizeProperty
 import com.dariel25.android.pokeapp.presentation.utils.safe
 
 fun PokemonDto.mapToDomain(
@@ -45,6 +46,14 @@ fun PokemonDto.mapToDomain(
 
     val eggGroups = pokemonSpeciesDto.eggGroups.map { it.name }
 
+    val varieties = pokemonSpeciesDto.varieties.map {
+        Variety(
+            StringUtils.getIdFromUrl(it.pokemon.url),
+            it.pokemon.name.normalizeProperty(),
+            it.isDefault
+        )
+    }
+
     return Pokemon(
         this.id,
         this.name,
@@ -67,7 +76,9 @@ fun PokemonDto.mapToDomain(
         pokemonSpeciesDto.baseHappiness,
         pokemonSpeciesDto.hatchCounter,
         pokemonSpeciesDto.generation?.name.safe(),
-        pokemonSpeciesDto.habitat?.name.safe()
+        pokemonSpeciesDto.habitat?.name.safe(),
+        false,
+        varieties
     )
 }
 

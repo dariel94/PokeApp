@@ -6,48 +6,42 @@ import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.dariel25.android.pokeapp.presentation.detail.fragment.evolutions.EvolutionsFragment
 import com.dariel25.android.pokeapp.presentation.detail.fragment.abilities.AbilitiesFragment
 import com.dariel25.android.pokeapp.presentation.detail.fragment.stats.StatsFragment
+import com.dariel25.android.pokeapp.presentation.detail.fragment.varieties.VarietiesFragment
 import com.dariel25.android.pokeapp.presentation.model.PokemonUI
+import java.util.ArrayList
 
 /**
  * Created by dariel94 on 9/1/2022.
  */
 class PokemonPagerAdapter(
     fa: FragmentActivity,
-    private val pokemonUI: PokemonUI
+    pokemonUI: PokemonUI
 ): FragmentStateAdapter(fa) {
 
-    private val hasEvolutionTab: Boolean = pokemonUI.evolutions.isNullOrEmpty()
+    private val fragmentList: ArrayList<Fragment> = arrayListOf()
+    val tabTitles: ArrayList<String> = arrayListOf()
 
-    val tabTitles: Array<String> = if (hasEvolutionTab) {
-        arrayOf(
-            "  Stats  ",
-            " Abilities "
-        )
-    } else {
-        arrayOf(
-            "  Stats  ",
-            " Evolutions ",
-            " Abilities "
-        )
+    init {
+        fragmentList.add(StatsFragment(pokemonUI))
+        tabTitles.add("  Stats  ")
+
+        if (pokemonUI.evolutions.isNotEmpty()) {
+            fragmentList.add(EvolutionsFragment(pokemonUI.evolutions))
+            tabTitles.add(" Evolutions ")
+        }
+
+        if (pokemonUI.varieties.isNotEmpty()) {
+            fragmentList.add(VarietiesFragment(pokemonUI.varieties))
+            tabTitles.add(" Forms ")
+        }
+
+        fragmentList.add(AbilitiesFragment(pokemonUI.abilities))
+        tabTitles.add(" Abilities ")
     }
 
-    override fun getItemCount(): Int = if (hasEvolutionTab) 2 else 3
+    override fun getItemCount(): Int = fragmentList.size
 
     override fun createFragment(position: Int): Fragment {
-        return when(position) {
-            0 -> {
-                StatsFragment(pokemonUI)
-            }
-            1 -> {
-                if (hasEvolutionTab) {
-                    AbilitiesFragment(pokemonUI.abilities)
-                } else {
-                    EvolutionsFragment(pokemonUI.evolutions)
-                }
-            }
-            else -> {
-                AbilitiesFragment(pokemonUI.abilities)
-            }
-        }
+        return fragmentList[position]
     }
 }
