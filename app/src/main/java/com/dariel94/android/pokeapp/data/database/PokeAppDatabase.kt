@@ -12,7 +12,8 @@ import com.dariel94.android.pokeapp.data.database.model.PokemonSimpleEntity
  */
 @Database(
     entities = [PokemonSimpleEntity::class, PokemonEntity::class],
-    version = 1
+    version = 1,
+    exportSchema = false
 )
 @TypeConverters(Converters::class)
 abstract class PokeAppDatabase : RoomDatabase() {
