@@ -57,7 +57,7 @@ class PokeListViewModel @Inject constructor(
                             },
                             types,
                             generations,
-                            listOf("Legendary")
+                            listOf("legendary")
                         )
                     )
                 }

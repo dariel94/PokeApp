@@ -13,9 +13,9 @@ import javax.inject.Inject
 class PokemonUseCase @Inject constructor(
     private val repository: PokemonRepository
 ) {
-    suspend fun invoke(id: String) : NetworkState<Pokemon> = try {
+    suspend fun invoke(id: String, lan: String) : NetworkState<Pokemon> = try {
         val pokemon = withContext(Dispatchers.IO) {
-            repository.getPokemon(id)
+            repository.getPokemon(id, lan)
         }
         NetworkState.Success(pokemon)
     } catch (e: Throwable) {

@@ -15,6 +15,7 @@ import com.dariel94.android.pokeapp.R
 import com.dariel94.android.pokeapp.presentation.utils.PokemonUtils
 import com.dariel94.android.pokeapp.presentation.detail.PokemonDetailActivity
 import com.dariel94.android.pokeapp.presentation.model.PokemonSimpleUI
+import com.dariel94.android.pokeapp.presentation.utils.LanguageUtils
 import com.dariel94.android.pokeapp.presentation.utils.UIUtils
 
 /**
@@ -39,11 +40,11 @@ class PokeListAdapter(
 
     override fun onBindViewHolder(viewHolder: PokemonViewHolder, pos: Int) {
         val pokemon = filteredDataset[pos]
-
+        val lan = LanguageUtils.getLanguage(context)
         viewHolder.id.text = PokemonUtils.getIdTitle(pokemon.id)
         viewHolder.name.text = pokemon.name
-        viewHolder.type1.text = pokemon.type1
-        viewHolder.type2.text = pokemon.type2
+        viewHolder.type1.text = PokemonUtils.getTypeTranslation(pokemon.type1, lan)
+        viewHolder.type2.text = PokemonUtils.getTypeTranslation(pokemon.type2, lan)
         viewHolder.card.setCardBackgroundColor(ContextCompat.getColor(context, pokemon.cardColor))
 
         if (pokemon.type2.isEmpty()) {

@@ -3,6 +3,7 @@ package com.dariel94.android.pokeapp.presentation.detail.adapter
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
+import com.dariel94.android.pokeapp.R
 import com.dariel94.android.pokeapp.presentation.detail.fragment.evolutions.EvolutionsFragment
 import com.dariel94.android.pokeapp.presentation.detail.fragment.abilities.AbilitiesFragment
 import com.dariel94.android.pokeapp.presentation.detail.fragment.stats.StatsFragment
@@ -23,19 +24,19 @@ class PokemonPagerAdapter(
 
     init {
         fragmentList.add(StatsFragment(pokemonUI))
-        tabTitles.add("STATS")
+        tabTitles.add(fa.getString(R.string.pokeapp_stats_tab))
 
         if (pokemonUI.evolutions.isNotEmpty()) {
             fragmentList.add(EvolutionsFragment(pokemonUI.evolutions))
-            tabTitles.add("EVOLUTIONS")
+            tabTitles.add(fa.getString(R.string.pokeapp_evolutions_tab))
         }
 
         fragmentList.add(AbilitiesFragment(pokemonUI.abilities))
-        tabTitles.add("ABILITIES")
+        tabTitles.add(fa.getString(R.string.pokeapp_abilities_tab))
 
         if (pokemonUI.varieties.isNotEmpty()) {
             fragmentList.add(VarietiesFragment(pokemonUI.varieties))
-            tabTitles.add("FORMS")
+            tabTitles.add(fa.getString(R.string.pokeapp_forms_tab))
         }
     }
 

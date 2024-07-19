@@ -34,4 +34,9 @@ interface PokeApi {
     suspend fun getAbility(
         @Path("name") name: String
     ): AbilityDto
+
+    @GET("egg-group/{name}")
+    suspend fun getEggGroup(
+        @Path("name") name: String
+    ): EggGroupDto
 }

@@ -3,6 +3,7 @@ package com.dariel94.android.pokeapp.presentation.pokelist.adapter
 import android.annotation.SuppressLint
 import android.widget.Filter
 import com.dariel94.android.pokeapp.presentation.model.PokemonSimpleUI
+import com.dariel94.android.pokeapp.presentation.utils.capitalizeFirst
 
 /**
  * Created by dariel94 on 31/10/2021.
@@ -51,11 +52,11 @@ class PokemonListFilter(
 
         if (types.isNotEmpty()) {
             list = list.filter {
-                types.contains(it.type1) || types.contains(it.type2)
+                types.contains(it.type1.lowercase()) || types.contains(it.type2.lowercase())
             }
         }
 
-        if (cats.isNotEmpty() && cats.contains("Legendary")) {
+        if (cats.isNotEmpty() && cats.contains("legendary")) {
             list = list.filter {
                 it.legendary
             }

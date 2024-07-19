@@ -1,0 +1,69 @@
+<resources>
+    <string name="pokeapp_app_name">PokeApp</string>
+    <string name="pokeapp_height">Altura</string>
+    <string name="pokeapp_weight">Peso</string>
+    <string name="pokeapp_stats_title">Stats base</string>
+    <string name="pokeapp_error">Error</string>
+    <string name="pokeapp_retry">Reintentar</string>
+    <string name="pokeapp_no_evolutions">No hay evoluciones</string>
+    <string name="pokeapp_legendary"> Legendario </string>
+    <string name="pokeapp_baby"> Bebé </string>
+    <string name="pokeapp_mythic"> Mítico </string>
+    <string name="pokeapp_set_as_favorite">Guardar como favorito</string>
+    <string name="pokeapp_egg_groups">Grupos de huevo</string>
+    <string name="pokeapp_growth_rate">Tasa de crecimiento</string>
+    <string name="pokeapp_gender_rate">Género</string>
+    <string name="pokeapp_capture_rate">Tasa de captura</string>
+    <string name="pokeapp_base_happiness">Felicidad base</string>
+    <string name="pokeapp_hatch_counter">Contador de eclosiones</string>
+    <string name="pokeapp_generation">Generacion</string>
+    <string name="pokeapp_habitat">Habitad</string>
+    <string name="pokeapp_others">Otros</string>
+    <string name="pokeapp_breeding">Crianza</string>
+    <string name="pokeapp_training">Entrenamiento</string>
+    <string name="pokeapp_catch_rate">Tasa de captura</string>
+    <string name="pokeapp_base_experience">Exp. Base</string>
+    <string name="pokeapp_egg_cycles">Ciclos de huevo</string>
+    <string name="pokeapp_filter">Listo</string>
+    <string name="pokeapp_select_generations">Filtrar por generación</string>
+    <string name="pokeapp_select_category">Filtrar por categoria</string>
+    <string name="pokeapp_select_types">Filtar por tipo</string>
+    <string name="pokeapp_clear_filters"><![CDATA[Limpiar filtros >]]></string>
+    <string name="pokeapp_evolutions_tab">EVOLUCIONES</string>
+    <string name="pokeapp_stats_tab">STATS</string>
+    <string name="pokeapp_abilities_tab">HABILIDADES</string>
+    <string name="pokeapp_forms_tab">FORMAS</string>
+    <string name="pokeapp_male">M</string>
+    <string name="pokeapp_female">F</string>
+    <string name="pokeapp_genderless">Sin género</string>
+    <string name="pokeapp_steps">pasos</string>
+    <string name="pokeapp_held">Llevar</string>
+    <string name="pokeapp_in">en</string>
+    <string name="pokeapp_known">Aprender</string>
+    <string name="pokeapp_beauty">Belleza</string>
+    <string name="pokeapp_affection">Afecto</string>
+    <string name="pokeapp_needs_over_world_rain">Necesita estar sobre la lluvia</string>
+    <string name="pokeapp_move">movimiento</string>
+    <string name="pokeapp_attack">Ataque</string>
+    <string name="pokeapp_defense">Defensa</string>
+    <string name="pokeapp_at">de</string>
+    <string name="pokeapp_gender">Género</string>
+    <string name="pokeapp_if">Si</string>
+    <string name="pokeapp_search_hint">"Nombre o id"</string>
+
+    <string-array name="pokeapp_types">
+        <item>Fire</item>
+        <item>Water</item>
+        <item>Grass</item>
+    </string-array>
+    <string-array name="pokeapp_generations">
+        <item>Cualquiera</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+    </string-array>
+</resources>

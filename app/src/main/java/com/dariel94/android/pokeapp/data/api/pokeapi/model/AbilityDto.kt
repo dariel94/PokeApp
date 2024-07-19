@@ -9,5 +9,6 @@ import com.google.gson.annotations.SerializedName
 
 data class AbilityDto(
     val name: String = "",
-    @SerializedName("effect_entries") val effectEntries: List<AbilityEffectDto>?
+    @SerializedName("flavor_text_entries") val flavorTextEntries: List<AbilityFlavorTextDto>?,
+    val names: List<AbilityNameDto>?,
 )

@@ -12,8 +12,10 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.dariel94.android.pokeapp.R
 import com.dariel94.android.pokeapp.databinding.PokeappActivityPokemonDetailBinding
+import com.dariel94.android.pokeapp.domain.model.Pokemon
 import com.dariel94.android.pokeapp.presentation.core.ui.BaseActivity
 import com.dariel94.android.pokeapp.presentation.detail.adapter.PokemonPagerAdapter
+import com.dariel94.android.pokeapp.presentation.mapper.toUI
 import com.dariel94.android.pokeapp.presentation.model.PokemonUI
 import com.dariel94.android.pokeapp.presentation.model.UIState
 import com.dariel94.android.pokeapp.presentation.utils.*
@@ -61,7 +63,7 @@ class PokemonDetailActivity : BaseActivity() {
         menuInflater.inflate(R.menu.pokeapp_detail_menu, menu)
         favItem = menu.findItem(R.id.action_favorite)
 
-        pokemonDetailViewModel.fetchPokemon(id)
+        pokemonDetailViewModel.fetchPokemon(id, LanguageUtils.getLanguage(this))
 
         return true
     }
@@ -84,13 +86,13 @@ class PokemonDetailActivity : BaseActivity() {
     }
 
     override fun onRetry() {
-        pokemonDetailViewModel.fetchPokemon(id)
+        pokemonDetailViewModel.fetchPokemon(id, LanguageUtils.getLanguage(this))
     }
 
-    private fun updateViewStatus(networkState: UIState<PokemonUI?>) {
+    private fun updateViewStatus(networkState: UIState<Pokemon?>) {
         when (networkState) {
             is UIState.Loading -> showLoadingView()
-            is UIState.Success -> showPokemonData(networkState.data)
+            is UIState.Success -> showPokemonData(networkState.data?.toUI(this))
             is UIState.Error -> showErrorView(networkState.message)
         }
     }
@@ -114,7 +116,7 @@ class PokemonDetailActivity : BaseActivity() {
 
             for (type in pokemon.types) {
                 val pokemonTypeWidget = PokemonTypeWidget(this)
-                pokemonTypeWidget.setType(type)
+                pokemonTypeWidget.setType(PokemonUtils.getTypeTranslation(type, LanguageUtils.getLanguage(this)))
                 binding.typesContainer.addView(pokemonTypeWidget)
             }
 

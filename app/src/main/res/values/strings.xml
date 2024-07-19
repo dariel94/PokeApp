@@ -29,6 +29,27 @@
     <string name="pokeapp_select_category">Filter by category</string>
     <string name="pokeapp_select_types">Filter by type</string>
     <string name="pokeapp_clear_filters"><![CDATA[Clear filters >]]></string>
+    <string name="pokeapp_evolutions_tab">EVOLUTIONS</string>
+    <string name="pokeapp_stats_tab">STATS</string>
+    <string name="pokeapp_abilities_tab">ABILITIES</string>
+    <string name="pokeapp_forms_tab">FORMS</string>
+    <string name="pokeapp_male">M</string>
+    <string name="pokeapp_female">F</string>
+    <string name="pokeapp_genderless">Genderless</string>
+    <string name="pokeapp_steps">steps</string>
+    <string name="pokeapp_held">Held</string>
+    <string name="pokeapp_in">in</string>
+    <string name="pokeapp_known">Known</string>
+    <string name="pokeapp_beauty">Beauty</string>
+    <string name="pokeapp_affection">Affection</string>
+    <string name="pokeapp_needs_over_world_rain">Needs over world rain</string>
+    <string name="pokeapp_move">move</string>
+    <string name="pokeapp_attack">Attack</string>
+    <string name="pokeapp_defense">Defense</string>
+    <string name="pokeapp_at">at</string>
+    <string name="pokeapp_gender">Gender</string>
+    <string name="pokeapp_if">If</string>
+    <string name="pokeapp_search_hint">"Search by name or id"</string>
 
     <string-array name="pokeapp_types">
         <item>Fire</item>

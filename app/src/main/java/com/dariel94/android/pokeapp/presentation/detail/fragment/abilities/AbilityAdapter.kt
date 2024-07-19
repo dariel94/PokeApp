@@ -31,7 +31,7 @@ class AbilityAdapter(
             val alertDialog: AlertDialog =
                 AlertDialog.Builder(context, R.style.pokeapp_abilityDialog).create()
             alertDialog.setTitle(name)
-            alertDialog.setMessage(dataset[pos].effect)
+            alertDialog.setMessage(dataset[pos].flavorText)
             alertDialog.show()
         }
     }

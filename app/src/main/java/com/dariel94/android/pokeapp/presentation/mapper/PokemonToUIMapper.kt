@@ -1,5 +1,8 @@
 package com.dariel94.android.pokeapp.presentation.mapper
 
+import android.content.Context
+import com.dariel94.android.pokeapp.R
+import com.dariel94.android.pokeapp.presentation.utils.LanguageUtils
 import com.dariel94.android.pokeapp.domain.model.EvolutionChain
 import com.dariel94.android.pokeapp.domain.model.Pokemon
 import com.dariel94.android.pokeapp.domain.model.Stat
@@ -12,7 +15,9 @@ import com.dariel94.android.pokeapp.presentation.utils.normalizeProperty
 /**
  * Created by dariel94 on 31/10/2021.
  */
-fun Pokemon.toUI(): PokemonUI {
+fun Pokemon.toUI(context: Context): PokemonUI {
+    val lan = LanguageUtils.getLanguage(context)
+
     val color = if (this.types.isNotEmpty()) {
         PokemonUtils.getPokemonTypeColor(this.types.first())
     } else {
@@ -28,12 +33,12 @@ fun Pokemon.toUI(): PokemonUI {
     }
 
     val evolutions: ArrayList<Evolution> = arrayListOf()
-    mapEvolutionChainToList(this.evolutionChain, evolutions)
+    mapEvolutionChainToList(this.evolutionChain, evolutions, context)
 
     val genderRateText = if (this.genderRate != -1) {
-        "${(8 - this.genderRate) * 12.5F}% male, ${this.genderRate * 12.5F}% female"
+        "${(8 - this.genderRate) * 12.5F}% ${context.getString(R.string.pokeapp_male)}, ${this.genderRate * 12.5F}% ${context.getString(R.string.pokeapp_female)}"
     } else {
-        "Genderless"
+        context.getString(R.string.pokeapp_genderless)
     }
 
     val capturePercent = String.format("%.2f", this.captureRate / 255F * 33.33F)
@@ -41,7 +46,7 @@ fun Pokemon.toUI(): PokemonUI {
 
     val eggGroupsText = this.eggGroups.joinToString(", ") { it.normalizeProperty() }
 
-    val hatchCounterText = "${this.hatchCounter} (${(this.hatchCounter-1) * 257}-${this.hatchCounter * 257} steps)"
+    val hatchCounterText = "${this.hatchCounter} (${(this.hatchCounter-1) * 257}-${this.hatchCounter * 257} ${context.getString(R.string.pokeapp_steps)})"
 
     return PokemonUI(
         PokemonUtils.getIdTitle(this.id),
@@ -61,7 +66,7 @@ fun Pokemon.toUI(): PokemonUI {
         this.isMythical,
         this.baseExperience.toString(),
         eggGroupsText,
-        this.growthRate.normalizeProperty(),
+        PokemonUtils.getGrowthRateTranslation(this.growthRate, lan),
         genderRateText,
         captureRateString,
         this.baseHappiness.toString(),
@@ -75,41 +80,44 @@ fun Pokemon.toUI(): PokemonUI {
 
 private fun mapEvolutionChainToList(
     evolutionChain: EvolutionChain,
-    evolutions: ArrayList<Evolution>
+    evolutions: ArrayList<Evolution>,
+    context: Context,
 ) {
+    val lan = LanguageUtils.getLanguage(context)
     for (evolve in evolutionChain.evolvesTo) {
 
         var condition = ""
         evolve.evolutionDetail?.let { evolutionDetail ->
-            evolutionDetail.trigger?.let { condition += it.normalizeProperty() + " " }
+            evolutionDetail.trigger?.let { condition += PokemonUtils.getTriggerDescription(it, lan) + " " }
             evolutionDetail.level?.let { condition += it }
             evolutionDetail.item?.let { condition += "\n${it.normalizeProperty()}" }
             evolutionDetail.timeOfDay?.let {
-                if (it.isNotEmpty()) condition += "at $it"
+                if (it.isNotEmpty()) condition += context.getString(R.string.pokeapp_at) + " " + PokemonUtils.getTimeOfDayTranslation(it, lan)
             }
-            evolutionDetail.heldItem?.let { condition += "\n Held ${it.normalizeProperty()}" }
-            evolutionDetail.location?.let { condition += "\nIn ${it.normalizeProperty()}" }
-            evolutionDetail.knownMoveType?.let { condition += "\nKnown ${it.normalizeProperty()} move" }
-            evolutionDetail.knownMove?.let { condition += "\nKnown ${it.normalizeProperty()}" }
-            evolutionDetail.happiness?.let { condition += "\nHappiness $it" }
-            evolutionDetail.beauty?.let { condition += "\nBeauty $it" }
-            evolutionDetail.affection?.let { condition += "\nAffection $it" }
-            if (evolutionDetail.needsOverWorldRain) { condition += "\nNeeds over world rain" }
+            evolutionDetail.heldItem?.let { condition += "\n ${context.getString(R.string.pokeapp_held)} ${it.normalizeProperty()}" }
+            evolutionDetail.location?.let { condition += "\n${context.getString(R.string.pokeapp_in)} ${it.normalizeProperty()}" }
+            evolutionDetail.knownMoveType?.let {
+                condition += if (lan == "es") {
+                    "\n${context.getString(R.string.pokeapp_known)} ${context.getString(R.string.pokeapp_move)} ${PokemonUtils.getTypeTranslation(it, lan)} "
+                } else {
+                    "\n${context.getString(R.string.pokeapp_known)} ${it.normalizeProperty()} ${context.getString(R.string.pokeapp_move)}"
+                }
+            }
+            evolutionDetail.knownMove?.let { condition += "\n${context.getString(R.string.pokeapp_known)} ${it.normalizeProperty()}" }
+            evolutionDetail.happiness?.let { condition += "\n${context.getString(R.string.pokeapp_base_happiness)} $it" }
+            evolutionDetail.beauty?.let { condition += "\n${context.getString(R.string.pokeapp_beauty)} $it" }
+            evolutionDetail.affection?.let { condition += "\n${context.getString(R.string.pokeapp_affection)} $it" }
+            if (evolutionDetail.needsOverWorldRain) { condition += "\n${context.getString(R.string.pokeapp_needs_over_world_rain)}" }
             evolutionDetail.gender?.let {
-                condition += "\n${if (it == 0) "Male" else "Female"} gender"
+                condition += "\n${if (it == 0) context.getString(R.string.pokeapp_male) else context.getString(R.string.pokeapp_female)} ${context.getString(R.string.pokeapp_gender)}"
             }
             evolutionDetail.relativePhysicalStats?.let {
-                condition += when (it) {
-                    0 -> {
-                        "\nIf Attack = Defense"
-                    }
-                    1 -> {
-                        "\nIf Attack > Defense"
-                    }
-                    else -> {
-                        "\nIf Attack < Defense"
-                    }
+                val cond = when (it) {
+                    0 -> "="
+                    1 -> ">"
+                    else -> "<"
                 }
+                condition += "\n${context.getString(R.string.pokeapp_if)} ${context.getString(R.string.pokeapp_attack)} $cond ${context.getString(R.string.pokeapp_defense)}"
             }
         }
 
@@ -121,6 +129,6 @@ private fun mapEvolutionChainToList(
             condition
         )
         evolutions.add(evolution)
-        mapEvolutionChainToList(evolve, evolutions)
+        mapEvolutionChainToList(evolve, evolutions, context)
     }
 }

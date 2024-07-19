@@ -5,5 +5,5 @@ package com.dariel94.android.pokeapp.domain.model
  */
 data class Ability(
     val name: String = "",
-    val effect: String = ""
+    val flavorText: String = ""
 )

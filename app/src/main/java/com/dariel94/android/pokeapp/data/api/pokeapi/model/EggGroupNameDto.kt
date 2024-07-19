@@ -5,7 +5,7 @@
 
 package com.dariel94.android.pokeapp.data.api.pokeapi.model
 
-data class AbilityEffectDto(
-    val effect: String = "",
+data class EggGroupNameDto(
+    val name: String = "",
     val language: Resource
 )

@@ -15,19 +15,24 @@ class PokemonRepositoryImpl @Inject constructor(
     private val cacheDataSource: PokemonCacheDataSource
 ) : PokemonRepository {
 
-    override suspend fun getPokemon(id: String): Pokemon {
-        val cachedPokemon = cacheDataSource.getPokemon(id)
-
-        return if (cachedPokemon == null) {
-            val remotePokemon = remoteDataSource.getPokemon(id)
-            cacheDataSource.insertPokemon(remotePokemon.mapToEntity())
-            remotePokemon
-        } else {
-            cachedPokemon.mapToDomain()
+    override suspend fun getPokemon(id: String, lan: String): Pokemon {
+        if (USE_CACHE) {
+            cacheDataSource.getPokemon(id)?.let {
+                return it.mapToDomain()
+            }
         }
+        val remotePokemon = remoteDataSource.getPokemon(id, lan)
+        if (USE_CACHE) {
+            cacheDataSource.insertPokemon(remotePokemon.mapToEntity())
+        }
+        return remotePokemon
     }
 
     override suspend fun updatePokemon(pokemon: Pokemon) {
         cacheDataSource.updatePokemon(pokemon.mapToEntity())
+    }
+
+    companion object {
+        private const val USE_CACHE = false
     }
 }

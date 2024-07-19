@@ -7,7 +7,7 @@ import com.dariel94.android.pokeapp.domain.model.Pokemon
  */
 interface PokemonRepository {
 
-    suspend fun getPokemon(id: String): Pokemon
+    suspend fun getPokemon(id: String, lan: String): Pokemon
 
     suspend fun updatePokemon(pokemon: Pokemon)
 }

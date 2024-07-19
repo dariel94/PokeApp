@@ -19,6 +19,8 @@ import com.dariel94.android.pokeapp.presentation.utils.show
 import com.dariel94.android.pokeapp.presentation.widgets.filter.FilterBottomSheet
 import com.dariel94.android.pokeapp.presentation.widgets.filter.OptionFilterListener
 import dagger.hilt.android.AndroidEntryPoint
+import android.view.MenuItem
+import com.dariel94.android.pokeapp.presentation.utils.LanguageUtils
 
 
 /**
@@ -69,7 +71,7 @@ class PokeListActivity : BaseActivity(), OptionFilterListener {
         menuInflater.inflate(R.menu.pokeapp_options_menu, menu)
         val searchItem = menu.findItem(R.id.search)
         searchView = searchItem.actionView as SearchView
-        searchView.queryHint = "Search by name or id"
+        searchView.queryHint = getString(R.string.pokeapp_search_hint)
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String): Boolean {
                 return false
@@ -87,6 +89,21 @@ class PokeListActivity : BaseActivity(), OptionFilterListener {
             false
         }
         return true
+    }
+
+    @Override
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.action_language_es -> {
+                LanguageUtils.setLocale("es", this)
+                true
+            }
+            R.id.action_language_en -> {
+                LanguageUtils.setLocale("en", this)
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
     }
 
     private fun updateViewStatus(networkState: UIState<PokeListData>) {

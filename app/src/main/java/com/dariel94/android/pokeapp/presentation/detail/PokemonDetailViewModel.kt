@@ -7,8 +7,6 @@ import androidx.lifecycle.viewModelScope
 import com.dariel94.android.pokeapp.domain.NetworkState
 import com.dariel94.android.pokeapp.domain.model.Pokemon
 import com.dariel94.android.pokeapp.domain.usecase.PokemonUseCase
-import com.dariel94.android.pokeapp.presentation.mapper.toUI
-import com.dariel94.android.pokeapp.presentation.model.PokemonUI
 import com.dariel94.android.pokeapp.presentation.model.UIState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
@@ -22,22 +20,22 @@ class PokemonDetailViewModel @Inject constructor(
     private val pokemonUseCase: PokemonUseCase
 ) : ViewModel() {
 
-    private val mutableViewState = MutableLiveData<UIState<PokemonUI?>>()
+    private val mutableViewState = MutableLiveData<UIState<Pokemon?>>()
 
     private var pokemon: Pokemon? = null
 
-    fun getViewStateLiveData(): LiveData<UIState<PokemonUI?>> {
+    fun getViewStateLiveData(): LiveData<UIState<Pokemon?>> {
         return mutableViewState
     }
 
-    fun fetchPokemon(id: String) {
+    fun fetchPokemon(id: String, lan: String) {
         mutableViewState.value = UIState.Loading
 
         viewModelScope.launch {
-            when (val networkStatus = pokemonUseCase.invoke(id)) {
+            when (val networkStatus = pokemonUseCase.invoke(id, lan)) {
                 is NetworkState.Success -> {
                     pokemon = networkStatus.data
-                    mutableViewState.value = UIState.Success(pokemon?.toUI())
+                    mutableViewState.value = UIState.Success(pokemon)
                 }
                 is NetworkState.Error -> {
                     val msg = networkStatus.error.message ?: "Error"

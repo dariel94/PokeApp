@@ -51,9 +51,9 @@ class PokemonDetailViewModelTest {
 
     @Test
     fun testFetchPokemonSuccess() = runBlockingTest {
-        coEvery { useCase.invoke(anyString()) } returns NetworkState.Success(getMockedPokemon())
+        coEvery { useCase.invoke(anyString(), anyString()) } returns NetworkState.Success(getMockedPokemon())
 
-        viewModel.fetchPokemon(anyString())
+        viewModel.fetchPokemon(anyString(), anyString())
 
         Assert.assertTrue(
             viewModel.getViewStateLiveData().getOrAwaitValue() is UIState.Success<*>
@@ -62,9 +62,9 @@ class PokemonDetailViewModelTest {
 
     @Test
     fun testFetchPokemonError() = runBlockingTest {
-        coEvery { useCase.invoke(anyString()) } returns NetworkState.Error(Error())
+        coEvery { useCase.invoke(anyString(), anyString()) } returns NetworkState.Error(Error())
 
-        viewModel.fetchPokemon(anyString())
+        viewModel.fetchPokemon(anyString(), anyString())
 
         Assert.assertTrue(
             viewModel.getViewStateLiveData().getOrAwaitValue() is UIState.Error

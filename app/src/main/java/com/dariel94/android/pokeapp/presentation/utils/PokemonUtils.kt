@@ -24,6 +24,114 @@ object PokemonUtils {
         }
     }
 
+    fun getTypeTranslation(type: String, lan: String): String {
+        return when (lan) {
+            "es" -> {
+                 when (type.lowercase()) {
+                    "fire" -> "Fuego"
+                    "water" -> "Agua"
+                    "grass" -> "Planta"
+                    "bug" -> "Bicho"
+                    "poison" -> "Veneno"
+                    "flying" -> "Volador"
+                    "electric" -> "Eléctrico"
+                    "ground" -> "Tierra"
+                    "fairy" -> "Hada"
+                    "fighting" -> "Lucha"
+                    "ice" -> "Hielo"
+                    "rock" -> "Roca"
+                    "ghost" -> "Fantasma"
+                    "dark" -> "Siniestro"
+                    "steel" -> "Acero"
+                    "dragon" -> "Dragón"
+                    "psychic" -> "Psíquico"
+                    "shadow" -> "Sombra"
+                    "unknown" -> "Desconocído"
+                    else -> type.capitalizeFirst()
+                }
+            }
+            else -> type.capitalizeFirst()
+        }
+    }
+
+    fun getTriggerDescription(trigger: String, lan: String): String {
+        return when (lan) {
+            "es" -> {
+                 when (trigger) {
+                    "level-up" -> "Subir nivel"
+                    "trade" -> "Intercambio"
+                    "use-item" -> "Usar objeto"
+                    "shed" -> "Mudar"
+                    "spin" -> "Girar"
+                    "tower-of-darkness" -> "Entrenar en la torre de la oscuridad"
+                    "tower-of-waters" -> "Entrenar en la torre de las aguas"
+                    "three-critical-hits" -> "Asestar tres golpes críticos en una batalla"
+                    "take-damage" -> "Ir a algún lugar luego de recibir daño"
+                    "other" -> "Otro"
+                    "agile-style-move" -> "Movimiento de estilo ágil"
+                    "strong-style-move" -> "Movimiento de estilo fuerte"
+                    "recoil-damage" -> "Daño por retroceso"
+                    else -> trigger
+                }
+            }
+            else -> {
+                 when (trigger) {
+                    "level-up" -> "Level up"
+                    "trade" -> "Trade"
+                    "use-item" -> "Use item"
+                    "shed" -> "Shed"
+                    "spin" -> "Spin"
+                    "tower-of-darkness" -> "Train in the Tower of Darkness"
+                    "tower-of-waters" -> "Train in the Tower of Waters"
+                    "three-critical-hits" -> "Land three critical hits in a battle"
+                    "take-damage" -> "Go somewhere after taking damage"
+                    "other" -> "Other"
+                    "agile-style-move" -> "Agile style move"
+                    "strong-style-move" -> "Strong style move"
+                    "recoil-damage" -> "Recoil damage"
+                    else -> trigger
+                }
+            }
+        }
+    }
+
+    fun getGrowthRateTranslation(growthRate: String, lan: String): String {
+        return when (lan) {
+            "es" -> {
+                when (growthRate.lowercase()) {
+                    "slow" -> "Lenta"
+                    "medium" -> "Media"
+                    "fast" -> "Rápida"
+                    "medium-slow" -> "Media-Lenta"
+                    "fast-then-very-slow" -> "Rápida y luego lenta"
+                    "slow-then-very-fast" -> "Lenta y luego rápida"
+                    else -> growthRate.capitalizeFirst()
+                }
+            }
+            else -> growthRate.capitalizeFirst()
+        }
+    }
+
+    fun getTimeOfDayTranslation(timeOfDay: String, lan: String): String {
+        if (lan == "es") {
+            return when (timeOfDay) {
+                "night" -> "noche"
+                else -> "dia"
+            }
+        }
+        return timeOfDay
+    }
+
+    fun getCategoryTranslation(cat: String, lan: String): String {
+        if (lan == "es") {
+            return when (cat) {
+                "legendary" -> "Legendario"
+                else -> cat.capitalizeFirst()
+            }
+        }
+        return cat.capitalizeFirst()
+    }
+
     fun getFormattedWeight(weight: Int): String {
         val kg = weight / 10f
         val lbs = kg * 2.2F

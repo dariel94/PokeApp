@@ -12,6 +12,8 @@ import android.widget.Button
 import com.dariel94.android.pokeapp.R
 import com.dariel94.android.pokeapp.presentation.model.FilterData
 import com.dariel94.android.pokeapp.presentation.model.FilterOption
+import com.dariel94.android.pokeapp.presentation.utils.LanguageUtils
+import com.dariel94.android.pokeapp.presentation.utils.PokemonUtils
 import com.dariel94.android.pokeapp.presentation.utils.capitalizeFirst
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
@@ -40,13 +42,13 @@ class FilterBottomSheet(context: Context) : BottomSheetDialog(context) {
 
         view.findViewById<Button>(R.id.filter_button).setOnClickListener {
             val selectedTypes = typesGroup.checkedChipIds.map {
-                typesGroup.findViewById<Chip>(it).text.toString()
+                typesGroup.findViewById<PokemonFilterChip>(it).filterId ?: ""
             }
             val selectedGens = gensGroup.checkedChipIds.map {
-                gensGroup.findViewById<Chip>(it).text.toString()
+                gensGroup.findViewById<PokemonFilterChip>(it).filterId ?: ""
             }
             val selectedCats = catsGroup.checkedChipIds.map {
-                catsGroup.findViewById<Chip>(it).text.toString()
+                catsGroup.findViewById<PokemonFilterChip>(it).filterId ?: ""
             }
             listener?.onFilterData(selectedTypes, selectedGens, selectedCats)
             dismiss()
@@ -76,20 +78,23 @@ class FilterBottomSheet(context: Context) : BottomSheetDialog(context) {
         catsGroup.removeAllViews()
         options.types.forEach { type ->
             val chip = layoutInflater
-                .inflate(R.layout.pokeapp_filter_chip, typesGroup, false) as Chip
-            chip.text = type.name.capitalizeFirst()
+                .inflate(R.layout.pokeapp_filter_chip, typesGroup, false) as PokemonFilterChip
+            chip.text = PokemonUtils.getTypeTranslation(type.name, LanguageUtils.getLanguage(context))
+            chip.filterId = type.name
             typesGroup.addView(chip)
         }
         options.generations.forEachIndexed { index, _ ->
             val chip = layoutInflater
-                .inflate(R.layout.pokeapp_filter_chip, gensGroup, false) as Chip
+                .inflate(R.layout.pokeapp_filter_chip, gensGroup, false) as PokemonFilterChip
             chip.text = (index + 1).toString()
+            chip.filterId = (index + 1).toString()
             gensGroup.addView(chip)
         }
         options.categories.forEach { category ->
             val chip = layoutInflater
-                .inflate(R.layout.pokeapp_filter_chip, catsGroup, false) as Chip
-            chip.text = category.name.capitalizeFirst()
+                .inflate(R.layout.pokeapp_filter_chip, catsGroup, false) as PokemonFilterChip
+            chip.text = PokemonUtils.getCategoryTranslation(category.name, LanguageUtils.getLanguage(context))
+            chip.filterId = category.name
             catsGroup.addView(chip)
         }
     }

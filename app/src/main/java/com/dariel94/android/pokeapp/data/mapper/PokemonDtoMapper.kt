@@ -14,37 +14,27 @@ import com.dariel94.android.pokeapp.presentation.utils.safe
 fun PokemonDto.mapToDomain(
     pokemonSpeciesDto: PokemonSpeciesDto,
     evolutionChainDto: EvolutionChainDto,
-    abilitiesDto: List<AbilityDto>
+    abilitiesDto: List<AbilityDto>,
+    eggGroupsDto: List<EggGroupDto>,
+    lan: String,
 ) : Pokemon {
     val types = this.types.map {
         it.type.name
     }
 
     val abilities = abilitiesDto.map {
-        it.toDomain()
+        it.toDomain(lan)
     }
 
     val stats = this.stats.map {
         Stat(it.stat.name, it.baseStat)
     }
 
-    var desc = ""
-    for (entry in pokemonSpeciesDto.flavorTextEntries) {
-        if (entry.language.name == "en") {
-            desc = entry.flavorText
-            break
-        }
-    }
+    var desc = getFlavourText(lan, pokemonSpeciesDto.flavorTextEntries)
 
-    var specie = ""
-    for (entry in pokemonSpeciesDto.genera) {
-        if (entry.language.name == "en") {
-            specie = entry.genus
-            break
-        }
-    }
+    var specie = getSpecieText(lan, pokemonSpeciesDto.genera)
 
-    val eggGroups = pokemonSpeciesDto.eggGroups.map { it.name }
+    val eggGroups = eggGroupsDto.map { getEggGroupText(lan, it.names) }
 
     val varieties = pokemonSpeciesDto.varieties.map {
         Variety(
@@ -80,6 +70,48 @@ fun PokemonDto.mapToDomain(
         false,
         varieties
     )
+}
+
+private fun getFlavourText(lan: String, entries: List<FlavorTextEntry>): String {
+    entries.find {
+        it.language.name == lan
+    }?.flavorText?.let {
+        return it
+    }
+    entries.find {
+        it.language.name == "en"
+    }?.flavorText?.let {
+        return it
+    }
+    return entries.getOrNull(0)?.flavorText ?: ""
+}
+
+private fun getSpecieText(lan: String, entries: List<GeneraTextEntry>): String {
+    entries.find {
+        it.language.name == lan
+    }?.genus?.let {
+        return it
+    }
+    entries.find {
+        it.language.name == "en"
+    }?.genus?.let {
+        return it
+    }
+    return entries.getOrNull(0)?.genus ?: ""
+}
+
+private fun getEggGroupText(lan: String, entries: List<EggGroupNameDto>?): String {
+    entries?.find {
+        it.language.name == lan
+    }?.name?.let {
+        return it
+    }
+    entries?.find {
+        it.language.name == "en"
+    }?.name?.let {
+        return it
+    }
+    return entries?.getOrNull(0)?.name ?: ""
 }
 
 private fun ChainDto.toEvolutionChain(): EvolutionChain {

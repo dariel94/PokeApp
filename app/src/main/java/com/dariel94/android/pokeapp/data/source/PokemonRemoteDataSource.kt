@@ -9,7 +9,7 @@ import javax.inject.Inject
 class PokemonRemoteDataSource @Inject constructor(
     private val pokeApi: PokeApi
 ) {
-    suspend fun getPokemon(id: String): Pokemon {
+    suspend fun getPokemon(id: String, lan: String): Pokemon {
         val pokemonDto = pokeApi.getPokemon(id)
         val pokemonSpeciesDto = pokeApi.getPokemonSpecies(getIdFromUrl(pokemonDto.species.url))
         val pokemonChainId = getIdFromUrl(pokemonSpeciesDto.evolutionChain.url)
@@ -19,6 +19,10 @@ class PokemonRemoteDataSource @Inject constructor(
             pokeApi.getAbility(it.ability.name)
         }
 
-        return pokemonDto.mapToDomain(pokemonSpeciesDto, evolutionChainDto, abilitiesDto)
+        val eggGroupsDto = pokemonSpeciesDto.eggGroups.map {
+            pokeApi.getEggGroup(it.name)
+        }
+
+        return pokemonDto.mapToDomain(pokemonSpeciesDto, evolutionChainDto, abilitiesDto, eggGroupsDto, lan)
     }
 }
