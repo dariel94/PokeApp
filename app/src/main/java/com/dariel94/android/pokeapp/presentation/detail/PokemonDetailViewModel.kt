@@ -9,6 +9,7 @@ import com.dariel94.android.pokeapp.domain.model.Pokemon
 import com.dariel94.android.pokeapp.domain.usecase.FavoritesUseCase
 import com.dariel94.android.pokeapp.domain.usecase.PokemonUseCase
 import com.dariel94.android.pokeapp.presentation.model.UIState
+import com.dariel94.android.pokeapp.presentation.utils.StringUtils
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -39,7 +40,7 @@ class PokemonDetailViewModel @Inject constructor(
                     mutableViewState.value = UIState.Success(pokemon)
                 }
                 is NetworkState.Error -> {
-                    val msg = networkStatus.error.message ?: "Error"
+                    val msg = networkStatus.error.message ?: StringUtils.ERROR
                     mutableViewState.value = UIState.Error(msg)
                 }
             }

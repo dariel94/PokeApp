@@ -5,6 +5,7 @@
 package com.dariel94.android.pokeapp.data.mapper
 
 import com.dariel94.android.pokeapp.data.api.pokeapi.model.AbilityDto
+import com.dariel94.android.pokeapp.data.utils.StringUtils.ENGLISH
 import com.dariel94.android.pokeapp.domain.model.Ability
 
 fun AbilityDto.toDomain(lan: String): Ability {
@@ -18,7 +19,7 @@ private fun AbilityDto.getAbilityName(lan: String): String {
         return it.name
     }
     this.names?.find {
-        it.language.name == "en"
+        it.language.name == ENGLISH
     }?.let {
         return it.name
     }
@@ -32,7 +33,7 @@ private fun AbilityDto.getAbilityDesc(lan: String): String {
         return it.flavorText.replace("\n", " ")
     }
     this.flavorTextEntries?.find {
-        it.language.name == "en"
+        it.language.name == ENGLISH
     }?.let {
         return it.flavorText.replace("\n", " ")
     }

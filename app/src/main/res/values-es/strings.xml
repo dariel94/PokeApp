@@ -3,8 +3,8 @@
     <string name="pokeapp_height">Altura</string>
     <string name="pokeapp_weight">Peso</string>
     <string name="pokeapp_stats_title">Stats base</string>
-    <string name="pokeapp_error">Error</string>
-    <string name="pokeapp_retry">Reintentar</string>
+    <string name="pokeapp_error">Algo salió mal</string>
+    <string name="pokeapp_retry">Volver a intentar</string>
     <string name="pokeapp_no_evolutions">No hay evoluciones</string>
     <string name="pokeapp_legendary"> Legendario </string>
     <string name="pokeapp_baby"> Bebé </string>

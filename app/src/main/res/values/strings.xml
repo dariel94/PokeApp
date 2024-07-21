@@ -3,7 +3,7 @@
     <string name="pokeapp_height">Height</string>
     <string name="pokeapp_weight">Weight</string>
     <string name="pokeapp_stats_title">Base Stats</string>
-    <string name="pokeapp_error">Error</string>
+    <string name="pokeapp_error">Something went wrong</string>
     <string name="pokeapp_retry">Retry</string>
     <string name="pokeapp_no_evolutions">No evolutions</string>
     <string name="pokeapp_legendary"> Legendary </string>

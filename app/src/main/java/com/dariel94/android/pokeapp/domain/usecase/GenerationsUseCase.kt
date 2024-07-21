@@ -7,19 +7,10 @@ package com.dariel94.android.pokeapp.domain.usecase
 
 import com.dariel94.android.pokeapp.domain.NetworkState
 import com.dariel94.android.pokeapp.domain.repository.GenerationsRepository
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 class GenerationsUseCase @Inject constructor(
     private val generationsRepository: GenerationsRepository
 ) {
-    suspend fun invoke() : NetworkState<List<String>> = try {
-        val generations = withContext(Dispatchers.IO) {
-            generationsRepository.getGenerations()
-        }
-        NetworkState.Success(generations)
-    } catch (e: Throwable) {
-        NetworkState.Error(e)
-    }
+    suspend fun invoke() : NetworkState<List<String>> = generationsRepository.getGenerations()
 }

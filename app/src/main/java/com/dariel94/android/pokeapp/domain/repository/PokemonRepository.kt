@@ -10,7 +10,7 @@ interface PokemonRepository {
 
     suspend fun getPokemon(id: String, lan: String): NetworkState<Pokemon>
 
-    suspend fun getFavorites(): List<String>?
+    suspend fun getFavorites(): NetworkState<List<String>?>
 
     suspend fun setFavorite(id: String, value: Boolean)
 }

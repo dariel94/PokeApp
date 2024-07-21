@@ -5,6 +5,8 @@
 
 package com.dariel94.android.pokeapp.domain.repository
 
+import com.dariel94.android.pokeapp.domain.NetworkState
+
 interface GenerationsRepository {
-    suspend fun getGenerations(): List<String>
+    suspend fun getGenerations(): NetworkState<List<String>>
 }

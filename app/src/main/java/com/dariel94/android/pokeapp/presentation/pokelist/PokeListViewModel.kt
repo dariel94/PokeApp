@@ -12,6 +12,7 @@ import com.dariel94.android.pokeapp.domain.usecase.TypesUseCase
 import com.dariel94.android.pokeapp.presentation.mapper.PokemonSimpleToUIMapper
 import com.dariel94.android.pokeapp.presentation.model.PokeListData
 import com.dariel94.android.pokeapp.presentation.model.UIState
+import com.dariel94.android.pokeapp.presentation.utils.StringUtils
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -65,13 +66,13 @@ class PokeListViewModel @Inject constructor(
                             },
                             types,
                             generations,
-                            listOf("legendary", "favourite"),
+                            listOf(StringUtils.LEGENDARY, StringUtils.FAVORITE),
                             favorites,
                         )
                     )
                 }
                 is NetworkState.Error -> {
-                    val msg = pokemonListState.error.message ?: "Error"
+                    val msg = pokemonListState.error.message ?: StringUtils.ERROR
                     mutableViewState.value = UIState.Error(msg)
                 }
             }
@@ -93,7 +94,7 @@ class PokeListViewModel @Inject constructor(
                     )
                 }
                 is NetworkState.Error -> {
-                    val msg = favoritesState.error.message ?: "Error"
+                    val msg = favoritesState.error.message ?: StringUtils.ERROR
                     mutableViewState.value = UIState.Error(msg)
                 }
             }

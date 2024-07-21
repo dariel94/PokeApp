@@ -49,9 +49,13 @@ class StatWidget @JvmOverloads constructor(
 
     private fun animateStat() {
         stat?.let {
-            ObjectAnimator.ofInt(statBar, "progress", it.value)
+            ObjectAnimator.ofInt(statBar, PROGRESS, it.value)
                 .setDuration(1000)
                 .start()
         }
+    }
+
+    companion object {
+        private const val PROGRESS = "progress"
     }
 }

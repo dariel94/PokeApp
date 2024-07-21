@@ -3,6 +3,7 @@ package com.dariel94.android.pokeapp.presentation.pokelist.adapter
 import android.annotation.SuppressLint
 import android.widget.Filter
 import com.dariel94.android.pokeapp.presentation.model.PokemonSimpleUI
+import com.dariel94.android.pokeapp.presentation.utils.StringUtils
 
 /**
  * Created by dariel94 on 31/10/2021.
@@ -57,12 +58,12 @@ class PokemonListFilter(
         }
 
         if (cats.isNotEmpty()) {
-            if (cats.contains("legendary")) {
+            if (cats.contains(StringUtils.LEGENDARY)) {
                 list = list.filter {
                     it.legendary
                 }
             }
-            if (cats.contains("favourite")) {
+            if (cats.contains(StringUtils.FAVORITE)) {
                 list = list.filter {
                     favoritesList?.contains(it.id) ?: false
                 }

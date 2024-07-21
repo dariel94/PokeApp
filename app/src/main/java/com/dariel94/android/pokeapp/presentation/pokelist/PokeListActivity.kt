@@ -26,6 +26,7 @@ import androidx.activity.result.contract.ActivityResultContracts
 import com.dariel94.android.pokeapp.presentation.detail.PokemonDetailActivity
 import com.dariel94.android.pokeapp.presentation.detail.adapter.PokeListListener
 import com.dariel94.android.pokeapp.presentation.utils.LanguageUtils
+import com.dariel94.android.pokeapp.presentation.utils.StringUtils
 
 
 /**
@@ -170,7 +171,7 @@ class PokeListActivity : BaseActivity(), OptionFilterListener, PokeListListener 
 
     override fun onPokemonClicked(id: String) {
         val intent = Intent(this, PokemonDetailActivity::class.java)
-        intent.putExtra("id", id)
+        intent.putExtra(StringUtils.ID_PARAM, id)
         pokeListActivityResultLauncher.launch(intent)
     }
 

@@ -5,6 +5,8 @@
 
 package com.dariel94.android.pokeapp.domain.repository
 
+import com.dariel94.android.pokeapp.domain.NetworkState
+
 interface TypesRepository {
-    suspend fun getTypes(): List<String>
+    suspend fun getTypes(): NetworkState<List<String>>
 }

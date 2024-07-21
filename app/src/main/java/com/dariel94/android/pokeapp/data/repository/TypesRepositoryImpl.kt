@@ -6,6 +6,7 @@
 package com.dariel94.android.pokeapp.data.repository
 
 import com.dariel94.android.pokeapp.data.source.TypesRemoteDataSource
+import com.dariel94.android.pokeapp.domain.NetworkState
 import com.dariel94.android.pokeapp.domain.repository.TypesRepository
 import javax.inject.Inject
 
@@ -13,7 +14,11 @@ class TypesRepositoryImpl @Inject constructor(
     private val typesRemoteDataSource: TypesRemoteDataSource
 ) : TypesRepository {
 
-    override suspend fun getTypes(): List<String> =
-        typesRemoteDataSource.getTypes().results.map { it.name }
-
+    override suspend fun getTypes(): NetworkState<List<String>> {
+        return try {
+            NetworkState.Success(typesRemoteDataSource.getTypes().results.map { it.name })
+        } catch (e: Throwable) {
+            NetworkState.Error(e)
+        }
+    }
 }

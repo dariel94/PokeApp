@@ -1,9 +1,11 @@
 package com.dariel94.android.pokeapp.data.repository
 
+import android.util.Log
 import com.dariel94.android.pokeapp.data.database.model.PokemonEntity
 import com.dariel94.android.pokeapp.data.database.model.mapToDomain
 import com.dariel94.android.pokeapp.data.source.PokemonCacheDataSource
 import com.dariel94.android.pokeapp.data.source.PokemonRemoteDataSource
+import com.dariel94.android.pokeapp.data.utils.StringUtils
 import com.dariel94.android.pokeapp.domain.NetworkState
 import com.dariel94.android.pokeapp.domain.model.Pokemon
 import com.dariel94.android.pokeapp.domain.repository.PokemonRepository
@@ -32,18 +34,28 @@ class PokemonRepositoryImpl @Inject constructor(
 
             NetworkState.Success(remotePokemon)
         } catch (e: Throwable) {
-            localPokemon?.let {
-                NetworkState.Success(it.mapToDomain())
+            if (localPokemon != null) {
+                NetworkState.Success(localPokemon.mapToDomain())
+            } else {
+                NetworkState.Error(e)
             }
+        }
+    }
+
+    override suspend fun getFavorites(): NetworkState<List<String>?> {
+        return try {
+            NetworkState.Success(cacheDataSource.getFavorites())
+        } catch (e: Throwable) {
             NetworkState.Error(e)
         }
     }
 
-    override suspend fun getFavorites(): List<String>? {
-        return cacheDataSource.getFavorites()
-    }
-
     override suspend fun setFavorite(id: String, value: Boolean) {
-        cacheDataSource.setFavourite(id, value)
+        try {
+            cacheDataSource.setFavourite(id, value)
+        } catch (e: Throwable) {
+            Log.d(StringUtils.ERROR, e.message ?: "")
+        }
+
     }
 }

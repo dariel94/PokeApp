@@ -15,6 +15,7 @@ import com.dariel94.android.pokeapp.R
 import com.dariel94.android.pokeapp.domain.model.Variety
 import com.dariel94.android.pokeapp.presentation.detail.PokemonDetailActivity
 import com.dariel94.android.pokeapp.presentation.utils.PokemonUtils
+import com.dariel94.android.pokeapp.presentation.utils.StringUtils
 import com.dariel94.android.pokeapp.presentation.utils.UIUtils
 
 /**
@@ -47,7 +48,7 @@ class VarietiesAdapter(
 
         viewHolder.itemView.setOnClickListener {
             val intent = Intent(context, PokemonDetailActivity::class.java)
-            intent.putExtra("id", variety.id)
+            intent.putExtra(StringUtils.ID_PARAM, variety.id)
             context.startActivity(intent)
         }
 

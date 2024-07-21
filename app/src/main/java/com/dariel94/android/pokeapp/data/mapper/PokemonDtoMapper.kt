@@ -6,7 +6,12 @@ package com.dariel94.android.pokeapp.data.mapper
 
 import com.dariel94.android.pokeapp.data.api.pokeapi.model.*
 import com.dariel94.android.pokeapp.data.utils.StringUtils
-import com.dariel94.android.pokeapp.domain.model.*
+import com.dariel94.android.pokeapp.data.utils.StringUtils.ENGLISH
+import com.dariel94.android.pokeapp.domain.model.Pokemon
+import com.dariel94.android.pokeapp.domain.model.Stat
+import com.dariel94.android.pokeapp.domain.model.Variety
+import com.dariel94.android.pokeapp.domain.model.EvolutionChain
+import com.dariel94.android.pokeapp.domain.model.EvolutionDetail
 import com.dariel94.android.pokeapp.presentation.utils.capitalizeWords
 import com.dariel94.android.pokeapp.presentation.utils.normalizeProperty
 import com.dariel94.android.pokeapp.presentation.utils.safe
@@ -79,7 +84,7 @@ private fun getFlavourText(lan: String, entries: List<FlavorTextEntry>): String 
         return it
     }
     entries.find {
-        it.language.name == "en"
+        it.language.name == ENGLISH
     }?.flavorText?.let {
         return it
     }
@@ -93,7 +98,7 @@ private fun getSpecieText(lan: String, entries: List<GeneraTextEntry>): String {
         return it
     }
     entries.find {
-        it.language.name == "en"
+        it.language.name == ENGLISH
     }?.genus?.let {
         return it
     }
@@ -107,7 +112,7 @@ private fun getEggGroupText(lan: String, entries: List<EggGroupNameDto>?): Strin
         return it
     }
     entries?.find {
-        it.language.name == "en"
+        it.language.name == ENGLISH
     }?.name?.let {
         return it
     }

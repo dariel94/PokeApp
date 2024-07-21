@@ -20,6 +20,7 @@ import com.dariel94.android.pokeapp.presentation.model.PokemonUI
 import com.dariel94.android.pokeapp.presentation.model.UIState
 import com.dariel94.android.pokeapp.presentation.utils.LanguageUtils
 import com.dariel94.android.pokeapp.presentation.utils.PokemonUtils
+import com.dariel94.android.pokeapp.presentation.utils.StringUtils
 import com.dariel94.android.pokeapp.presentation.utils.UIUtils
 import com.dariel94.android.pokeapp.presentation.utils.show
 import com.dariel94.android.pokeapp.presentation.widgets.PokemonTypeWidget
@@ -40,7 +41,7 @@ class PokemonDetailActivity : BaseActivity() {
     }
 
     private val id: String by lazy {
-        intent.getStringExtra("id").toString()
+        intent.getStringExtra(StringUtils.ID_PARAM).toString()
     }
 
     private var favItem: MenuItem? = null

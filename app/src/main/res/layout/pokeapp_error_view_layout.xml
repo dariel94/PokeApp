@@ -14,7 +14,7 @@
             android:layout_height="wrap_content"
             android:text="@string/pokeapp_error"
             android:layout_gravity="center"
-            android:textSize="40sp" />
+            android:textSize="22sp" />
 
         <TextView
             android:id="@+id/error_text"
@@ -22,6 +22,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:gravity="center"
+            android:padding="16dp"
             android:text="@string/pokeapp_error" />
 
         <androidx.appcompat.widget.AppCompatButton
@@ -29,7 +30,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:paddingHorizontal="16dp"
             android:gravity="center"
+            android:background="@drawable/pokeapp_solid_rounded_corner"
+            android:textColor="@color/pokeapp_white"
+            android:backgroundTint="#00B0FF"
             android:text="@string/pokeapp_retry"/>
 
 </LinearLayout>

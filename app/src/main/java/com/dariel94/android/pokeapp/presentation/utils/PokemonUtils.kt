@@ -1,6 +1,7 @@
 package com.dariel94.android.pokeapp.presentation.utils
 
 import com.dariel94.android.pokeapp.R
+import com.dariel94.android.pokeapp.presentation.utils.StringUtils.SPANISH
 import java.util.*
 
 /**
@@ -113,7 +114,7 @@ object PokemonUtils {
     }
 
     fun getTimeOfDayTranslation(timeOfDay: String, lan: String): String {
-        if (lan == "es") {
+        if (lan == SPANISH) {
             return when (timeOfDay) {
                 "night" -> "noche"
                 else -> "dia"
@@ -123,7 +124,7 @@ object PokemonUtils {
     }
 
     fun getCategoryTranslation(cat: String, lan: String): String {
-        if (lan == "es") {
+        if (lan == SPANISH) {
             return when (cat) {
                 "legendary" -> "Legendario"
                 "favourite" -> "Favorito"

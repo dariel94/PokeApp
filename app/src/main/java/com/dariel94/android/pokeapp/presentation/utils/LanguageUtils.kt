@@ -10,20 +10,23 @@ import android.content.Intent
 import android.content.res.Configuration
 import com.dariel94.android.pokeapp.presentation.core.ui.BaseActivity
 import com.dariel94.android.pokeapp.presentation.pokelist.PokeListActivity
+import com.dariel94.android.pokeapp.presentation.utils.StringUtils.ENGLISH
+import com.dariel94.android.pokeapp.presentation.utils.StringUtils.SPANISH
 import java.util.Locale
 
 object LanguageUtils {
+
     fun getLanguage(context: Context): String {
-        val allowed = arrayOf("en", "es")
+        val allowed = arrayOf(ENGLISH, SPANISH)
         val lan = context.resources.configuration.locale.language
         if (allowed.contains(lan)) {
             return lan
         }
-        return "en"
+        return ENGLISH
     }
 
     fun setLocale(lang: String?, activity: BaseActivity) {
-        val myLocale = Locale(lang)
+        val myLocale = Locale(lang ?: "")
         val res = activity.resources
         val dm = res.displayMetrics
         val conf: Configuration = res.configuration

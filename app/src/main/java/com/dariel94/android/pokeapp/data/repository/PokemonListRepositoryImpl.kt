@@ -31,7 +31,7 @@ class PokemonListRepositoryImpl @Inject constructor(
         } catch (e: Throwable) {
             val cachedPokemonList = cacheDataSource.getPokemonList()
 
-            if (cachedPokemonList.isNullOrEmpty()) {
+            if (cachedPokemonList.isEmpty()) {
                 NetworkState.Error(e)
             } else {
                 val pokemonList = cachedPokemonList.map { it.mapToPokemonSimple() }
