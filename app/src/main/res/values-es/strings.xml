@@ -51,6 +51,7 @@
     <string name="pokeapp_gender">Género</string>
     <string name="pokeapp_if">Si</string>
     <string name="pokeapp_search_hint">"Nombre o id"</string>
+    <string name="pokeapp_empty_state">"No hay resultados"</string>
 
     <string-array name="pokeapp_types">
         <item>Fire</item>

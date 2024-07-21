@@ -25,7 +25,7 @@ import com.dariel94.android.pokeapp.presentation.utils.UIUtils
  */
 class PokeListAdapter(
     val context: Context,
-    private val pokeListListener: PokeListListener,
+    private val pokeListListener: PokeListListener?,
 ) : RecyclerView.Adapter<PokeListAdapter.PokemonViewHolder>(), Filterable {
 
     private val filter = PokemonListFilter(this)
@@ -35,8 +35,14 @@ class PokeListAdapter(
             filteredDataset = field
             filter.list = field
         }
-    var filteredDataset = dataset
+    private var filteredDataset = dataset
 
+    fun setFilteredDataset(data: List<PokemonSimpleUI>) {
+        filteredDataset = data
+        if (itemCount == 0) {
+            pokeListListener?.onEmptyList()
+        }
+    }
     fun setFavoritesList(list: List<String>?) {
         filter.favoritesList = list
     }

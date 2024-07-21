@@ -36,7 +36,7 @@ class PokemonListFilter(
     @Suppress("UNCHECKED_CAST")
     override fun publishResults(constraint: CharSequence?, results: FilterResults?) {
         results?.values?.let {
-            adapter.filteredDataset = it as List<PokemonSimpleUI>
+            adapter.setFilteredDataset(it as List<PokemonSimpleUI>)
             adapter.notifyDataSetChanged()
         }
     }

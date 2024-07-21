@@ -88,6 +88,7 @@ class PokeListActivity : BaseActivity(), OptionFilterListener, PokeListListener 
             }
             override fun onQueryTextChange(newText: String): Boolean {
                 pokeListAdapter.filter.filter(newText)
+                binding.emptyStateView.hide()
                 return false
             }
         })
@@ -159,6 +160,7 @@ class PokeListActivity : BaseActivity(), OptionFilterListener, PokeListListener 
     private fun clearFilters() {
         onFilterData(emptyList(), emptyList(), emptyList())
         filterBottomSheet.clearSelections()
+        binding.emptyStateView.hide()
     }
 
     @Suppress("UNUSED_PARAMETER")
@@ -170,5 +172,9 @@ class PokeListActivity : BaseActivity(), OptionFilterListener, PokeListListener 
         val intent = Intent(this, PokemonDetailActivity::class.java)
         intent.putExtra("id", id)
         pokeListActivityResultLauncher.launch(intent)
+    }
+
+    override fun onEmptyList() {
+        binding.emptyStateView.show()
     }
 }

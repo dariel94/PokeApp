@@ -7,4 +7,5 @@ package com.dariel94.android.pokeapp.presentation.detail.adapter
 
 interface PokeListListener {
     fun onPokemonClicked(id: String)
+    fun onEmptyList()
 }
