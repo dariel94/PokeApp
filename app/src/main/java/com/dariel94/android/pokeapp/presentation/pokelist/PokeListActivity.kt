@@ -1,6 +1,7 @@
 package com.dariel94.android.pokeapp.presentation.pokelist
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.View
@@ -20,6 +21,10 @@ import com.dariel94.android.pokeapp.presentation.widgets.filter.FilterBottomShee
 import com.dariel94.android.pokeapp.presentation.widgets.filter.OptionFilterListener
 import dagger.hilt.android.AndroidEntryPoint
 import android.view.MenuItem
+import androidx.activity.result.ActivityResult
+import androidx.activity.result.contract.ActivityResultContracts
+import com.dariel94.android.pokeapp.presentation.detail.PokemonDetailActivity
+import com.dariel94.android.pokeapp.presentation.detail.adapter.PokeListListener
 import com.dariel94.android.pokeapp.presentation.utils.LanguageUtils
 
 
@@ -27,10 +32,10 @@ import com.dariel94.android.pokeapp.presentation.utils.LanguageUtils
  * Created by dariel94 on 31/10/2021.
  */
 @AndroidEntryPoint
-class PokeListActivity : BaseActivity(), OptionFilterListener {
+class PokeListActivity : BaseActivity(), OptionFilterListener, PokeListListener {
 
     private val pokeListViewModel by viewModels<PokeListViewModel>()
-    private var pokeListAdapter: PokeListAdapter = PokeListAdapter(this)
+    private var pokeListAdapter: PokeListAdapter = PokeListAdapter(this, this)
     private lateinit var searchView: SearchView
     private val filterBottomSheet: FilterBottomSheet by lazy {
         FilterBottomSheet(this)
@@ -38,6 +43,11 @@ class PokeListActivity : BaseActivity(), OptionFilterListener {
     private val binding: PokeappActivityPokelistBinding by lazy {
         PokeappActivityPokelistBinding.inflate(layoutInflater)
     }
+
+    private val pokeListActivityResultLauncher = registerForActivityResult(
+        ActivityResultContracts.StartActivityForResult(),
+        ::onActionDefaultLauncher
+    )
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -121,11 +131,13 @@ class PokeListActivity : BaseActivity(), OptionFilterListener {
             pokeListAdapter.notifyDataSetChanged()
         }
         showLayoutView()
-        filterBottomSheet.setFilterData(
+        pokemonListData.types?.let {
+            filterBottomSheet.setFilterData(
             pokemonListData.types ?: emptyList(),
             pokemonListData.generations ?: emptyList(),
-            pokemonListData.categories ?: emptyList()
-        )
+            pokemonListData.categories ?: emptyList())
+        }
+        pokeListAdapter.setFavoritesList(pokemonListData.favourites)
     }
 
     private fun setListAnimation() {
@@ -147,5 +159,16 @@ class PokeListActivity : BaseActivity(), OptionFilterListener {
     private fun clearFilters() {
         onFilterData(emptyList(), emptyList(), emptyList())
         filterBottomSheet.clearSelections()
+    }
+
+    @Suppress("UNUSED_PARAMETER")
+    private fun onActionDefaultLauncher(result: ActivityResult) {
+        pokeListViewModel.fetchFavorites()
+    }
+
+    override fun onPokemonClicked(id: String) {
+        val intent = Intent(this, PokemonDetailActivity::class.java)
+        intent.putExtra("id", id)
+        pokeListActivityResultLauncher.launch(intent)
     }
 }

@@ -18,11 +18,14 @@ import com.dariel94.android.pokeapp.presentation.detail.adapter.PokemonPagerAdap
 import com.dariel94.android.pokeapp.presentation.mapper.toUI
 import com.dariel94.android.pokeapp.presentation.model.PokemonUI
 import com.dariel94.android.pokeapp.presentation.model.UIState
-import com.dariel94.android.pokeapp.presentation.utils.*
+import com.dariel94.android.pokeapp.presentation.utils.LanguageUtils
+import com.dariel94.android.pokeapp.presentation.utils.PokemonUtils
+import com.dariel94.android.pokeapp.presentation.utils.UIUtils
+import com.dariel94.android.pokeapp.presentation.utils.show
 import com.dariel94.android.pokeapp.presentation.widgets.PokemonTypeWidget
-import com.google.android.material.appbar.AppBarLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import dagger.hilt.android.AndroidEntryPoint
+
 
 /**
  * Created by dariel94 on 31/10/2021.
@@ -54,7 +57,7 @@ class PokemonDetailActivity : BaseActivity() {
         setUpCollapsingToolBar()
 
         pokemonDetailViewModel.getViewStateLiveData()
-            .observe(this, { updateViewStatus(it) })
+            .observe(this) { updateViewStatus(it) }
     }
 
     override fun getLayoutView() : View = binding.root
@@ -133,6 +136,7 @@ class PokemonDetailActivity : BaseActivity() {
             favItem?.apply {
                 isChecked = pokemon.isFavorite
                 if (pokemon.isFavorite) {
+                    isChecked = true
                     icon = getDrawable(applicationContext, R.drawable.pokeapp_ic_favorite)
                 }
             }
@@ -161,13 +165,12 @@ class PokemonDetailActivity : BaseActivity() {
     }
 
     private fun setUpCollapsingToolBar() {
-        binding.pokeappAppbarlayout.addOnOffsetChangedListener(
-            AppBarLayout.OnOffsetChangedListener { _, verticalOffset ->
-                val h = binding.collapsingToolbarLayout.height
-                val alpha = (verticalOffset * 3 + h).toFloat() / h
-                binding.image.alpha = alpha
-                binding.typesContainer.alpha = alpha
-                binding.rightContainer.alpha = alpha
-            })
+        binding.pokeappAppbarlayout.addOnOffsetChangedListener { _, verticalOffset ->
+            val h = binding.collapsingToolbarLayout.height
+            val alpha = (verticalOffset * 3 + h).toFloat() / h
+            binding.image.alpha = alpha
+            binding.typesContainer.alpha = alpha
+            binding.rightContainer.alpha = alpha
+        }
     }
 }

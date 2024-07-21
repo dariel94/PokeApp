@@ -11,10 +11,11 @@
     <string name="pokeapp_mythic"> Mítico </string>
     <string name="pokeapp_set_as_favorite">Guardar como favorito</string>
     <string name="pokeapp_egg_groups">Grupos de huevo</string>
-    <string name="pokeapp_growth_rate">Tasa de crecimiento</string>
+    <string name="pokeapp_growth_rate">Crecimiento</string>
     <string name="pokeapp_gender_rate">Género</string>
     <string name="pokeapp_capture_rate">Tasa de captura</string>
     <string name="pokeapp_base_happiness">Felicidad base</string>
+    <string name="pokeapp_happiness">Felicidad</string>
     <string name="pokeapp_hatch_counter">Contador de eclosiones</string>
     <string name="pokeapp_generation">Generacion</string>
     <string name="pokeapp_habitat">Habitad</string>
@@ -39,7 +40,7 @@
     <string name="pokeapp_steps">pasos</string>
     <string name="pokeapp_held">Llevar</string>
     <string name="pokeapp_in">en</string>
-    <string name="pokeapp_known">Aprender</string>
+    <string name="pokeapp_known">Saber</string>
     <string name="pokeapp_beauty">Belleza</string>
     <string name="pokeapp_affection">Afecto</string>
     <string name="pokeapp_needs_over_world_rain">Necesita estar sobre la lluvia</string>

@@ -29,12 +29,12 @@ private fun AbilityDto.getAbilityDesc(lan: String): String {
     this.flavorTextEntries?.find {
         it.language.name == lan
     }?.let {
-        return it.flavorText
+        return it.flavorText.replace("\n", " ")
     }
     this.flavorTextEntries?.find {
         it.language.name == "en"
     }?.let {
-        return it.flavorText
+        return it.flavorText.replace("\n", " ")
     }
-    return this.flavorTextEntries?.getOrNull(0)?.flavorText ?: ""
+    return this.flavorTextEntries?.getOrNull(0)?.flavorText?.replace("\n", " ") ?: ""
 }

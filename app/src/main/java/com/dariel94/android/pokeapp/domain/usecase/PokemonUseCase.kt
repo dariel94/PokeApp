@@ -3,8 +3,6 @@ package com.dariel94.android.pokeapp.domain.usecase
 import com.dariel94.android.pokeapp.domain.NetworkState
 import com.dariel94.android.pokeapp.domain.model.Pokemon
 import com.dariel94.android.pokeapp.domain.repository.PokemonRepository
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 /**
@@ -13,16 +11,7 @@ import javax.inject.Inject
 class PokemonUseCase @Inject constructor(
     private val repository: PokemonRepository
 ) {
-    suspend fun invoke(id: String, lan: String) : NetworkState<Pokemon> = try {
-        val pokemon = withContext(Dispatchers.IO) {
-            repository.getPokemon(id, lan)
-        }
-        NetworkState.Success(pokemon)
-    } catch (e: Throwable) {
-        NetworkState.Error(e)
-    }
-
-    suspend fun updatePokemon(pokemon: Pokemon) {
-        repository.updatePokemon(pokemon)
+    suspend fun invoke(id: String, lan: String) : NetworkState<Pokemon> {
+        return repository.getPokemon(id, lan)
     }
 }

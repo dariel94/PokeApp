@@ -9,5 +9,6 @@ data class PokeListData(
     val pokemons: List<PokemonSimpleUI>?,
     val types: List<String>?,
     val generations: List<String>?,
-    val categories: List<String>?
+    val categories: List<String>?,
+    val favourites: List<String>?,
 )

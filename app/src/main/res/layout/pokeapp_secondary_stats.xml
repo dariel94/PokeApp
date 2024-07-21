@@ -11,7 +11,6 @@
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="4dp"
         android:orientation="vertical">
 
         <TextView
@@ -117,7 +116,6 @@
             android:id="@+id/genderRate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="12dp"
             android:maxLines="1"
             tools:text="gender rate"/>
 
@@ -125,7 +123,6 @@
             android:id="@+id/eggCycles"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="12dp"
             android:maxLines="1"
             tools:text="cycles"/>
 
@@ -133,14 +130,12 @@
             android:id="@+id/eggGroups"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="12dp"
             android:maxLines="1"
             tools:text="monster"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="12dp"
             android:layout_marginTop="16dp"
             android:textStyle="bold"
             android:textSize="18sp"/>
@@ -149,7 +144,6 @@
             android:id="@+id/catchRate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="12dp"
             android:maxLines="1"
             tools:text="catch rate"/>
 
@@ -157,7 +151,6 @@
             android:id="@+id/growthRate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="12dp"
             android:maxLines="1"
             tools:text="growth rate"/>
 
@@ -165,7 +158,6 @@
             android:id="@+id/baseHappiness"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="12dp"
             android:maxLines="1"
             tools:text="base happiness"/>
 
@@ -173,7 +165,6 @@
             android:id="@+id/baseExperience"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="12dp"
             android:maxLines="1"
             tools:text="base experience"/>
 

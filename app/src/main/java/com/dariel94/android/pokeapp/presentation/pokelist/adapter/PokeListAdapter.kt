@@ -1,11 +1,13 @@
 package com.dariel94.android.pokeapp.presentation.pokelist.adapter
 
 import android.content.Context
-import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.*
+import android.widget.Filterable
+import android.widget.TextView
+import android.widget.LinearLayout
+import android.widget.ImageView
 import androidx.cardview.widget.CardView
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
@@ -13,7 +15,7 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.dariel94.android.pokeapp.R
 import com.dariel94.android.pokeapp.presentation.utils.PokemonUtils
-import com.dariel94.android.pokeapp.presentation.detail.PokemonDetailActivity
+import com.dariel94.android.pokeapp.presentation.detail.adapter.PokeListListener
 import com.dariel94.android.pokeapp.presentation.model.PokemonSimpleUI
 import com.dariel94.android.pokeapp.presentation.utils.LanguageUtils
 import com.dariel94.android.pokeapp.presentation.utils.UIUtils
@@ -22,7 +24,8 @@ import com.dariel94.android.pokeapp.presentation.utils.UIUtils
  * Created by dariel94 on 31/10/2021.
  */
 class PokeListAdapter(
-    private val context: Context
+    val context: Context,
+    private val pokeListListener: PokeListListener,
 ) : RecyclerView.Adapter<PokeListAdapter.PokemonViewHolder>(), Filterable {
 
     private val filter = PokemonListFilter(this)
@@ -33,6 +36,10 @@ class PokeListAdapter(
             filter.list = field
         }
     var filteredDataset = dataset
+
+    fun setFavoritesList(list: List<String>?) {
+        filter.favoritesList = list
+    }
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, type: Int): PokemonViewHolder =
         PokemonViewHolder(LayoutInflater.from(viewGroup.context)
@@ -61,9 +68,7 @@ class PokeListAdapter(
             .into(viewHolder.icon)
 
         viewHolder.itemView.setOnClickListener {
-            val intent = Intent(context, PokemonDetailActivity::class.java)
-            intent.putExtra("id", pokemon.id)
-            context.startActivity(intent)
+            pokeListListener?.onPokemonClicked(pokemon.id)
         }
     }
 

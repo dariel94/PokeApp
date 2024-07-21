@@ -3,16 +3,16 @@ package com.dariel94.android.pokeapp.presentation.pokelist.adapter
 import android.annotation.SuppressLint
 import android.widget.Filter
 import com.dariel94.android.pokeapp.presentation.model.PokemonSimpleUI
-import com.dariel94.android.pokeapp.presentation.utils.capitalizeFirst
 
 /**
  * Created by dariel94 on 31/10/2021.
  */
 class PokemonListFilter(
-    private val adapter: PokeListAdapter
+    private val adapter: PokeListAdapter,
 ): Filter() {
 
     var list = emptyList<PokemonSimpleUI>()
+    var favoritesList: List<String>? = null
 
     override fun performFiltering(constraint: CharSequence?): FilterResults {
         val filterString = constraint.toString()
@@ -56,9 +56,16 @@ class PokemonListFilter(
             }
         }
 
-        if (cats.isNotEmpty() && cats.contains("legendary")) {
-            list = list.filter {
-                it.legendary
+        if (cats.isNotEmpty()) {
+            if (cats.contains("legendary")) {
+                list = list.filter {
+                    it.legendary
+                }
+            }
+            if (cats.contains("favourite")) {
+                list = list.filter {
+                    favoritesList?.contains(it.id) ?: false
+                }
             }
         }
     }

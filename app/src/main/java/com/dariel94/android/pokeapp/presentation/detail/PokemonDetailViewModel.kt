@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.dariel94.android.pokeapp.domain.NetworkState
 import com.dariel94.android.pokeapp.domain.model.Pokemon
+import com.dariel94.android.pokeapp.domain.usecase.FavoritesUseCase
 import com.dariel94.android.pokeapp.domain.usecase.PokemonUseCase
 import com.dariel94.android.pokeapp.presentation.model.UIState
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -17,11 +18,11 @@ import javax.inject.Inject
  */
 @HiltViewModel
 class PokemonDetailViewModel @Inject constructor(
-    private val pokemonUseCase: PokemonUseCase
+    private val pokemonUseCase: PokemonUseCase,
+    private val favouritesUseCase: FavoritesUseCase,
 ) : ViewModel() {
 
     private val mutableViewState = MutableLiveData<UIState<Pokemon?>>()
-
     private var pokemon: Pokemon? = null
 
     fun getViewStateLiveData(): LiveData<UIState<Pokemon?>> {
@@ -49,7 +50,7 @@ class PokemonDetailViewModel @Inject constructor(
         pokemon?.let {
             it.isFavorite = favorite
             viewModelScope.launch {
-                pokemonUseCase.updatePokemon(it)
+                favouritesUseCase.setFavorite(it.id, favorite)
             }
         }
     }

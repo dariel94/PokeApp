@@ -20,7 +20,11 @@ class PokemonCacheDataSource @Inject constructor(
         pokemonDao.insert(pokemonEntity)
     }
 
-    suspend fun updatePokemon(pokemonEntity: PokemonEntity) {
-        pokemonDao.update(pokemonEntity)
+    suspend fun getFavorites(): List<String>? {
+        return pokemonDao.getFavorites()
+    }
+
+    suspend fun setFavourite(id: String, value: Boolean) {
+        pokemonDao.setFavorite(id, value)
     }
 }

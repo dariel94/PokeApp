@@ -104,7 +104,7 @@ private fun mapEvolutionChainToList(
                 }
             }
             evolutionDetail.knownMove?.let { condition += "\n${context.getString(R.string.pokeapp_known)} ${it.normalizeProperty()}" }
-            evolutionDetail.happiness?.let { condition += "\n${context.getString(R.string.pokeapp_base_happiness)} $it" }
+            evolutionDetail.happiness?.let { condition += "\n${context.getString(R.string.pokeapp_happiness)} $it" }
             evolutionDetail.beauty?.let { condition += "\n${context.getString(R.string.pokeapp_beauty)} $it" }
             evolutionDetail.affection?.let { condition += "\n${context.getString(R.string.pokeapp_affection)} $it" }
             if (evolutionDetail.needsOverWorldRain) { condition += "\n${context.getString(R.string.pokeapp_needs_over_world_rain)}" }

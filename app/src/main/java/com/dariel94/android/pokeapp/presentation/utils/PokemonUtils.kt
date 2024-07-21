@@ -99,12 +99,12 @@ object PokemonUtils {
         return when (lan) {
             "es" -> {
                 when (growthRate.lowercase()) {
-                    "slow" -> "Lenta"
-                    "medium" -> "Media"
-                    "fast" -> "Rápida"
-                    "medium-slow" -> "Media-Lenta"
-                    "fast-then-very-slow" -> "Rápida y luego lenta"
-                    "slow-then-very-fast" -> "Lenta y luego rápida"
+                    "slow" -> "Lento"
+                    "medium" -> "Medio"
+                    "fast" -> "Rápido"
+                    "medium-slow" -> "Medio-Lento"
+                    "fast-then-very-slow" -> "Rápido y luego lento"
+                    "slow-then-very-fast" -> "Lento y luego rápido"
                     else -> growthRate.capitalizeFirst()
                 }
             }
@@ -126,6 +126,7 @@ object PokemonUtils {
         if (lan == "es") {
             return when (cat) {
                 "legendary" -> "Legendario"
+                "favourite" -> "Favorito"
                 else -> cat.capitalizeFirst()
             }
         }

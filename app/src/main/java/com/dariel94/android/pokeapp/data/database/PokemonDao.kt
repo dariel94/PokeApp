@@ -15,6 +15,12 @@ interface PokemonDao {
     @Query("SELECT * FROM PokemonEntity WHERE id = :id")
     suspend fun getById(id: String): PokemonEntity?
 
+    @Query("SELECT id FROM PokemonEntity WHERE is_favorite = 1")
+    suspend fun getFavorites(): List<String>?
+
+    @Query("UPDATE PokemonEntity SET is_favorite = :value WHERE id == :id")
+    suspend fun setFavorite(id: String, value: Boolean)
+
     @Update
     suspend fun update(pokemonEntity: PokemonEntity)
 

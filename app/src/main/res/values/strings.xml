@@ -14,7 +14,8 @@
     <string name="pokeapp_growth_rate">Growth Rate</string>
     <string name="pokeapp_gender_rate">Gender</string>
     <string name="pokeapp_capture_rate">Capture Rate</string>
-    <string name="pokeapp_base_happiness">Happiness</string>
+    <string name="pokeapp_base_happiness">Base happiness</string>
+    <string name="pokeapp_happiness">Happiness</string>
     <string name="pokeapp_hatch_counter">Hatch Counter</string>
     <string name="pokeapp_generation">Generation</string>
     <string name="pokeapp_habitat">Habitat</string>

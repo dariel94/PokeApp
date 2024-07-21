@@ -1,8 +1,10 @@
 package com.dariel94.android.pokeapp.data.repository
 
+import com.dariel94.android.pokeapp.data.database.model.PokemonEntity
 import com.dariel94.android.pokeapp.data.database.model.mapToDomain
 import com.dariel94.android.pokeapp.data.source.PokemonCacheDataSource
 import com.dariel94.android.pokeapp.data.source.PokemonRemoteDataSource
+import com.dariel94.android.pokeapp.domain.NetworkState
 import com.dariel94.android.pokeapp.domain.model.Pokemon
 import com.dariel94.android.pokeapp.domain.repository.PokemonRepository
 import javax.inject.Inject
@@ -15,24 +17,33 @@ class PokemonRepositoryImpl @Inject constructor(
     private val cacheDataSource: PokemonCacheDataSource
 ) : PokemonRepository {
 
-    override suspend fun getPokemon(id: String, lan: String): Pokemon {
-        if (USE_CACHE) {
-            cacheDataSource.getPokemon(id)?.let {
-                return it.mapToDomain()
+    override suspend fun getPokemon(id: String, lan: String): NetworkState<Pokemon> {
+        var localPokemon: PokemonEntity? = null
+
+        return try {
+            localPokemon = cacheDataSource.getPokemon(id)
+            val remotePokemon = remoteDataSource.getPokemon(id, lan)
+
+            if (localPokemon == null) {
+                cacheDataSource.insertPokemon(remotePokemon.mapToEntity())
+            } else {
+                remotePokemon.isFavorite = localPokemon.isFavorite
             }
+
+            NetworkState.Success(remotePokemon)
+        } catch (e: Throwable) {
+            localPokemon?.let {
+                NetworkState.Success(it.mapToDomain())
+            }
+            NetworkState.Error(e)
         }
-        val remotePokemon = remoteDataSource.getPokemon(id, lan)
-        if (USE_CACHE) {
-            cacheDataSource.insertPokemon(remotePokemon.mapToEntity())
-        }
-        return remotePokemon
     }
 
-    override suspend fun updatePokemon(pokemon: Pokemon) {
-        cacheDataSource.updatePokemon(pokemon.mapToEntity())
+    override suspend fun getFavorites(): List<String>? {
+        return cacheDataSource.getFavorites()
     }
 
-    companion object {
-        private const val USE_CACHE = false
+    override suspend fun setFavorite(id: String, value: Boolean) {
+        cacheDataSource.setFavourite(id, value)
     }
 }

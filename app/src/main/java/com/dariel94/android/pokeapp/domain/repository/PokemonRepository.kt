@@ -1,5 +1,6 @@
 package com.dariel94.android.pokeapp.domain.repository
 
+import com.dariel94.android.pokeapp.domain.NetworkState
 import com.dariel94.android.pokeapp.domain.model.Pokemon
 
 /**
@@ -7,7 +8,9 @@ import com.dariel94.android.pokeapp.domain.model.Pokemon
  */
 interface PokemonRepository {
 
-    suspend fun getPokemon(id: String, lan: String): Pokemon
+    suspend fun getPokemon(id: String, lan: String): NetworkState<Pokemon>
 
-    suspend fun updatePokemon(pokemon: Pokemon)
+    suspend fun getFavorites(): List<String>?
+
+    suspend fun setFavorite(id: String, value: Boolean)
 }
