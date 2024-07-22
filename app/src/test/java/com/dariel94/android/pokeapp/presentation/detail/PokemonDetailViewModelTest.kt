@@ -4,6 +4,7 @@ import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.dariel94.android.pokeapp.domain.NetworkState
 import com.dariel94.android.pokeapp.domain.model.EvolutionChain
 import com.dariel94.android.pokeapp.domain.model.Pokemon
+import com.dariel94.android.pokeapp.domain.usecase.FavoritesUseCase
 import com.dariel94.android.pokeapp.domain.usecase.PokemonUseCase
 import com.dariel94.android.pokeapp.presentation.model.UIState
 import com.dariel94.android.pokeapp.utils.getOrAwaitValue
@@ -32,6 +33,9 @@ class PokemonDetailViewModelTest {
     @MockK
     private lateinit var useCase: PokemonUseCase
 
+    @MockK
+    private lateinit var favoritesUseCase: FavoritesUseCase
+
     private lateinit var viewModel: PokemonDetailViewModel
 
     private val testDispatcher = TestCoroutineDispatcher()
@@ -40,7 +44,7 @@ class PokemonDetailViewModelTest {
     fun setUp() {
         Dispatchers.setMain(testDispatcher)
         MockKAnnotations.init(this)
-        viewModel = PokemonDetailViewModel(useCase)
+        viewModel = PokemonDetailViewModel(useCase, favoritesUseCase)
     }
 
     @After

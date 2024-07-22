@@ -10,7 +10,7 @@ import com.dariel94.android.pokeapp.domain.repository.PokemonRepository
 import javax.inject.Inject
 
 class FavoritesUseCase @Inject constructor(
-    private val repository: PokemonRepository,
+    private val repository: PokemonRepository
 ) {
     suspend fun invoke() : NetworkState<List<String>?> = repository.getFavorites()
 

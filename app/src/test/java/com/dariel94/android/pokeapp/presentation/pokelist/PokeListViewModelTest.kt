@@ -3,6 +3,7 @@ package com.dariel94.android.pokeapp.presentation.pokelist
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.dariel94.android.pokeapp.domain.NetworkState
 import com.dariel94.android.pokeapp.domain.model.PokemonSimple
+import com.dariel94.android.pokeapp.domain.usecase.FavoritesUseCase
 import com.dariel94.android.pokeapp.domain.usecase.GenerationsUseCase
 import com.dariel94.android.pokeapp.domain.usecase.PokemonListUseCase
 import com.dariel94.android.pokeapp.domain.usecase.TypesUseCase
@@ -36,6 +37,9 @@ class PokeListViewModelTest {
     private lateinit var typesUseCase: TypesUseCase
 
     @MockK
+    private lateinit var favoritesUseCase: FavoritesUseCase
+
+    @MockK
     private lateinit var generationsUseCase: GenerationsUseCase
 
     private lateinit var viewModel: PokeListViewModel
@@ -46,7 +50,7 @@ class PokeListViewModelTest {
     fun setUp() {
         Dispatchers.setMain(testDispatcher)
         MockKAnnotations.init(this)
-        viewModel = PokeListViewModel(pokemonListUseCase, typesUseCase, generationsUseCase)
+        viewModel = PokeListViewModel(pokemonListUseCase, typesUseCase, generationsUseCase, favoritesUseCase)
     }
 
     @After
@@ -60,6 +64,7 @@ class PokeListViewModelTest {
         coEvery { pokemonListUseCase.invoke() } returns NetworkState.Success(getMockedPokemonList())
         coEvery { typesUseCase.invoke() } returns NetworkState.Success(emptyList())
         coEvery { generationsUseCase.invoke() } returns NetworkState.Success(emptyList())
+        coEvery { favoritesUseCase.invoke() } returns NetworkState.Success(emptyList())
 
         viewModel.fetchPokemonListData()
 
@@ -73,6 +78,7 @@ class PokeListViewModelTest {
         coEvery { pokemonListUseCase.invoke() } returns NetworkState.Error(Error())
         coEvery { typesUseCase.invoke() } returns NetworkState.Success(emptyList())
         coEvery { generationsUseCase.invoke() } returns NetworkState.Success(emptyList())
+        coEvery { favoritesUseCase.invoke() } returns NetworkState.Success(emptyList())
 
         viewModel.fetchPokemonListData()
 
