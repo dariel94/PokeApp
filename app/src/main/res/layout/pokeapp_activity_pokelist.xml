@@ -50,5 +50,19 @@
 
     </LinearLayout>
 
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/filterFab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end|bottom"
+        android:src="@drawable/pokeapp_ic_filter"
+        app:tint="@color/pokeapp_white"
+        android:contentDescription="@string/pokeapp_filter"
+        android:layout_margin="16dp"
+        android:backgroundTint="@color/pokeapp_fab"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -8,14 +8,15 @@
         app:actionViewClass="androidx.appcompat.widget.SearchView"
         tools:ignore="MenuTitle" />
 
-    <item android:id="@+id/filter"
-        android:icon="@drawable/pokeapp_ic_filter"
+    <item android:id="@+id/about"
+        android:icon="@drawable/pokeapp_ic_info_help"
         app:showAsAction="collapseActionView|ifRoom"
         tools:ignore="MenuTitle" />
 
     <item android:id="@+id/languages"
         android:icon="@drawable/pokeapp_ic_language"
         app:showAsAction="collapseActionView|ifRoom"
+        android:visible="false"
         tools:ignore="MenuTitle">
         <menu>
             <item

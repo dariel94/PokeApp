@@ -107,6 +107,13 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
+                <TextView
+                    android:id="@+id/genderRateMale"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:maxLines="1"
+                    tools:text="male rate"/>
+
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -114,25 +121,18 @@
                     app:tint="@color/pokeapp_white_male_blue"/>
 
                 <TextView
-                    android:id="@+id/genderRateMale"
+                    android:id="@+id/genderRateFemale"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:maxLines="1"
-                    tools:text="gender rate"/>
+                    android:layout_marginStart="6dp"
+                    tools:text="female rate"/>
 
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@drawable/pokeapp_ic_male"
-                    android:layout_marginLeft="6dp"
                     app:tint="@color/pokeapp_white_female_red"/>
-
-                <TextView
-                    android:id="@+id/genderRateFemale"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:maxLines="1"
-                    tools:text="gender rate"/>
 
             </LinearLayout>
 
@@ -163,7 +163,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="14dp"
             android:textStyle="bold"
             android:textSize="16sp"/>
 

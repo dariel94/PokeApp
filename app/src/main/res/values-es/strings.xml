@@ -1,5 +1,4 @@
 <resources>
-    <string name="pokeapp_app_name">PokeApp</string>
     <string name="pokeapp_height">Altura</string>
     <string name="pokeapp_weight">Peso</string>
     <string name="pokeapp_stats_title">Stats base</string>
@@ -54,6 +53,9 @@
     <string name="pokeapp_empty_state">"No hay resultados"</string>
     <string name="pokeapp_detail_error_message">No se pudo obtener la información del pokemon</string>
     <string name="pokeapp_list_error_message">No se pudo obtener la lista</string>
+    <string name="pokeapp_contact">Contacto</string>
+    <string name="pokeapp_disclaimer">Nintendo, Pokémon y el resto de nombres e imágenes son propiedad de Nintendo Company, Ltd., Creatures Inc. y GameFreak</string>
+    <string name="pokeapp_contact_message">"Seleccione un cliente de correo: "</string>
 
     <string-array name="pokeapp_types">
         <item>Fire</item>

@@ -23,6 +23,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import android.view.MenuItem
 import androidx.activity.result.ActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
+import com.dariel94.android.pokeapp.presentation.about.AboutActivity
 import com.dariel94.android.pokeapp.presentation.detail.PokemonDetailActivity
 import com.dariel94.android.pokeapp.presentation.detail.adapter.PokeListListener
 import com.dariel94.android.pokeapp.presentation.utils.LanguageUtils
@@ -65,6 +66,12 @@ class PokeListActivity : BaseActivity(), OptionFilterListener, PokeListListener 
             clearFilters()
         }
 
+        binding.filterFab.setOnClickListener {
+            if (!filterBottomSheet.isShowing) {
+                filterBottomSheet.show()
+            }
+        }
+
         pokeListViewModel.getViewStateLiveData().observe(this) {
             updateViewStatus(it)
         }
@@ -93,11 +100,9 @@ class PokeListActivity : BaseActivity(), OptionFilterListener, PokeListListener 
                 return false
             }
         })
-        val filterItem = menu.findItem(R.id.filter)
-        filterItem.setOnMenuItemClickListener {
-            if (!filterBottomSheet.isShowing) {
-                filterBottomSheet.show()
-            }
+        val aboutItem = menu.findItem(R.id.about)
+        aboutItem.setOnMenuItemClickListener {
+            startActivity(Intent(this, AboutActivity::class.java))
             false
         }
         return true

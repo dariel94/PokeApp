@@ -127,7 +127,7 @@ object PokemonUtils {
         if (lan == SPANISH) {
             return when (cat) {
                 "legendary" -> "Legendario"
-                "favourite" -> "Favorito"
+                "favorite" -> "Favorito"
                 else -> cat.capitalizeFirst()
             }
         }

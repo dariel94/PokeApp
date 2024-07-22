@@ -12,6 +12,7 @@
     <color name="pokeapp_white_male_blue">#2196F3</color>
     <color name="pokeapp_white_female_red">#E91E63</color>
     <color name="pokeapp_button_blue">#00B0FF</color>
+    <color name="pokeapp_fab">#03A9F4</color>
 
     <color name="pokeapp_grass">#48d0b0</color>
     <color name="pokeapp_fire">#fb6c6c</color>

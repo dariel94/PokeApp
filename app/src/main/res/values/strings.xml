@@ -1,5 +1,5 @@
 <resources>
-    <string name="pokeapp_app_name">PokeApp</string>
+    <string name="pokeapp_app_name" translatable="false">PokeMax</string>
     <string name="pokeapp_height">Height</string>
     <string name="pokeapp_weight">Weight</string>
     <string name="pokeapp_stats_title">Base Stats</string>
@@ -54,6 +54,12 @@
     <string name="pokeapp_empty_state">"No results"</string>
     <string name="pokeapp_detail_error_message">There was an error loading the pokemon data</string>
     <string name="pokeapp_list_error_message">There was an error loading the pokemon list</string>
+    <string name="pokeapp_app_dev" translatable="false">IusLegis</string>
+    <string name="pokeapp_contact">Contact us</string>
+    <string name="pokeapp_github" translatable="false">Github</string>
+    <string name="pokeapp_pokeapi" translatable="false">Pokeapi</string>
+    <string name="pokeapp_disclaimer">Nintendo, Pokémon and all other names and images are property of Nintendo Company, Ltd., Creatures Inc. and GameFreak</string>
+    <string name="pokeapp_contact_message">"Choose an Email client :"</string>
 
     <string-array name="pokeapp_types">
         <item>Fire</item>
