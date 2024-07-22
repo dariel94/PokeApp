@@ -34,7 +34,8 @@
             android:gravity="center"
             android:background="@drawable/pokeapp_solid_rounded_corner"
             android:textColor="@color/pokeapp_white"
-            android:backgroundTint="#00B0FF"
+            android:layout_marginBottom="8dp"
+            android:backgroundTint="@color/pokeapp_button_blue"
             android:text="@string/pokeapp_retry"/>
 
 </LinearLayout>

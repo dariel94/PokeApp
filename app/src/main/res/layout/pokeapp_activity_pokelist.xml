@@ -16,7 +16,7 @@
         android:visibility="gone"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:textColor="#00B0FF"/>
+        android:textColor="@color/pokeapp_button_blue"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"

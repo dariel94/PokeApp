@@ -4,6 +4,6 @@
   -->
 
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:color="#B000B0FF" android:state_checked="true"/>
+    <item android:color="@color/pokeapp_button_blue" android:state_checked="true"/>
     <item android:color="#E1E1E1" android:state_checked="false"/>
 </selector>
