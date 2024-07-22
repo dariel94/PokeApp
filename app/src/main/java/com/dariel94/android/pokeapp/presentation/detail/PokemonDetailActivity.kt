@@ -97,7 +97,7 @@ class PokemonDetailActivity : BaseActivity() {
         when (networkState) {
             is UIState.Loading -> showLoadingView()
             is UIState.Success -> showPokemonData(networkState.data?.toUI(this))
-            is UIState.Error -> showErrorView(networkState.message)
+            is UIState.Error -> showErrorView(getString(R.string.pokeapp_detail_error_message))
         }
     }
 

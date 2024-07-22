@@ -52,6 +52,8 @@
     <string name="pokeapp_if">Si</string>
     <string name="pokeapp_search_hint">"Buscar nombre o ID"</string>
     <string name="pokeapp_empty_state">"No hay resultados"</string>
+    <string name="pokeapp_detail_error_message">No se pudo obtener la información del pokemon</string>
+    <string name="pokeapp_list_error_message">No se pudo obtener la lista</string>
 
     <string-array name="pokeapp_types">
         <item>Fire</item>

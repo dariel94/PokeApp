@@ -37,6 +37,7 @@ class PokemonRepositoryImpl @Inject constructor(
             if (localPokemon != null) {
                 NetworkState.Success(localPokemon.mapToDomain())
             } else {
+                Log.d(StringUtils.ERROR, e.message ?: "")
                 NetworkState.Error(e)
             }
         }
@@ -46,6 +47,7 @@ class PokemonRepositoryImpl @Inject constructor(
         return try {
             NetworkState.Success(cacheDataSource.getFavorites())
         } catch (e: Throwable) {
+            Log.d(StringUtils.ERROR, e.message ?: "")
             NetworkState.Error(e)
         }
     }

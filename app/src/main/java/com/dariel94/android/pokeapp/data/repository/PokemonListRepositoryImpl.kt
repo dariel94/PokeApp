@@ -1,10 +1,12 @@
 package com.dariel94.android.pokeapp.data.repository
 
+import android.util.Log
 import com.dariel94.android.pokeapp.data.api.pokelist.model.mapToDomain
 import com.dariel94.android.pokeapp.data.api.pokelist.model.mapToEntity
 import com.dariel94.android.pokeapp.data.database.model.mapToPokemonSimple
 import com.dariel94.android.pokeapp.data.source.PokemonListCacheDataSource
 import com.dariel94.android.pokeapp.data.source.PokemonListRemoteDataSource
+import com.dariel94.android.pokeapp.data.utils.StringUtils
 import com.dariel94.android.pokeapp.domain.NetworkState
 import com.dariel94.android.pokeapp.domain.model.PokemonSimple
 import com.dariel94.android.pokeapp.domain.repository.PokemonListRepository
@@ -32,6 +34,7 @@ class PokemonListRepositoryImpl @Inject constructor(
             val cachedPokemonList = cacheDataSource.getPokemonList()
 
             if (cachedPokemonList.isEmpty()) {
+                Log.d(StringUtils.ERROR, e.message ?: "")
                 NetworkState.Error(e)
             } else {
                 val pokemonList = cachedPokemonList.map { it.mapToPokemonSimple() }

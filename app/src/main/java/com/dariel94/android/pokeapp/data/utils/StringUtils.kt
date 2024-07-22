@@ -6,7 +6,7 @@ package com.dariel94.android.pokeapp.data.utils
 object StringUtils {
 
     const val ENGLISH = "en"
-    const val ERROR = "Error"
+    const val ERROR = "PokeappError"
 
     fun getIdFromUrl(url: String): String {
         val splitUrl = url.split('/')

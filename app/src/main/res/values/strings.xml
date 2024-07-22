@@ -52,6 +52,8 @@
     <string name="pokeapp_if">If</string>
     <string name="pokeapp_search_hint">"Search by name or id"</string>
     <string name="pokeapp_empty_state">"No results"</string>
+    <string name="pokeapp_detail_error_message">There was an error loading the pokemon data</string>
+    <string name="pokeapp_list_error_message">There was an error loading the pokemon list</string>
 
     <string-array name="pokeapp_types">
         <item>Fire</item>

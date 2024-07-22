@@ -5,7 +5,9 @@
 
 package com.dariel94.android.pokeapp.data.repository
 
+import android.util.Log
 import com.dariel94.android.pokeapp.data.source.TypesRemoteDataSource
+import com.dariel94.android.pokeapp.data.utils.StringUtils
 import com.dariel94.android.pokeapp.domain.NetworkState
 import com.dariel94.android.pokeapp.domain.repository.TypesRepository
 import javax.inject.Inject
@@ -18,6 +20,7 @@ class TypesRepositoryImpl @Inject constructor(
         return try {
             NetworkState.Success(typesRemoteDataSource.getTypes().results.map { it.name })
         } catch (e: Throwable) {
+            Log.d(StringUtils.ERROR, e.message ?: "")
             NetworkState.Error(e)
         }
     }

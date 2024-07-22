@@ -122,7 +122,7 @@ class PokeListActivity : BaseActivity(), OptionFilterListener, PokeListListener 
         when (networkState) {
             is UIState.Loading -> showLoadingView()
             is UIState.Success -> loadPokemonListData(networkState.data)
-            is UIState.Error -> showErrorView(networkState.message)
+            is UIState.Error -> showErrorView(getString(R.string.pokeapp_list_error_message))
         }
     }
 
