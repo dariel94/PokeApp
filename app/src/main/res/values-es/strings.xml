@@ -34,8 +34,8 @@
     <string name="pokeapp_stats_tab">STATS</string>
     <string name="pokeapp_abilities_tab">HABILIDADES</string>
     <string name="pokeapp_forms_tab">FORMAS</string>
-    <string name="pokeapp_male">M</string>
-    <string name="pokeapp_female">F</string>
+    <string name="pokeapp_male">macho</string>
+    <string name="pokeapp_female">hembra</string>
     <string name="pokeapp_genderless">Sin género</string>
     <string name="pokeapp_steps">pasos</string>
     <string name="pokeapp_held">Llevar</string>
@@ -50,7 +50,7 @@
     <string name="pokeapp_at">de</string>
     <string name="pokeapp_gender">Género</string>
     <string name="pokeapp_if">Si</string>
-    <string name="pokeapp_search_hint">"Nombre o id"</string>
+    <string name="pokeapp_search_hint">"Buscar nombre o ID"</string>
     <string name="pokeapp_empty_state">"No hay resultados"</string>
 
     <string-array name="pokeapp_types">

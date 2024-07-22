@@ -156,6 +156,7 @@ class PokeListActivity : BaseActivity(), OptionFilterListener, PokeListListener 
         }
         pokeListAdapter.filter.setOptionFilters(types, gens, cats)
         pokeListAdapter.filter.filter(searchView.query)
+        binding.emptyStateView.hide()
     }
 
     private fun clearFilters() {

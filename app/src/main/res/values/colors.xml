@@ -9,6 +9,8 @@
     <color name="pokeapp_grey">#808080</color>
     <color name="pokeapp_chip_text">#5C5C5C</color>
     <color name="pokeapp_white_transparent">#36FFFFFF</color>
+    <color name="pokeapp_white_male_blue">#2196F3</color>
+    <color name="pokeapp_white_female_red">#E91E63</color>
 
     <color name="pokeapp_grass">#48d0b0</color>
     <color name="pokeapp_fire">#fb6c6c</color>

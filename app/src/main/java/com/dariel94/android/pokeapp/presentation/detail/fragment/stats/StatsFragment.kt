@@ -15,6 +15,8 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.dariel94.android.pokeapp.R
 import com.dariel94.android.pokeapp.presentation.model.PokemonUI
+import com.dariel94.android.pokeapp.presentation.utils.hide
+import com.dariel94.android.pokeapp.presentation.utils.show
 import com.dariel94.android.pokeapp.presentation.widgets.StatWidget
 
 class StatsFragment(
@@ -40,7 +42,15 @@ class StatsFragment(
             statsContainer.addView(statWidget)
         }
 
-        view.findViewById<TextView>(R.id.genderRate).text = pokemon.genderRate
+
+        if (pokemon.isGenderless) {
+            view.findViewById<TextView>(R.id.genderlessTextView).show()
+            view.findViewById<LinearLayout>(R.id.genderRateView).hide()
+        } else {
+            view.findViewById<TextView>(R.id.genderRateMale).text = pokemon.maleRate
+            view.findViewById<TextView>(R.id.genderRateFemale).text = pokemon.femaleRate
+        }
+
         view.findViewById<TextView>(R.id.eggGroups).text = pokemon.eggGroups
         view.findViewById<TextView>(R.id.catchRate).text = pokemon.captureRate
         view.findViewById<TextView>(R.id.baseHappiness).text = pokemon.baseHappiness

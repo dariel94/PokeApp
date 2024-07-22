@@ -35,11 +35,9 @@ fun Pokemon.toUI(context: Context): PokemonUI {
     val evolutions: ArrayList<Evolution> = arrayListOf()
     mapEvolutionChainToList(this.evolutionChain, evolutions, context)
 
-    val genderRateText = if (this.genderRate != -1) {
-        "${(8 - this.genderRate) * 12.5F}% ${context.getString(R.string.pokeapp_male)}, ${this.genderRate * 12.5F}% ${context.getString(R.string.pokeapp_female)}"
-    } else {
-        context.getString(R.string.pokeapp_genderless)
-    }
+    val maleRatio = "${(8 - this.genderRate) * 12.5F}%"
+    val femaleRatio = "${this.genderRate * 12.5F}%"
+    val isGenderless = this.genderRate == -1
 
     val capturePercent = String.format("%.2f", this.captureRate / 255F * 33.33F)
     val captureRateString = "${this.captureRate} ($capturePercent%)"
@@ -67,7 +65,9 @@ fun Pokemon.toUI(context: Context): PokemonUI {
         this.baseExperience.toString(),
         eggGroupsText,
         PokemonUtils.getGrowthRateTranslation(this.growthRate, lan),
-        genderRateText,
+        maleRatio,
+        femaleRatio,
+        isGenderless,
         captureRateString,
         this.baseHappiness.toString(),
         hatchCounterText,
