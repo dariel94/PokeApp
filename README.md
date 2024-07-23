@@ -27,16 +27,27 @@ This is a sample Pokemon App written in Kotlin using a modern Android Architectu
 
 <table style="width:100%">
 <tr>
-    <th> GIF  </th>
-    <th> List </th>
-    <th>Filter</th>
-    <th>Empty </th>
+    <th>Stats</th>
+    <th>Evolutions</th>
+    <th>Abilities</th>
+    <th>Forms</th>
   </tr>
   <tr>
-    <td><img src="screenshots/video.gif"/></td>
-    <td><img src="screenshots/list.png"/></td>
-    <td><img src="screenshots/filter.png"/></td>
-    <td><img src="screenshots/empty_state.png"/></td>
+    <td><img src="screenshots/detail2.png"/></td>
+    <td><img src="screenshots/detail3.png"/></td>
+    <td><img src="screenshots/detail4.png"/></td>
+    <td><img src="screenshots/detail5.png"/></td>
+  </tr>
+</table>
+
+<table style="width:100%">
+<tr>
+    <th>Video</th>
+    <th>About</th>
+  </tr>
+  <tr>
+    <td><img src="screenshots/video.fig"/></td>
+    <td><img src="screenshots/about.png"/></td>
   </tr>
 </table>
 
