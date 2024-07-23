@@ -34,7 +34,7 @@ This is a sample Pokemon App written in Kotlin using a modern Android Architectu
     <th>GIF</th>
     <th>List</th>
     <th>Filter</th>
-    <th>EmptyState</th>
+    <th>Empty</th>
     <th>About</th>
   </tr>
   <tr>
