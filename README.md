@@ -46,7 +46,7 @@ This is a sample Pokemon App written in Kotlin using a modern Android Architectu
     <th>About</th>
   </tr>
   <tr>
-    <td><img src="screenshots/video.fig"/></td>
+    <td><img src="screenshots/video.gif"/></td>
     <td><img src="screenshots/about.png"/></td>
   </tr>
 </table>
