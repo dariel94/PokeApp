@@ -52,4 +52,4 @@ This is a sample Pokemon App written in Kotlin using a modern Android Architectu
 </table>
 
 * David Diaz
-* daviddiaz_94@hotmail.com
+* davarieldiaz@gmail.com
