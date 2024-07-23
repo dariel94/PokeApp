@@ -18,6 +18,7 @@
         android:layout_height="wrap_content"
         android:text="Poke"
         android:textStyle="bold"
+        android:textColor="@color/pokeapp_strong_gray"
         android:textSize="24sp"
         />
 

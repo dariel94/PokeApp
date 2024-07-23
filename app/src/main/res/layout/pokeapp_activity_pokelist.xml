@@ -7,17 +7,19 @@
     android:paddingTop="24dp"
     tools:context=".presentation.pokelist.PokeListActivity">
 
-    <androidx.appcompat.widget.AppCompatImageButton
+    <ImageButton
         android:id="@+id/aboutButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/pokeapp_ic_info"
-        android:tint="@color/pokeapp_strong_gray"
+        android:src="@drawable/pokeapp_ic_info_2"
+        app:tint="@color/pokeapp_strong_gray"
+        android:rotation="180"
         android:background="@color/pokeapp_transparent"
         app:layout_constraintTop_toTopOf="@+id/appTitleView"
         app:layout_constraintBottom_toBottomOf="@+id/appTitleView"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginEnd="16dp"/>
+        android:padding="8dp"
+        android:layout_marginEnd="8dp"/>
 
     <include layout="@layout/pokeapp_app_title_layout"
         android:id="@+id/appTitleView"
@@ -28,7 +30,7 @@
         android:id="@+id/searchView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="16dp"
+        android:layout_marginHorizontal="12dp"
         android:layout_marginTop="24dp"
         app:layout_constraintTop_toBottomOf="@id/appTitleView"
         app:layout_constraintStart_toStartOf="parent"
@@ -55,8 +57,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         android:layout_marginTop="16dp"
-        android:paddingEnd="12dp"
-        android:paddingStart="12dp"/>
+        android:paddingEnd="8dp"
+        android:paddingStart="8dp"/>
 
     <LinearLayout
         android:id="@+id/emptyStateView"
