@@ -34,12 +34,14 @@ This is a sample Pokemon App written in Kotlin using a modern Android Architectu
     <th>GIF</th>
     <th>List</th>
     <th>Filter</th>
+    <th>EmptyState</th>
     <th>About</th>
   </tr>
   <tr>
-    <td><img src="screenshots/video.mp4"/></td>
+    <td><img src="screenshots/video.gif"/></td>
     <td><img src="screenshots/list.png"/></td>
     <td><img src="screenshots/filter.png"/></td>
+    <td><img src="screenshots/empty_state.png"/></td>
     <td><img src="screenshots/about.png"/></td>
   </tr>
 </table>
