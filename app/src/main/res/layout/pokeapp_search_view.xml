@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/pokeapp_white">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/search_edit_text_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/pokeapp_rounded_corner_2"
+        android:backgroundTint="@color/pokeapp_light_gray"
+        android:padding="10dp"
+        tools:ignore="Overdraw">
+
+        <ImageView
+            android:id="@+id/search_image_view"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@drawable/pokeapp_ic_search"
+            android:layout_marginStart="2dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:tint="@color/pokeapp_strong_gray" />
+
+        <EditText
+            android:id="@+id/search_edit_text"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@color/pokeapp_transparent"
+            android:layout_gravity="center_vertical"
+            android:hint="@string/pokeapp_search_hint"
+            android:textColorHint="@color/pokeapp_gray"
+            android:imeOptions="flagNoExtractUi|flagNoFullscreen|actionDone"
+            android:inputType="textNoSuggestions"
+            android:textSize="14sp"
+            android:textColor="@color/pokeapp_strong_gray"
+            android:layout_marginHorizontal="8dp"
+            app:layout_constraintStart_toEndOf="@id/search_image_view"
+            app:layout_constraintEnd_toStartOf="@id/image_clear"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="Autofill,RtlHardcoded" />
+
+        <ImageView
+            android:id="@+id/image_clear"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@drawable/pokeapp_ic_close"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="2dp"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:tint="@color/pokeapp_colorAccent"
+            tools:visibility="visible"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</LinearLayout>

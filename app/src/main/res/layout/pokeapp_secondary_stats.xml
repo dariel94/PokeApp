@@ -27,21 +27,21 @@
             android:id="@+id/genderRateText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/pokeapp_grey"
+            android:textColor="@color/pokeapp_gray"
             android:text="@string/pokeapp_gender_rate"/>
 
         <TextView
             android:id="@+id/eggCyclesText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/pokeapp_grey"
+            android:textColor="@color/pokeapp_gray"
             android:text="@string/pokeapp_egg_cycles"/>
 
         <TextView
             android:id="@+id/eggGroupsText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/pokeapp_grey"
+            android:textColor="@color/pokeapp_gray"
             android:text="@string/pokeapp_egg_groups"/>
 
         <TextView
@@ -56,28 +56,28 @@
             android:id="@+id/catchRateText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/pokeapp_grey"
+            android:textColor="@color/pokeapp_gray"
             android:text="@string/pokeapp_catch_rate"/>
 
         <TextView
             android:id="@+id/growthRateText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/pokeapp_grey"
+            android:textColor="@color/pokeapp_gray"
             android:text="@string/pokeapp_growth_rate"/>
 
         <TextView
             android:id="@+id/baseHappinessText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/pokeapp_grey"
+            android:textColor="@color/pokeapp_gray"
             android:text="@string/pokeapp_base_happiness"/>
 
         <TextView
             android:id="@+id/baseExperienceText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/pokeapp_grey"
+            android:textColor="@color/pokeapp_gray"
             android:text="@string/pokeapp_base_experience"/>
 
     </LinearLayout>

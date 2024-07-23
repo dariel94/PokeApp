@@ -73,7 +73,7 @@
 
     <style name="pokeapp_abilityDialog" parent="Theme.AppCompat.Light.Dialog">
         <item name="android:textColor">@color/pokeapp_black</item>
-        <item name="android:textColorPrimary">@color/pokeapp_grey</item>
+        <item name="android:textColorPrimary">@color/pokeapp_gray</item>
     </style>
 
 </resources>

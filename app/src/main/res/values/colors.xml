@@ -3,15 +3,18 @@
     <color name="pokeapp_colorPrimary">#FFFFFF</color>
     <color name="pokeapp_transparent">#00FFFFFF</color>
     <color name="pokeapp_colorPrimaryDark">#FFFFFF</color>
-    <color name="pokeapp_colorAccent">#FF4081</color>
+    <color name="pokeapp_colorAccent">#7E57C2</color>
     <color name="pokeapp_black">#000000</color>
     <color name="pokeapp_white">#FFFFFF</color>
-    <color name="pokeapp_grey">#808080</color>
+    <color name="pokeapp_gray">#808080</color>
+    <color name="pokeapp_strong_gray">#505050</color>
+    <color name="pokeapp_light_gray">#A5A5A5</color>
     <color name="pokeapp_chip_text">#5C5C5C</color>
     <color name="pokeapp_white_transparent">#36FFFFFF</color>
     <color name="pokeapp_white_male_blue">#2196F3</color>
     <color name="pokeapp_white_female_red">#E91E63</color>
-    <color name="pokeapp_button_blue">#00B0FF</color>
+    <color name="pokeapp_button_blue">#42A5F5</color>
+    <color name="pokeapp_chip_blue">#4FC3F7</color>
     <color name="pokeapp_fab">#7E57C2</color>
 
     <color name="pokeapp_grass">#48d0b0</color>

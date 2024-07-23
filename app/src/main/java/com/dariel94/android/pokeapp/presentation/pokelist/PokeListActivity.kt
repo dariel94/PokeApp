@@ -7,7 +7,6 @@ import android.view.Menu
 import android.view.View
 import android.view.animation.AnimationUtils
 import androidx.activity.viewModels
-import androidx.appcompat.widget.SearchView
 import androidx.recyclerview.widget.GridLayoutManager
 import com.dariel94.android.pokeapp.R
 import com.dariel94.android.pokeapp.databinding.PokeappActivityPokelistBinding
@@ -28,17 +27,16 @@ import com.dariel94.android.pokeapp.presentation.detail.PokemonDetailActivity
 import com.dariel94.android.pokeapp.presentation.detail.adapter.PokeListListener
 import com.dariel94.android.pokeapp.presentation.utils.LanguageUtils
 import com.dariel94.android.pokeapp.presentation.utils.StringUtils
-
+import com.dariel94.android.pokeapp.presentation.widgets.search.SearchViewListener
 
 /**
  * Created by dariel94 on 31/10/2021.
  */
 @AndroidEntryPoint
-class PokeListActivity : BaseActivity(), OptionFilterListener, PokeListListener {
+class PokeListActivity : BaseActivity(), OptionFilterListener, PokeListListener, SearchViewListener {
 
     private val pokeListViewModel by viewModels<PokeListViewModel>()
     private var pokeListAdapter: PokeListAdapter = PokeListAdapter(this, this)
-    private lateinit var searchView: SearchView
     private val filterBottomSheet: FilterBottomSheet by lazy {
         FilterBottomSheet(this)
     }
@@ -54,6 +52,7 @@ class PokeListActivity : BaseActivity(), OptionFilterListener, PokeListListener 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        supportActionBar?.hide()
         binding.recyclerView.setHasFixedSize(true)
         val layoutManager = GridLayoutManager(this, 2)
         binding.recyclerView.layoutManager = layoutManager
@@ -72,11 +71,18 @@ class PokeListActivity : BaseActivity(), OptionFilterListener, PokeListListener 
             }
         }
 
+        binding.searchView.setHint(getString(R.string.pokeapp_search_hint))
+        binding.searchView.setListener(this)
+
         pokeListViewModel.getViewStateLiveData().observe(this) {
             updateViewStatus(it)
         }
-        pokeListViewModel.fetchPokemonListData()
 
+        binding.aboutButton.setOnClickListener {
+            startActivity(Intent(this, AboutActivity::class.java))
+        }
+
+        pokeListViewModel.fetchPokemonListData()
     }
 
     override fun getLayoutView() : View = binding.root
@@ -85,38 +91,15 @@ class PokeListActivity : BaseActivity(), OptionFilterListener, PokeListListener 
         pokeListViewModel.fetchPokemonListData()
     }
 
-    override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        menuInflater.inflate(R.menu.pokeapp_options_menu, menu)
-        val searchItem = menu.findItem(R.id.search)
-        searchView = searchItem.actionView as SearchView
-        searchView.queryHint = getString(R.string.pokeapp_search_hint)
-        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
-            override fun onQueryTextSubmit(query: String): Boolean {
-                return false
-            }
-            override fun onQueryTextChange(newText: String): Boolean {
-                pokeListAdapter.filter.filter(newText)
-                binding.emptyStateView.hide()
-                return false
-            }
-        })
-        val aboutItem = menu.findItem(R.id.about)
-        aboutItem.setOnMenuItemClickListener {
-            startActivity(Intent(this, AboutActivity::class.java))
-            false
-        }
-        return true
-    }
-
     @Override
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.action_language_es -> {
-                LanguageUtils.setLocale("es", this)
+                LanguageUtils.setLocale(StringUtils.SPANISH, this)
                 true
             }
             R.id.action_language_en -> {
-                LanguageUtils.setLocale("en", this)
+                LanguageUtils.setLocale(StringUtils.ENGLISH, this)
                 true
             }
             else -> super.onOptionsItemSelected(item)
@@ -160,7 +143,7 @@ class PokeListActivity : BaseActivity(), OptionFilterListener, PokeListListener 
             binding.clearFilterView.show()
         }
         pokeListAdapter.filter.setOptionFilters(types, gens, cats)
-        pokeListAdapter.filter.filter(searchView.query)
+        pokeListAdapter.filter.filter(binding.searchView.text)
         binding.emptyStateView.hide()
     }
 
@@ -183,5 +166,10 @@ class PokeListActivity : BaseActivity(), OptionFilterListener, PokeListListener 
 
     override fun onEmptyList() {
         binding.emptyStateView.show()
+    }
+
+    override fun onSearchText(text: String) {
+        pokeListAdapter.filter.filter(text)
+        binding.emptyStateView.hide()
     }
 }

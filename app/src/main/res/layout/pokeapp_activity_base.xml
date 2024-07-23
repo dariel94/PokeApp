@@ -22,7 +22,7 @@
         android:layout_height="wrap_content"
         android:indeterminate="true"
         app:trackThickness="4dp"
-        app:indicatorColor="@color/pokeapp_grey"
+        app:indicatorColor="@color/pokeapp_gray"
         app:indicatorSize="64dp"
         app:indeterminateAnimationType="contiguous"
         app:layout_constraintStart_toStartOf="parent"

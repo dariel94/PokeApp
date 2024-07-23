@@ -8,6 +8,7 @@
     android:layout_height="wrap_content"
     android:layout_width="wrap_content"
     tools:text="chip"
-    android:textColor="#77000000"
+    android:textColor="@color/pokeapp_strong_gray"
+    android:textStyle="bold"
     android:textAppearance="@style/pokeapp_chipTextAppearance"
     style="@style/pokeapp_chip" />

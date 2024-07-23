@@ -4,30 +4,66 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:paddingTop="24dp"
     tools:context=".presentation.pokelist.PokeListActivity">
 
-    <TextView
-        android:id="@+id/clearFilterView"
+    <androidx.appcompat.widget.AppCompatImageButton
+        android:id="@+id/aboutButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/pokeapp_clear_filters"
-        android:layout_marginEnd="10dp"
-        android:layout_marginTop="6dp"
-        android:visibility="gone"
-        app:layout_constraintTop_toTopOf="parent"
+        android:src="@drawable/pokeapp_ic_info"
+        android:tint="@color/pokeapp_strong_gray"
+        android:background="@color/pokeapp_transparent"
+        app:layout_constraintTop_toTopOf="@+id/appTitleView"
+        app:layout_constraintBottom_toBottomOf="@+id/appTitleView"
         app:layout_constraintEnd_toEndOf="parent"
-        android:textColor="@color/pokeapp_button_blue"/>
+        android:layout_marginEnd="16dp"/>
+
+    <include layout="@layout/pokeapp_app_title_layout"
+        android:id="@+id/appTitleView"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+    <com.dariel94.android.pokeapp.presentation.widgets.search.SearchWidget
+        android:id="@+id/searchView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="24dp"
+        app:layout_constraintTop_toBottomOf="@id/appTitleView"
+        app:layout_constraintStart_toStartOf="parent"
+        />
+
+    <LinearLayout
+        android:id="@+id/clearFilterLayout"
+        android:layout_width="match_parent"
+        android:layout_height="32dp"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toBottomOf="@id/searchView"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <TextView
+            android:id="@+id/clearFilterView"
+            android:layout_width="match_parent"
+            android:layout_height="32dp"
+            android:text="@string/pokeapp_clear_filters"
+            android:gravity="center|end"
+            android:layout_marginEnd="24dp"
+            android:visibility="gone"
+            android:textColor="@color/pokeapp_colorAccent"/>
+
+    </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        app:layout_constraintTop_toBottomOf="@id/clearFilterView"
+        app:layout_constraintTop_toBottomOf="@id/clearFilterLayout"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        android:paddingEnd="6dp"
-        android:paddingBottom="6dp"/>
+        android:paddingEnd="12dp"
+        android:paddingStart="12dp"/>
 
     <LinearLayout
         android:id="@+id/emptyStateView"

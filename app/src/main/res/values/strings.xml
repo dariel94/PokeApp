@@ -25,10 +25,10 @@
     <string name="pokeapp_catch_rate">Catch Rate</string>
     <string name="pokeapp_base_experience">Base Exp.</string>
     <string name="pokeapp_egg_cycles">Egg Cycles</string>
-    <string name="pokeapp_filter">Done</string>
-    <string name="pokeapp_select_generations">Filter by generation</string>
-    <string name="pokeapp_select_category">Filter by category</string>
-    <string name="pokeapp_select_types">Filter by type</string>
+    <string name="pokeapp_filter">Filter</string>
+    <string name="pokeapp_select_generations">Generations</string>
+    <string name="pokeapp_select_category">Categories</string>
+    <string name="pokeapp_select_types">Types</string>
     <string name="pokeapp_clear_filters"><![CDATA[Clear filters >]]></string>
     <string name="pokeapp_evolutions_tab">EVOLUTIONS</string>
     <string name="pokeapp_stats_tab">STATS</string>

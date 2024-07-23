@@ -18,7 +18,7 @@
                                 <PersistentState>
                                   <option name="values">
                                     <map>
-                                      <entry key="url" value="file:/$USER_HOME$/AppData/Local/Android/Sdk/icons/material/materialicons/info/baseline_info_24.xml" />
+                                      <entry key="url" value="file:/$USER_HOME$/AppData/Local/Android/Sdk/icons/material/materialicons/close/baseline_close_24.xml" />
                                     </map>
                                   </option>
                                 </PersistentState>
@@ -29,7 +29,7 @@
                         <option name="values">
                           <map>
                             <entry key="color" value="1a1a1a" />
-                            <entry key="outputName" value="pokeapp_ic_info" />
+                            <entry key="outputName" value="pokeapp_ic_close" />
                             <entry key="sourceFile" value="C:\Users\David\StudioProjects\PokeApp" />
                           </map>
                         </option>

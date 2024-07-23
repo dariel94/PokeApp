@@ -26,6 +26,7 @@ class AboutActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.elevation = 0F
         title = ""
         binding.appVersion.text = "v" + BuildConfig.VERSION_NAME
 

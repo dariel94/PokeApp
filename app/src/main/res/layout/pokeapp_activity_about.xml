@@ -5,18 +5,11 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:gravity="top"
+    android:layout_marginTop="16dp"
     tools:context=".presentation.about.AboutActivity">
 
-    <TextView
-        android:id="@+id/app_name"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:gravity="center"
-        android:textSize="24sp"
-        android:text="@string/pokeapp_app_name"
-        android:textStyle="bold"
-        android:textColor="@color/pokeapp_black" />
+    <include layout="@layout/pokeapp_app_title_layout"
+        android:id="@+id/appTitleView"/>
 
     <TextView
         android:id="@+id/app_version"
@@ -34,7 +27,7 @@
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/contact_button"
         android:layout_width="match_parent"
-        android:layout_height="40dp"
+        android:layout_height="48dp"
         android:layout_marginTop="16dp"
         android:layout_marginHorizontal="32dp"
         android:layout_gravity="center"
@@ -51,7 +44,7 @@
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/github_button"
         android:layout_width="match_parent"
-        android:layout_height="40dp"
+        android:layout_height="48dp"
         android:layout_marginTop="16dp"
         android:layout_marginHorizontal="32dp"
         android:layout_gravity="center"
@@ -68,7 +61,7 @@
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/pokeapi_button"
         android:layout_width="match_parent"
-        android:layout_height="40dp"
+        android:layout_height="48dp"
         android:layout_marginTop="16dp"
         android:layout_marginHorizontal="32dp"
         android:layout_gravity="center"
