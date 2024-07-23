@@ -14,16 +14,14 @@ This is a sample Pokemon App written in Kotlin using a modern Android Architectu
 
 <table style="width:100%">
   <tr>
-    <th> Stats </th>
-    <th> Stats Full </th>
-    <th>  Evolutions  </th>
-    <th> Abilities  </th>
+    <th>List</th>
+    <th>Stats</th>
+    <th>Filter</th>
   </tr>
   <tr>
+    <td><img src="screenshots/list.png"/></td>
     <td><img src="screenshots/detail1.png"/></td>
-    <td><img src="screenshots/detail2.png"/></td>
-    <td><img src="screenshots/detail3.png"/></td>
-    <td><img src="screenshots/detail4.png"/></td>
+    <td><img src="screenshots/filter.png"/></td>
   </tr>
 </table>
 
