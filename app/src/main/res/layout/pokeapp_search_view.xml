@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"
         android:background="@drawable/pokeapp_rounded_corner_2"
         android:backgroundTint="@color/pokeapp_light_gray"
-        android:padding="12dp"
+        android:padding="14dp"
         tools:ignore="Overdraw">
 
         <ImageView
