@@ -15,13 +15,17 @@ This is a sample Pokemon App written in Kotlin using a modern Android Architectu
 <table style="width:100%">
   <tr>
     <th>Stats</th>
+    <th>Stats Full</th>
     <th>Evolutions</th>
     <th>Abilities</th>
+    <th>Forms</th>
   </tr>
   <tr>
     <td><img src="screenshots/detail1.png"/></td>
     <td><img src="screenshots/detail2.png"/></td>
     <td><img src="screenshots/detail3.png"/></td>
+    <td><img src="screenshots/detail4.png"/></td>
+    <td><img src="screenshots/detail5.png"/></td>
   </tr>
 </table>
 
@@ -29,12 +33,14 @@ This is a sample Pokemon App written in Kotlin using a modern Android Architectu
 <tr>
     <th>GIF</th>
     <th>List</th>
-    <th>Detail</th>
+    <th>Filter</th>
+    <th>About</th>
   </tr>
   <tr>
-    <td><img src="screenshots/gif1.gif"/></td>
-    <td><img src="screenshots/list.jpeg"/></td>
-    <td><img src="screenshots/detail5.png"/></td>
+    <td><img src="screenshots/video.webm"/></td>
+    <td><img src="screenshots/list.png"/></td>
+    <td><img src="screenshots/filter.png"/></td>
+    <td><img src="screenshots/about.png"/></td>
   </tr>
 </table>
 
