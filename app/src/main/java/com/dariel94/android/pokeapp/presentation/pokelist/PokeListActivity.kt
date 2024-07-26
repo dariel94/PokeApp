@@ -3,7 +3,6 @@ package com.dariel94.android.pokeapp.presentation.pokelist
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
-import android.view.Menu
 import android.view.View
 import android.view.animation.AnimationUtils
 import androidx.activity.viewModels
@@ -119,6 +118,7 @@ class PokeListActivity : BaseActivity(), OptionFilterListener, PokeListListener,
         pokemonListData.pokemons?.let {
             pokeListAdapter.dataset = it
             pokeListAdapter.notifyDataSetChanged()
+            binding.emptyStateView.hide()
         }
         showLayoutView()
         pokemonListData.types?.let {
